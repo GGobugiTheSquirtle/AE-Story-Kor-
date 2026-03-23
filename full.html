@@ -15,6 +15,7 @@
   --text:#e8e0d0;--text2:#9a9080;--text-dim:#685e4e;
   --border:#2a2d45;--border-gold:rgba(201,164,76,.25);
   --sidebar-w:240px;
+  --narr-color:#8a7a60;
 }
 html{scroll-behavior:smooth}
 body{
@@ -39,7 +40,7 @@ body::before{
     radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,.08) 0%, transparent 100%);
 }
 
-/* Top nav - ornate header bar */
+/* Top nav */
 .topnav{
   position:fixed;top:0;left:0;right:0;z-index:300;
   background:linear-gradient(180deg, #181b30 0%, #111428 100%);
@@ -63,6 +64,31 @@ body::before{
   font-size:11px;color:var(--gold-dim);letter-spacing:2px;
   text-transform:uppercase;margin-left:auto;
 }
+
+/* Search bar */
+#search-bar{
+  position:fixed;top:48px;left:var(--sidebar-w);right:0;z-index:99;
+  background:linear-gradient(180deg, var(--bg2) 0%, rgba(17,20,40,.95) 100%);
+  padding:8px 20px;display:flex;gap:10px;align-items:center;
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(8px);
+}
+#search-bar input{
+  flex:1;max-width:400px;background:var(--panel);color:var(--text);
+  border:1px solid var(--border);padding:6px 14px;font-size:13px;
+  font-family:inherit;outline:none;letter-spacing:.3px;
+}
+#search-bar input:focus{border-color:var(--gold-dim)}
+#search-bar .search-info{
+  color:var(--text2);font-size:11px;letter-spacing:.5px;min-width:60px;
+}
+#search-bar button{
+  background:rgba(201,164,76,.1);color:var(--gold);
+  border:1px solid var(--gold-dim);padding:4px 14px;
+  cursor:pointer;font-size:11px;letter-spacing:1px;
+  font-family:inherit;transition:all .2s;
+}
+#search-bar button:hover{background:rgba(201,164,76,.2);border-color:var(--gold)}
 
 /* Sidebar */
 #sidebar{
@@ -119,45 +145,40 @@ body::before{
   background:rgba(201,164,76,.05);
 }
 
-/* Scene frame - image gallery */
-.scene-frame{
-  text-align:center;margin:4px 0;overflow:hidden;
+/* Dialogue line */
+.line{display:flex;gap:10px;padding:6px 0;align-items:flex-start}
+.line .portrait{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  border:1.5px solid var(--gold-dim);
+  object-fit:cover;background:var(--panel);
 }
-.scene-frame img{
-  max-width:100%;border:1px solid var(--gold-dim);
-  opacity:0;transition:opacity .4s;
-  box-shadow:0 4px 20px rgba(0,0,0,.4);
-  display:block;margin:0 auto;
+.line .portrait-placeholder{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  border:1.5px solid var(--border);
+  background:var(--panel);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--text-dim);
 }
-.scene-frame img.loaded{opacity:1}
+.line .bubble{flex:1;min-width:0}
+.line .name{
+  font-size:11px;color:var(--gold);letter-spacing:.5px;
+  margin-bottom:2px;font-weight:700;
+}
+.line .text{
+  font-size:14px;line-height:1.7;color:var(--text);
+  letter-spacing:.2px;
+}
 
-/* Toolbar - crop control */
-#toolbar{
-  position:fixed;top:48px;left:var(--sidebar-w);right:0;z-index:99;
-  background:linear-gradient(180deg, var(--bg2) 0%, rgba(17,20,40,.95) 100%);
-  padding:8px 20px;display:flex;gap:14px;align-items:center;
-  border-bottom:1px solid var(--border);
-  backdrop-filter:blur(8px);
+/* Narration */
+.narration{
+  padding:5px 0 5px 46px;
+  font-size:13px;color:var(--narr-color);
+  font-style:italic;line-height:1.6;
+  letter-spacing:.3px;
 }
-#toolbar label{
-  color:var(--text2);font-size:12px;letter-spacing:.5px;white-space:nowrap;
-}
-#toolbar input[type=range]{
-  width:120px;accent-color:var(--gold);cursor:pointer;
-}
-#toolbar .crop-val{
-  color:var(--gold);font-size:12px;min-width:30px;letter-spacing:1px;
-}
-#toolbar .divider{
-  width:1px;height:20px;background:var(--border);
-}
-#toolbar button{
-  background:rgba(201,164,76,.1);color:var(--gold);
-  border:1px solid var(--gold-dim);padding:4px 14px;
-  cursor:pointer;font-size:11px;letter-spacing:1px;
-  font-family:inherit;transition:all .2s;
-}
-#toolbar button:hover{background:rgba(201,164,76,.2);border-color:var(--gold)}
+
+/* Search highlight */
+.search-hl{background:rgba(201,164,76,.35);color:#fff;padding:0 1px;border-radius:2px}
 
 /* Mobile menu toggle */
 #menu-toggle{
@@ -185,10 +206,11 @@ body::before{
   #sidebar{transform:translateX(-100%)}
   #sidebar.open{transform:translateX(0)}
   #main{margin-left:0;padding:108px 12px 80px}
-  #toolbar{left:0}
+  #search-bar{left:0}
   #menu-toggle{display:block}
   .topnav .title-mark{display:none}
-  #toolbar input[type=range]{width:80px}
+  .line .portrait,.line .portrait-placeholder{width:28px;height:28px}
+  .narration{padding-left:38px}
 }
 </style>
 </head>
@@ -328,21 +350,34 @@ body::before{
 <a href="#ch-120" class="nav-item" data-ch="120">120장</a>
 <a href="#ch-121" class="nav-item" data-ch="121">121-123장</a>
 </nav>
-<div id="toolbar">
-  <label>상단 크롭</label>
-  <input type="range" id="crop-slider" min="0" max="30" value="0">
-  <span class="crop-val" id="crop-val">0%</span>
-  <span class="divider"></span>
-  <button id="crop-reset">초기화</button>
+<div id="search-bar">
+  <input type="text" id="search-input" placeholder="대사 검색...">
+  <span class="search-info" id="search-info"></span>
+  <button id="search-clear">초기화</button>
 </div>
 <div id="main"><div id="loading-msg">&#9670; 시공의 문을 여는 중... &#9670;</div></div>
 
 <script>
-const FRAME_BASE='https://ggobugithesquirtle.github.io/AE-Story-Frames/';
-var FMAP={};
-const mainEl=document.getElementById('main');
+// Portrait map — characters with portrait images
+var PORTRAITS={
+  '알도':'images/chars/알도.png',
+  '피네':'images/chars/피네.png',
+  '에이미':'images/chars/에이미.png',
+  '알테나':'images/chars/알테나.png',
+  '사이러스':'images/chars/사이러스.png',
+  '리이카':'images/chars/리이카.png',
+  '헬레나':'images/chars/헬레나.png',
+  '베레토':'images/chars/베레토.png',
+  '길드너':'images/chars/길드너.png',
+  '질퍼니':'images/chars/질퍼니.png',
+  '미나르카':'images/chars/미나르카.png',
+  '캄라녜쥬':'images/chars/캄라녜쥬.png',
+  '니르야':'images/chars/니르야.png',
+  '애쉬티어':'images/chars/애쉬티어.png'
+};
+
+var mainEl=document.getElementById('main');
 var DATA=[];
-var cropPct=0;
 
 function escH(s){return s?s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''}
 
@@ -350,15 +385,25 @@ function renderCh(ch){
   var d=document.createElement('div');d.className='chapter';d.id='ch-'+ch.chapter;
   var chEnd=ch.chapter_end;var label=chEnd?ch.chapter+'-'+chEnd+'장':ch.chapter+'장';
   var h='<h2><span class="ch-num">'+label+'</span>'+escH(ch.title||'')+'</h2>';
-  var fm=FMAP[ch.chapter];
-  if(fm){
-    for(var fIdx=fm.frame_start;fIdx<=fm.frame_end;fIdx++){
-      var fPad=String(fIdx).padStart(4,'0');
-      var clipStyle=cropPct>0?' style="clip-path:inset('+cropPct+'% 0 0 0);margin-top:-'+cropPct+'%"':'';
-      h+='<div class="scene-frame"><img loading="lazy" src="'+FRAME_BASE+fm.vid+'/'+fPad+'.webp"'+clipStyle+' onload="this.classList.add(\'loaded\')"></div>';
+  var lines=ch.lines||[];
+  for(var i=0;i<lines.length;i++){
+    var ln=lines[i];
+    if(ln.type==='narration'){
+      h+='<div class="narration">'+escH(ln.text)+'</div>';
+    }else{
+      var name=ln.char||'???';
+      var portrait=PORTRAITS[name];
+      h+='<div class="line">';
+      if(portrait){
+        h+='<img class="portrait" src="'+portrait+'" alt="'+escH(name)+'">';
+      }else{
+        var initial=name.charAt(0);
+        h+='<div class="portrait-placeholder">'+escH(initial)+'</div>';
+      }
+      h+='<div class="bubble"><div class="name">'+escH(name)+'</div><div class="text">'+escH(ln.text)+'</div></div>';
+      h+='</div>';
     }
   }
-  if(!fm){h+='<div style="text-align:center;color:var(--text2);padding:30px;font-size:13px;letter-spacing:.5px">이 장의 프레임 이미지가 없습니다</div>';}
   d.innerHTML=h;return d;
 }
 
@@ -396,13 +441,9 @@ function init(){
   }
 }
 
-// Fetch
-Promise.all([
-  fetch('data/story_all.json').then(function(r){return r.json()}),
-  fetch('data/frame_mapping.json').then(function(r){return r.json()}).catch(function(){return[]})
-]).then(function(results){
-  DATA=results[0];
-  results[1].forEach(function(fm){FMAP[fm.chapter]=fm});
+// Fetch data
+fetch('data/story_all.json').then(function(r){return r.json()}).then(function(data){
+  DATA=data;
   init();
 }).catch(function(e){
   mainEl.innerHTML='<div id="loading-msg" style="color:var(--gold)">데이터 로딩 실패: '+e.message+'</div>';
@@ -421,27 +462,63 @@ document.getElementById('menu-toggle').addEventListener('click',function(){
   document.getElementById('sidebar').classList.toggle('open');
 });
 
-// Crop control
-var cropSlider=document.getElementById('crop-slider');
-var cropValEl=document.getElementById('crop-val');
-cropSlider.addEventListener('input',function(){
-  cropPct=parseInt(this.value);
-  cropValEl.textContent=cropPct+'%';
-  document.querySelectorAll('.scene-frame img').forEach(function(img){
-    if(cropPct>0){
-      img.style.clipPath='inset('+cropPct+'% 0 0 0)';
-      img.style.marginTop='-'+cropPct+'%';
-    }else{
-      img.style.clipPath='';
-      img.style.marginTop='';
+// Search
+var searchInput=document.getElementById('search-input');
+var searchInfo=document.getElementById('search-info');
+var searchTimer=null;
+
+function clearHighlights(){
+  document.querySelectorAll('.search-hl').forEach(function(m){
+    var p=m.parentNode;
+    while(m.firstChild) p.insertBefore(m.firstChild,m);
+    p.removeChild(m);
+    p.normalize();
+  });
+  searchInfo.textContent='';
+}
+
+function hlText(node,re){
+  if(node.nodeType===3){
+    var match=node.textContent.match(re);
+    if(match){
+      var span=document.createElement('span');
+      span.innerHTML=node.textContent.replace(re,'<mark class="search-hl">$1</mark>');
+      node.parentNode.replaceChild(span,node);
     }
+  }else if(node.nodeType===1&&node.tagName!=='SCRIPT'&&node.tagName!=='STYLE'&&!node.classList.contains('search-hl')){
+    Array.prototype.slice.call(node.childNodes).forEach(function(c){hlText(c,re)});
+  }
+}
+
+function doSearch(){
+  clearHighlights();
+  var q=searchInput.value.trim();
+  if(!q||q.length<2) return;
+  // Force-render all chapters
+  document.querySelectorAll('.chapter.loading').forEach(function(el){
+    var idx=parseInt(el.dataset.idx);
+    rendered[String(idx)]=true;
+    el.replaceWith(renderCh(DATA[idx]));
   });
+  var re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+  document.querySelectorAll('.text,.narration').forEach(function(el){hlText(el,re)});
+  var count=document.querySelectorAll('.search-hl').length;
+  searchInfo.textContent=count+'건';
+  if(count>0){
+    var first=document.querySelector('.search-hl');
+    if(first) first.scrollIntoView({block:'center'});
+  }
+}
+
+searchInput.addEventListener('input',function(){
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(doSearch,400);
 });
-document.getElementById('crop-reset').addEventListener('click',function(){
-  cropSlider.value=0;cropPct=0;cropValEl.textContent='0%';
-  document.querySelectorAll('.scene-frame img').forEach(function(img){
-    img.style.clipPath='';img.style.marginTop='';
-  });
+searchInput.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){clearTimeout(searchTimer);doSearch();}
+});
+document.getElementById('search-clear').addEventListener('click',function(){
+  searchInput.value='';clearHighlights();
 });
 
 // Keyboard nav
