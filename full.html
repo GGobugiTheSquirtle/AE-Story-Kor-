@@ -434,7 +434,7 @@ function renderCh(ch){
   var nextFrame=fm?0:999999;
   for(var i=0;i<nLines;i++){
     if(fm&&i>=Math.round(nextFrame*frameStep)){
-      var fIdx=fm.frame_start+Math.round(i/frameStep);
+      var fIdx=fm.frame_start+nextFrame;
       if(fIdx>=fm.frame_start&&fIdx<=fm.frame_end){
         var fPad=String(fIdx).padStart(4,'0');
         h+='<div class="scene-frame"><img loading="lazy" src="'+FRAME_BASE+fm.vid+'/'+fPad+'.webp" onload="this.classList.add(\'loaded\')"></div>';
@@ -531,12 +531,23 @@ function doSearch(){
   var q=document.getElementById('search-input').value.trim().toLowerCase();
   if(!q)return;
   forceRenderAll();
-  document.querySelectorAll('.search-hl').forEach(function(el){el.outerHTML=el.textContent});
+  document.querySelectorAll('.search-hl').forEach(function(m){var p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize()});
   searchResults=[];searchIdx=-1;
   var re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+  function hlText(node){
+    if(node.nodeType===3){
+      var m=node.textContent.match(re);
+      if(m){
+        var span=document.createElement('span');span.innerHTML=node.textContent.replace(re,'<mark class="search-hl">$1</mark>');
+        node.parentNode.replaceChild(span,node);
+      }
+    }else if(node.nodeType===1&&node.tagName!=='SCRIPT'&&node.tagName!=='STYLE'){
+      Array.prototype.slice.call(node.childNodes).forEach(hlText);
+    }
+  }
   document.querySelectorAll('.bubble,.narration').forEach(function(el){
     if(el.textContent.toLowerCase().indexOf(q)>=0){
-      el.innerHTML=el.innerHTML.replace(re,'<mark class="search-hl">$1</mark>');
+      hlText(el);
       searchResults.push(el);
     }
   });
