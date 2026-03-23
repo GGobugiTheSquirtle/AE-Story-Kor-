@@ -33,6 +33,7 @@ a:hover{color:var(--gold-bright)}
 .topnav a:hover{color:var(--gold-bright);border-color:var(--gold-dim)}
 .topnav a.active{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
 .topnav .spacer{flex:1}
+.topnav .title-mark{font-size:11px;color:var(--gold-dim);letter-spacing:2px;text-transform:uppercase;margin-left:auto}
 
 /* Sidebar */
 #sidebar{position:fixed;left:0;top:48px;bottom:0;width:var(--sidebar-w);
@@ -47,7 +48,7 @@ a:hover{color:var(--gold-bright)}
 #main{margin-left:var(--sidebar-w);padding:64px 24px 80px;max-width:900px}
 
 /* Chapter */
-.chapter{margin-bottom:48px;padding:28px;background:var(--card-bg);border:1px solid var(--border);border-top:2px solid var(--gold-dim)}
+.chapter{margin-bottom:48px;padding:28px;background:var(--card-bg);border:1px solid var(--border);border-top:2px solid var(--gold-dim);content-visibility:auto;contain-intrinsic-size:auto 600px}
 .chapter h2{color:var(--text);font-size:1.2em;padding-bottom:12px;margin-bottom:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-weight:400;letter-spacing:.5px;position:relative;border:none}
 .chapter h2::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg, var(--gold-dim), transparent 80%)}
 .ch-num{font-size:0.65em;color:var(--gold);padding:3px 12px;border:1px solid var(--gold-dim);letter-spacing:2px;white-space:nowrap;background:rgba(201,164,76,.05)}
@@ -85,6 +86,7 @@ html{scroll-behavior:smooth}
   #main{margin-left:0;padding:60px 12px 80px}
   #menu-toggle{display:block}
   .chapter{padding:16px}
+  .topnav .title-mark{display:none}
 }
 </style>
 </head>
@@ -92,9 +94,11 @@ html{scroll-behavior:smooth}
 
 <div class="topnav">
   <a href="index.html">&larr; 인덱스</a>
+  <a href="summary.html">요약본</a>
   <a class="active">상세본</a>
-  <a href="full.html">풀버전 &rarr;</a>
+  <a href="full.html">풀버전</a>
   <span class="spacer"></span>
+  <span class="title-mark">Another Eden &mdash; Chronicle</span>
 </div>
 
 <button id="menu-toggle">&#9776;</button>

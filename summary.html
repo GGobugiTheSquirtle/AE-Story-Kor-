@@ -23,9 +23,34 @@ body::before{
 a{color:var(--gold);text-decoration:none}
 a:hover{color:var(--gold-bright)}
 
+/* Top nav */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:linear-gradient(180deg, #181b30 0%, #111428 100%);
+  border-bottom:1px solid var(--gold-dim);
+  display:flex;align-items:center;padding:0 20px;height:48px;gap:8px;
+  box-shadow:0 2px 12px rgba(0,0,0,.5);
+}
+.topnav::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent 0%, var(--gold-dim) 20%, var(--gold) 50%, var(--gold-dim) 80%, transparent 100%);
+}
+.topnav a{
+  color:var(--text2);font-size:13px;padding:6px 14px;
+  text-decoration:none;transition:all .3s;letter-spacing:.5px;
+  border:1px solid transparent;border-radius:2px;
+}
+.topnav a:hover{color:var(--gold-bright);border-color:var(--gold-dim)}
+.topnav a.active{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
+.topnav .spacer{flex:1}
+.topnav .title-mark{
+  font-size:11px;color:var(--gold-dim);letter-spacing:2px;
+  text-transform:uppercase;margin-left:auto;
+}
+
 /* Hero */
 .hero{
-  text-align:center;padding:80px 20px 50px;position:relative;
+  text-align:center;padding:120px 20px 50px;position:relative;
   background:linear-gradient(180deg, rgba(17,20,40,.9) 0%, var(--bg) 100%);
   border-bottom:1px solid var(--gold-dim);
 }
@@ -130,14 +155,19 @@ footer{
   .hero h1{font-size:1.5em}
   .nav-cards{flex-direction:column}
   .chapter-block{padding:12px 14px}
+  .topnav .title-mark{display:none}
 }
 </style>
 </head>
 <body>
 
-<div style="text-align:center;padding:12px;background:linear-gradient(180deg, #181b30, #111428);border-bottom:1px solid var(--gold-dim);position:relative">
-  <a href="index.html" style="color:var(--text2);font-size:13px;padding:6px 14px;text-decoration:none;letter-spacing:.5px;border:1px solid transparent;border-radius:2px;position:absolute;left:20px;top:50%;transform:translateY(-50%)">&larr; 인덱스</a>
-  <span style="font-size:11px;color:var(--gold-dim);letter-spacing:2px">Another Eden &mdash; Story Summary</span>
+<div class="topnav">
+  <a href="index.html">&larr; 인덱스</a>
+  <a class="active">요약본</a>
+  <a href="detail.html">상세본</a>
+  <a href="full.html">풀버전</a>
+  <span class="spacer"></span>
+  <span class="title-mark">Another Eden &mdash; Chronicle</span>
 </div>
 
 <div class="hero">
