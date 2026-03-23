@@ -4,46 +4,267 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>어나더에덴 메인스토리 풀버전</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#1a1a2e;--bg2:#16213e;--bg3:#0f3460;--text:#e0e0e0;--text2:#a0a0a0;--accent:#e94560;--bubble-l:#1e2a3a;--bubble-r:#2a3a4a;--sidebar-w:220px}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI','Malgun Gothic',sans-serif}
-
-/* Top nav */
-.topnav{position:fixed;top:0;left:0;right:0;z-index:300;background:var(--bg2);border-bottom:1px solid #333;display:flex;align-items:center;padding:0 16px;height:44px;gap:16px}
-.topnav a{color:var(--text2);font-size:13px;padding:4px 10px;border-radius:6px;text-decoration:none;transition:all .2s}
-.topnav a:hover,.topnav a.active{color:#fff;background:rgba(233,69,96,.15)}
-.topnav a.active{color:var(--accent)}
-.topnav .spacer{flex:1}
-
-#sidebar{position:fixed;left:0;top:44px;bottom:0;width:var(--sidebar-w);background:var(--bg2);overflow-y:auto;z-index:100;border-right:1px solid #333;padding:10px 0;transition:transform .3s}
-#sidebar h2{color:var(--accent);font-size:14px;padding:10px 15px;text-transform:uppercase;letter-spacing:1px}
-.nav-item{display:block;padding:6px 15px;color:var(--text2);text-decoration:none;font-size:13px;border-left:3px solid transparent;transition:all .2s}
-.nav-item:hover,.nav-item.active{color:#fff;background:rgba(233,69,96,.1);border-left-color:var(--accent)}
-#main{margin-left:var(--sidebar-w);padding:104px 20px 80px;max-width:900px}
-.chapter{margin-bottom:40px}
-.chapter h2{color:var(--accent);font-size:20px;padding:12px 0;margin-bottom:15px;border-bottom:2px solid var(--accent);display:flex;align-items:center;gap:8px}
-.chapter h2 .ch-num{font-size:12px;background:var(--accent);color:#fff;padding:2px 8px;border-radius:10px;white-space:nowrap}
-.msg{display:flex;gap:10px;margin:4px 0;align-items:flex-start}
-.msg.right{flex-direction:row-reverse}
-.avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold;color:#fff;overflow:hidden}
-.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.bubble{max-width:70%;padding:8px 12px;border-radius:12px;font-size:14px;line-height:1.5}
-.msg:not(.right) .bubble{background:var(--bubble-l);border-top-left-radius:4px}
-.msg.right .bubble{background:var(--bubble-r);border-top-right-radius:4px}
-.bubble .name{font-size:11px;font-weight:bold;margin-bottom:2px;display:block}
-.narration{text-align:center;color:var(--text2);font-style:italic;font-size:13px;margin:8px 0;padding:4px;border-top:1px solid #333;border-bottom:1px solid #333}
-.scene-frame{text-align:center;margin:12px 0}.scene-frame img{max-width:100%;border-radius:8px;border:1px solid #333;opacity:0;transition:opacity .3s}.scene-frame img.loaded{opacity:1}
-#search-bar{position:fixed;top:44px;left:var(--sidebar-w);right:0;z-index:99;background:var(--bg2);padding:8px 15px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #333}
-#search-bar input{flex:1;padding:6px 12px;border-radius:20px;border:1px solid #444;background:var(--bg);color:var(--text);font-size:14px;outline:none}
-#search-bar input:focus{border-color:var(--accent)}
-#search-bar button{background:var(--accent);color:#fff;border:none;padding:6px 16px;border-radius:20px;cursor:pointer;font-size:13px}
-#menu-toggle{display:none;position:fixed;top:48px;left:8px;z-index:200;background:var(--accent);color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:18px}
-#loading-msg{text-align:center;padding:40px;color:var(--text2);font-size:16px}
-@media(max-width:768px){#sidebar{transform:translateX(-100%)}#sidebar.open{transform:translateX(0)}#main{margin-left:0}#search-bar{left:0}#menu-toggle{display:block}.bubble{max-width:85%}}
+:root{
+  --bg:#0b0d1a;--bg2:#111428;--bg3:#1a1d35;
+  --panel:#161930;--panel2:#1e2140;
+  --gold:#c9a44c;--gold2:#b8963e;--gold-dim:#6b5a2a;--gold-bright:#e8cc6e;
+  --text:#e8e0d0;--text2:#9a9080;--text-dim:#685e4e;
+  --border:#2a2d45;--border-gold:rgba(201,164,76,.25);
+  --sidebar-w:240px;
+  --dialog-bg:rgba(18,20,38,.92);
+  --aldo-bg:rgba(30,28,50,.92);
+}
 html{scroll-behavior:smooth}
-::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
-.chapter.loading{opacity:.3;min-height:100px}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Noto Serif KR','Malgun Gothic',serif;
+  background-image:
+    radial-gradient(ellipse 600px 600px at 20% 10%, rgba(30,40,80,.4) 0%, transparent 70%),
+    radial-gradient(ellipse 400px 400px at 80% 90%, rgba(60,40,80,.2) 0%, transparent 70%);
+  background-attachment:fixed;
+}
+
+/* Starfield background */
+body::before{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.15) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,.1) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 30%, rgba(201,164,76,.15) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,.1) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,.12) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 90%, rgba(201,164,76,.1) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,.08) 0%, transparent 100%);
+}
+
+/* Top nav - ornate header bar */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  background:linear-gradient(180deg, #181b30 0%, #111428 100%);
+  border-bottom:1px solid var(--gold-dim);
+  display:flex;align-items:center;padding:0 20px;height:48px;gap:8px;
+  box-shadow:0 2px 12px rgba(0,0,0,.5);
+}
+.topnav::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent 0%, var(--gold-dim) 20%, var(--gold) 50%, var(--gold-dim) 80%, transparent 100%);
+}
+.topnav a{
+  color:var(--text2);font-size:13px;padding:6px 14px;
+  text-decoration:none;transition:all .3s;letter-spacing:.5px;
+  border:1px solid transparent;border-radius:2px;
+}
+.topnav a:hover{color:var(--gold-bright);border-color:var(--gold-dim)}
+.topnav a.active{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
+.topnav .spacer{flex:1}
+.topnav .title-mark{
+  font-size:11px;color:var(--gold-dim);letter-spacing:2px;
+  text-transform:uppercase;margin-left:auto;
+}
+
+/* Sidebar */
+#sidebar{
+  position:fixed;left:0;top:48px;bottom:0;width:var(--sidebar-w);
+  background:linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+  overflow-y:auto;z-index:100;
+  border-right:1px solid var(--border);
+  padding:0;transition:transform .3s;
+}
+#sidebar h2{
+  color:var(--gold);font-size:12px;padding:16px 20px 8px;
+  letter-spacing:3px;font-weight:400;
+  border-bottom:1px solid var(--border);
+  margin-bottom:4px;
+  text-align:center;
+}
+.nav-part{
+  color:var(--gold-dim);font-size:10px;padding:12px 20px 4px;
+  letter-spacing:2px;text-transform:uppercase;
+  border-top:1px solid var(--border);margin-top:4px;
+}
+.nav-item{
+  display:block;padding:5px 20px;color:var(--text2);
+  text-decoration:none;font-size:12px;
+  border-left:2px solid transparent;transition:all .2s;
+  letter-spacing:.3px;
+}
+.nav-item:hover{color:var(--gold-bright);background:rgba(201,164,76,.04);border-left-color:var(--gold-dim)}
+.nav-item.active{color:var(--gold);background:rgba(201,164,76,.06);border-left-color:var(--gold)}
+
+/* Main content */
+#main{margin-left:var(--sidebar-w);padding:112px 24px 100px;max-width:860px;margin-right:auto}
+
+/* Chapter */
+.chapter{margin-bottom:48px;position:relative}
+.chapter h2{
+  color:var(--text);font-size:17px;padding:16px 0 12px;margin-bottom:16px;
+  display:flex;align-items:center;gap:12px;
+  font-weight:400;letter-spacing:.5px;
+  border:none;position:relative;
+}
+.chapter h2::before,.chapter h2::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg, var(--gold-dim), transparent);
+}
+.chapter h2::after{
+  background:linear-gradient(270deg, var(--gold-dim), transparent);
+}
+.chapter h2 .ch-num{
+  font-size:10px;color:var(--gold);
+  padding:3px 12px;white-space:nowrap;
+  border:1px solid var(--gold-dim);
+  letter-spacing:2px;
+  background:rgba(201,164,76,.05);
+}
+
+/* Dialog message - game style */
+.msg{display:flex;gap:10px;margin:6px 0;align-items:flex-start}
+.msg.right{flex-direction:row-reverse}
+
+.avatar{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:bold;color:var(--gold);
+  overflow:hidden;
+  border:2px solid var(--gold-dim);
+  box-shadow:0 0 8px rgba(201,164,76,.15);
+}
+.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+
+/* Game-style dialog bubble */
+.bubble{
+  max-width:72%;padding:10px 14px 10px;
+  font-size:14px;line-height:1.65;
+  background:var(--dialog-bg);
+  border:1px solid var(--border);
+  border-top:2px solid var(--gold-dim);
+  border-radius:2px;
+  position:relative;
+  letter-spacing:.2px;
+}
+.msg.right .bubble{
+  background:var(--aldo-bg);
+  border-top-color:rgba(74,144,217,.4);
+}
+
+/* Name plate - game-style gold badge */
+.bubble .name{
+  display:inline-block;
+  font-size:11px;font-weight:700;
+  margin-bottom:4px;
+  padding:1px 16px;
+  background:linear-gradient(180deg, rgba(201,164,76,.15) 0%, rgba(201,164,76,.05) 100%);
+  border:1px solid var(--gold-dim);
+  color:var(--gold-bright);
+  letter-spacing:1px;
+  position:relative;
+}
+/* Diamond ends on name plate */
+.bubble .name::before,.bubble .name::after{
+  content:'';position:absolute;top:50%;width:5px;height:5px;
+  border:1px solid var(--gold-dim);background:rgba(201,164,76,.2);
+  transform:translateY(-50%) rotate(45deg);
+}
+.bubble .name::before{left:-4px}
+.bubble .name::after{right:-4px}
+
+.msg.right .bubble .name{
+  color:#7ab4e8;
+  background:linear-gradient(180deg, rgba(74,144,217,.12) 0%, rgba(74,144,217,.04) 100%);
+  border-color:rgba(74,144,217,.3);
+}
+.msg.right .bubble .name::before,.msg.right .bubble .name::after{
+  border-color:rgba(74,144,217,.3);background:rgba(74,144,217,.15);
+}
+
+/* Narration */
+.narration{
+  text-align:center;color:var(--text2);font-style:italic;
+  font-size:13px;margin:14px 0;padding:8px 20px;
+  position:relative;letter-spacing:.3px;
+}
+.narration::before,.narration::after{
+  content:'';position:absolute;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+.narration::before{top:0}
+.narration::after{bottom:0}
+
+/* Scene frame */
+.scene-frame{
+  text-align:center;margin:16px 0;
+}
+.scene-frame img{
+  max-width:100%;border:1px solid var(--gold-dim);
+  opacity:0;transition:opacity .4s;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+.scene-frame img.loaded{opacity:1}
+
+/* Search bar */
+#search-bar{
+  position:fixed;top:48px;left:var(--sidebar-w);right:0;z-index:99;
+  background:linear-gradient(180deg, var(--bg2) 0%, rgba(17,20,40,.95) 100%);
+  padding:8px 20px;display:flex;gap:10px;align-items:center;
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(8px);
+}
+#search-bar input{
+  flex:1;padding:7px 16px;border-radius:2px;
+  border:1px solid var(--border);
+  background:rgba(0,0,0,.3);color:var(--text);
+  font-size:13px;outline:none;font-family:inherit;
+  letter-spacing:.3px;
+}
+#search-bar input:focus{border-color:var(--gold-dim);box-shadow:0 0 8px rgba(201,164,76,.1)}
+#search-bar input::placeholder{color:var(--text-dim)}
+#search-bar button{
+  background:linear-gradient(180deg, var(--gold) 0%, var(--gold2) 100%);
+  color:#1a1a2e;border:none;padding:7px 20px;
+  cursor:pointer;font-size:12px;letter-spacing:1px;
+  font-weight:700;font-family:inherit;
+  transition:all .2s;
+}
+#search-bar button:hover{filter:brightness(1.15);box-shadow:0 0 12px rgba(201,164,76,.3)}
+
+/* Mobile menu toggle */
+#menu-toggle{
+  display:none;position:fixed;top:52px;left:8px;z-index:200;
+  background:var(--panel);color:var(--gold);
+  border:1px solid var(--gold-dim);
+  padding:6px 10px;cursor:pointer;font-size:16px;
+}
+#loading-msg{
+  text-align:center;padding:60px;color:var(--text2);
+  font-size:14px;letter-spacing:1px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold2)}
+
+/* Loading placeholder */
+.chapter.loading{opacity:.2;min-height:100px}
+
+/* Responsive */
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0;padding:108px 12px 80px}
+  #search-bar{left:0}
+  #menu-toggle{display:block}
+  .bubble{max-width:88%}
+  .topnav .title-mark{display:none}
+}
+
+/* Search highlight override */
+.search-hl{background:var(--gold)!important;color:#1a1a2e!important;padding:0 2px;border-radius:1px}
 </style>
 </head>
 <body>
@@ -53,147 +274,152 @@ html{scroll-behavior:smooth}
   <a href="detail.html">상세본</a>
   <a class="active">풀버전</a>
   <span class="spacer"></span>
+  <span class="title-mark">Another Eden &mdash; Chronicle</span>
 </div>
 
 <button id="menu-toggle">&#9776;</button>
 <nav id="sidebar">
-  <h2>목차</h2>
-  <a href="#ch-1" class="nav-item" data-ch="1" title="과거의 기억">1장</a>
-<a href="#ch-2" class="nav-item" data-ch="2" title="바레스와의 전투">2장</a>
-<a href="#ch-3" class="nav-item" data-ch="3" title="미래 엘자이온 도착">3장</a>
-<a href="#ch-4" class="nav-item" data-ch="4" title="합성인간의 리더">4장</a>
-<a href="#ch-5" class="nav-item" data-ch="5" title="에이미의 승리">5장</a>
-<a href="#ch-6" class="nav-item" data-ch="6" title="피네와 알테나 (과거 회상)">6장</a>
-<a href="#ch-7" class="nav-item" data-ch="7" title="원시시대">7장</a>
-<a href="#ch-8" class="nav-item" data-ch="8" title="파르지팔 왕궁">8장</a>
-<a href="#ch-9" class="nav-item" data-ch="9" title="지하수로">9장</a>
-<a href="#ch-10" class="nav-item" data-ch="10" title="오우거베인의 봉인">10장</a>
-<a href="#ch-11" class="nav-item" data-ch="11" title="시간의 탑">11장</a>
-<a href="#ch-12" class="nav-item" data-ch="12" title="현대로 귀환">12장</a>
-<a href="#ch-13" class="nav-item" data-ch="13" title="미글랜스 왕성">13장</a>
-<a href="#ch-14" class="nav-item" data-ch="14" title="오우거베인의 진실">14장</a>
-<a href="#ch-15" class="nav-item" data-ch="15" title="마수왕과의 대결">15장</a>
-<a href="#ch-16" class="nav-item" data-ch="16" title="제노 도메인 내부">16장</a>
-<a href="#ch-17" class="nav-item" data-ch="17" title="제노 프리즈마의 폭주">17장</a>
-<a href="#ch-18" class="nav-item" data-ch="18" title="시층회랑">18장</a>
-<a href="#ch-19" class="nav-item" data-ch="19" title="거대 시공 지진">19장</a>
-<a href="#ch-20" class="nav-item" data-ch="20" title="합성귀룡 전투">20장</a>
-<a href="#ch-21" class="nav-item" data-ch="21" title="별의 탑으로">21장</a>
-<a href="#ch-22" class="nav-item" data-ch="22" title="마수성">22장</a>
-<a href="#ch-23" class="nav-item" data-ch="23" title="차원의 소용돌이">23장</a>
-<a href="#ch-24" class="nav-item" data-ch="24" title="에덴의 진실">24장</a>
-<a href="#ch-25" class="nav-item" data-ch="25" title="최종 결전">25장</a>
-<a href="#ch-26" class="nav-item" data-ch="26" title="새로운 출발">26장</a>
-<a href="#ch-27" class="nav-item" data-ch="27" title="고대 전쟁 유적">27장</a>
-<a href="#ch-28" class="nav-item" data-ch="28" title="미글랜스 왕과의 만남">28장</a>
-<a href="#ch-29" class="nav-item" data-ch="29" title="뱀뼈 섬">29장</a>
-<a href="#ch-30" class="nav-item" data-ch="30" title="코니움 마을">30장</a>
-<a href="#ch-31" class="nav-item" data-ch="31" title="용신의 시련">31장</a>
-<a href="#ch-32" class="nav-item" data-ch="32" title="앙길라스의 습격">32장</a>
-<a href="#ch-33" class="nav-item" data-ch="33" title="정령의 무구를 찾아서">33장</a>
-<a href="#ch-34" class="nav-item" data-ch="34" title="연옥계">34장</a>
-<a href="#ch-35" class="nav-item" data-ch="35" title="오우거 제논의 배신">35장</a>
-<a href="#ch-36" class="nav-item" data-ch="36" title="오우거의 열쇠">36장</a>
-<a href="#ch-37" class="nav-item" data-ch="37" title="에이미의 과거">37장</a>
-<a href="#ch-38" class="nav-item" data-ch="38" title="토토 드림랜드">38장</a>
-<a href="#ch-39" class="nav-item" data-ch="39" title="밀다와의 대면">39장</a>
-<a href="#ch-40" class="nav-item" data-ch="40" title="오우거 요새 공략">40장</a>
-<a href="#ch-41" class="nav-item" data-ch="41" title="오우거 요새 내부">41장</a>
-<a href="#ch-42" class="nav-item" data-ch="42" title="오우거베인의 폭주">42장</a>
-<a href="#ch-43" class="nav-item" data-ch="43" title="오우거베인의 진실">43장</a>
-<a href="#ch-44" class="nav-item" data-ch="44" title="오우거 제논과의 최종 결전">44장</a>
-<a href="#ch-45" class="nav-item" data-ch="45" title="역사의 개변">45장</a>
-<a href="#ch-46" class="nav-item" data-ch="46" title="유니건의 동방 연락소">46장</a>
-<a href="#ch-47" class="nav-item" data-ch="47" title="동방으로">47장</a>
-<a href="#ch-48" class="nav-item" data-ch="48" title="이자나 도착">48장</a>
-<a href="#ch-49" class="nav-item" data-ch="49" title="키요스케와 미카">49장</a>
-<a href="#ch-50" class="nav-item" data-ch="50" title="류노신의 저택">50장</a>
-<a href="#ch-51" class="nav-item" data-ch="51" title="겐신과의 만남">51장</a>
-<a href="#ch-52" class="nav-item" data-ch="52" title="츠바메의 배신?">52장</a>
-<a href="#ch-53" class="nav-item" data-ch="53" title="단풍 부채">53장</a>
-<a href="#ch-54" class="nav-item" data-ch="54" title="아마토 섬으로">54장</a>
-<a href="#ch-55" class="nav-item" data-ch="55" title="스자쿠의 습격">55장</a>
-<a href="#ch-56" class="nav-item" data-ch="56" title="바레스와 코니움">56장</a>
-<a href="#ch-57" class="nav-item" data-ch="57" title="가다로">57장</a>
-<a href="#ch-58" class="nav-item" data-ch="58" title="자미와 짐단">58장</a>
-<a href="#ch-59" class="nav-item" data-ch="59" title="곤쥬로와 뱃묘지">59장</a>
-<a href="#ch-60" class="nav-item" data-ch="60" title="시간의 꿈의 책">60장</a>
-<a href="#ch-61" class="nav-item" data-ch="61" title="공중 성곽 이지아">61장</a>
-<a href="#ch-62" class="nav-item" data-ch="62" title="오백 광년의 귀신">62장</a>
-<a href="#ch-63" class="nav-item" data-ch="63" title="크로노 클랜">63장</a>
-<a href="#ch-64" class="nav-item" data-ch="64" title="리 아 발크">64장</a>
-<a href="#ch-65" class="nav-item" data-ch="65" title="데라메어의 요새">65장</a>
-<a href="#ch-66" class="nav-item" data-ch="66" title="시간의 꿈의 책">66장</a>
-<a href="#ch-67" class="nav-item" data-ch="67" title="시간의 소녀의 정체">67장</a>
-<a href="#ch-68" class="nav-item" data-ch="68" title="팬텀 네오">68장</a>
-<a href="#ch-69" class="nav-item" data-ch="69" title="요마의 마을로">69장</a>
-<a href="#ch-70" class="nav-item" data-ch="70" title="지장보살 순례">70장</a>
-<a href="#ch-71" class="nav-item" data-ch="71" title="요마 황궁의 결계">71장</a>
-<a href="#ch-72" class="nav-item" data-ch="72" title="소케라와의 대결">72장</a>
-<a href="#ch-73" class="nav-item" data-ch="73" title="꼭두각시 공주">73장</a>
-<a href="#ch-74" class="nav-item" data-ch="74" title="새틀라이트 스타디움">74장</a>
-<a href="#ch-75" class="nav-item" data-ch="75" title="스타디움 전투">75장</a>
-<a href="#ch-76" class="nav-item" data-ch="76" title="오너와 몽견관의 주인">76장</a>
-<a href="#ch-77" class="nav-item" data-ch="77" title="잊힌 땅">77장</a>
-<a href="#ch-78" class="nav-item" data-ch="78" title="명협계">78장</a>
-<a href="#ch-80" class="nav-item" data-ch="80" title="황천의 방주 진입">80장</a>
-<a href="#ch-81" class="nav-item" data-ch="81" title="박명의 섬으로">81장</a>
-<a href="#ch-82" class="nav-item" data-ch="82" title="사람 표식의 관">82장</a>
-<a href="#ch-83" class="nav-item" data-ch="83" title="신 표식의 관">83장</a>
-<a href="#ch-84" class="nav-item" data-ch="84" title="시공을 넘는 공명">84장</a>
-<a href="#ch-85" class="nav-item" data-ch="85" title="공허한 시층">85장</a>
-<a href="#ch-86" class="nav-item" data-ch="86" title="심장 도둑">86장</a>
-<a href="#ch-87" class="nav-item" data-ch="87" title="오메가폴리스">87장</a>
-<a href="#ch-88" class="nav-item" data-ch="88" title="래시발">88장</a>
-<a href="#ch-89" class="nav-item" data-ch="89" title="잠든 진주호 수리">89장</a>
-<a href="#ch-90" class="nav-item" data-ch="90" title="횡단 열차 사건">90장</a>
-<a href="#ch-91" class="nav-item" data-ch="91" title="귀부인의 저택">91장</a>
-<a href="#ch-92" class="nav-item" data-ch="92" title="시간이 열리는 나무">92장</a>
-<a href="#ch-93" class="nav-item" data-ch="93" title="시간 제국">93장</a>
-<a href="#ch-94" class="nav-item" data-ch="94" title="전투 후">94장</a>
-<a href="#ch-95" class="nav-item" data-ch="95" title="묘인 세계 도착">95장</a>
-<a href="#ch-96" class="nav-item" data-ch="96" title="길바데스 수리 준비">96장</a>
-<a href="#ch-97" class="nav-item" data-ch="97" title="사코리타스 유적">97장</a>
-<a href="#ch-98" class="nav-item" data-ch="98" title="토르루탄 도착">98장</a>
-<a href="#ch-99" class="nav-item" data-ch="99" title="죽음의 미로">99장</a>
-<a href="#ch-100" class="nav-item" data-ch="100" title="야나투">100장</a>
-<a href="#ch-101" class="nav-item" data-ch="101" title="어둠의 등불">101장</a>
-<a href="#ch-102" class="nav-item" data-ch="102" title="세계의 중심">102장</a>
-<a href="#ch-103" class="nav-item" data-ch="103" title="사념의 단편">103장</a>
-<a href="#ch-104" class="nav-item" data-ch="104" title="날개 달린 짐승">104장</a>
-<a href="#ch-105" class="nav-item" data-ch="105" title="제105장">105장</a>
-<a href="#ch-106" class="nav-item" data-ch="106" title="제106장">106장</a>
-<a href="#ch-107" class="nav-item" data-ch="107" title="제107장">107장</a>
-<a href="#ch-108" class="nav-item" data-ch="108" title="제108~109장">108-109장</a>
-<a href="#ch-110" class="nav-item" data-ch="110" title="제110장">110장</a>
-<a href="#ch-111" class="nav-item" data-ch="111" title="제111장">111장</a>
-<a href="#ch-112" class="nav-item" data-ch="112" title="제112장">112장</a>
-<a href="#ch-113" class="nav-item" data-ch="113" title="제113~114장">113-114장</a>
-<a href="#ch-115" class="nav-item" data-ch="115" title="제115장">115장</a>
-<a href="#ch-116" class="nav-item" data-ch="116" title="제116장">116장</a>
-<a href="#ch-117" class="nav-item" data-ch="117" title="제117장">117장</a>
-<a href="#ch-118" class="nav-item" data-ch="118" title="제118장">118장</a>
-<a href="#ch-119" class="nav-item" data-ch="119" title="제119장">119장</a>
-<a href="#ch-120" class="nav-item" data-ch="120" title="제120장">120장</a>
-<a href="#ch-121" class="nav-item" data-ch="121" title="제121~123장">121-123장</a>
+  <h2>&#9670; &nbsp;목 차&nbsp; &#9670;</h2>
+  <div class="nav-part">&#9670; 제1부 &mdash; 시공을 넘는 고양이</div>
+  <a href="#ch-1" class="nav-item" data-ch="1" title="과거의 기억">1장 &middot; 시간의 미아</a>
+<a href="#ch-2" class="nav-item" data-ch="2" title="바레스와의 전투">2장 &middot; 시공을 넘어</a>
+<a href="#ch-3" class="nav-item" data-ch="3" title="미래 엘자이온 도착">3장 &middot; 새벽빛의 도시</a>
+<a href="#ch-4" class="nav-item" data-ch="4" title="합성인간의 리더">4장 &middot; 합성인간의 리더</a>
+<a href="#ch-5" class="nav-item" data-ch="5" title="에이미의 승리">5장 &middot; 에이미의 승리</a>
+<a href="#ch-6" class="nav-item" data-ch="6" title="피네와 알테나 (과거 회상)">6장 &middot; 피네와 알테나</a>
+<a href="#ch-7" class="nav-item" data-ch="7" title="원시시대">7장 &middot; 원시시대</a>
+<a href="#ch-8" class="nav-item" data-ch="8" title="파르지팔 왕궁">8장 &middot; 파르지팔 왕궁</a>
+<a href="#ch-9" class="nav-item" data-ch="9" title="지하수로">9장 &middot; 지하수로</a>
+<a href="#ch-10" class="nav-item" data-ch="10" title="오우거베인의 봉인">10장 &middot; 오우거베인의 봉인</a>
+<a href="#ch-11" class="nav-item" data-ch="11" title="시간의 탑">11장 &middot; 시간의 탑</a>
+<a href="#ch-12" class="nav-item" data-ch="12" title="현대로 귀환">12장 &middot; 현대로의 귀환</a>
+<a href="#ch-13" class="nav-item" data-ch="13" title="미글랜스 왕성">13장 &middot; 미글랜스 왕성</a>
+<a href="#ch-14" class="nav-item" data-ch="14" title="오우거베인의 진실">14장 &middot; 오우거베인의 진실</a>
+<a href="#ch-15" class="nav-item" data-ch="15" title="마수왕과의 대결">15장 &middot; 마수왕과의 대결</a>
+<a href="#ch-16" class="nav-item" data-ch="16" title="제노 도메인 내부">16장 &middot; 제노 도메인</a>
+<a href="#ch-17" class="nav-item" data-ch="17" title="제노 프리즈마의 폭주">17장 &middot; 제노 프리즈마의 폭주</a>
+<a href="#ch-18" class="nav-item" data-ch="18" title="시층회랑">18장 &middot; 시층회랑</a>
+<a href="#ch-19" class="nav-item" data-ch="19" title="거대 시공 지진">19장 &middot; 거대 시공 지진</a>
+<a href="#ch-20" class="nav-item" data-ch="20" title="합성귀룡 전투">20장 &middot; 합성귀룡 전투</a>
+<a href="#ch-21" class="nav-item" data-ch="21" title="별의 탑으로">21장 &middot; 별의 탑으로</a>
+<a href="#ch-22" class="nav-item" data-ch="22" title="마수성">22장 &middot; 마수성</a>
+<a href="#ch-23" class="nav-item" data-ch="23" title="차원의 소용돌이">23장 &middot; 차원의 소용돌이</a>
+<a href="#ch-24" class="nav-item" data-ch="24" title="에덴의 진실">24장 &middot; 에덴의 진실</a>
+<a href="#ch-25" class="nav-item" data-ch="25" title="최종 결전">25장 &middot; 최종 결전</a>
+  <div class="nav-part">&#9670; 제1.5부 &mdash; 오우거 전쟁편</div>
+  <a href="#ch-26" class="nav-item" data-ch="26">26장 &middot; 새로운 출발</a>
+<a href="#ch-27" class="nav-item" data-ch="27">27장 &middot; 고대 전쟁 유적</a>
+<a href="#ch-28" class="nav-item" data-ch="28">28장 &middot; 미글랜스 왕과의 만남</a>
+<a href="#ch-29" class="nav-item" data-ch="29">29장 &middot; 뱀뼈 섬</a>
+<a href="#ch-30" class="nav-item" data-ch="30">30장 &middot; 코니움 마을</a>
+<a href="#ch-31" class="nav-item" data-ch="31">31장 &middot; 용신의 시련</a>
+<a href="#ch-32" class="nav-item" data-ch="32">32장 &middot; 앙길라스의 습격</a>
+<a href="#ch-33" class="nav-item" data-ch="33">33장 &middot; 정령의 무구를 찾아서</a>
+<a href="#ch-34" class="nav-item" data-ch="34">34장 &middot; 연옥계</a>
+<a href="#ch-35" class="nav-item" data-ch="35">35장 &middot; 오우거 제논의 배신</a>
+<a href="#ch-36" class="nav-item" data-ch="36">36장 &middot; 오우거의 열쇠</a>
+<a href="#ch-37" class="nav-item" data-ch="37">37장 &middot; 에이미의 과거</a>
+<a href="#ch-38" class="nav-item" data-ch="38">38장 &middot; 토토 드림랜드</a>
+<a href="#ch-39" class="nav-item" data-ch="39">39장 &middot; 밀다와의 대면</a>
+<a href="#ch-40" class="nav-item" data-ch="40">40장 &middot; 오우거 요새 공략</a>
+<a href="#ch-41" class="nav-item" data-ch="41">41장 &middot; 오우거 요새 내부</a>
+<a href="#ch-42" class="nav-item" data-ch="42">42장 &middot; 오우거베인의 폭주</a>
+<a href="#ch-43" class="nav-item" data-ch="43">43장 &middot; 오우거베인의 진실</a>
+<a href="#ch-44" class="nav-item" data-ch="44">44장 &middot; 오우거 제논과의 최종 결전</a>
+  <div class="nav-part">&#9670; 제2부 &mdash; 동방 기담 편</div>
+  <a href="#ch-45" class="nav-item" data-ch="45">45장 &middot; 역사의 개변</a>
+<a href="#ch-46" class="nav-item" data-ch="46">46장 &middot; 유니건의 동방 연락소</a>
+<a href="#ch-47" class="nav-item" data-ch="47">47장 &middot; 동방으로</a>
+<a href="#ch-48" class="nav-item" data-ch="48">48장 &middot; 이자나 도착</a>
+<a href="#ch-49" class="nav-item" data-ch="49">49장 &middot; 키요스케와 미카</a>
+<a href="#ch-50" class="nav-item" data-ch="50">50장 &middot; 류노신의 저택</a>
+<a href="#ch-51" class="nav-item" data-ch="51">51장 &middot; 겐신과의 만남</a>
+<a href="#ch-52" class="nav-item" data-ch="52">52장 &middot; 츠바메의 배신?</a>
+<a href="#ch-53" class="nav-item" data-ch="53">53장 &middot; 단풍 부채</a>
+<a href="#ch-54" class="nav-item" data-ch="54">54장 &middot; 아마토 섬으로</a>
+<a href="#ch-55" class="nav-item" data-ch="55">55장 &middot; 스자쿠의 습격</a>
+<a href="#ch-56" class="nav-item" data-ch="56">56장 &middot; 바레스와 코니움</a>
+<a href="#ch-57" class="nav-item" data-ch="57">57장 &middot; 가다로</a>
+<a href="#ch-58" class="nav-item" data-ch="58">58장 &middot; 자미와 짐단</a>
+<a href="#ch-59" class="nav-item" data-ch="59">59장 &middot; 곤쥬로와 뱃묘지</a>
+<a href="#ch-60" class="nav-item" data-ch="60">60장 &middot; 시간의 꿈의 책</a>
+<a href="#ch-61" class="nav-item" data-ch="61">61장 &middot; 공중 성곽 이지아</a>
+<a href="#ch-62" class="nav-item" data-ch="62">62장 &middot; 오백 광년의 귀신</a>
+<a href="#ch-63" class="nav-item" data-ch="63">63장 &middot; 크로노 클랜</a>
+<a href="#ch-64" class="nav-item" data-ch="64">64장 &middot; 리 아 발크</a>
+<a href="#ch-65" class="nav-item" data-ch="65">65장 &middot; 데라메어의 요새</a>
+<a href="#ch-66" class="nav-item" data-ch="66">66장 &middot; 시간의 꿈의 책</a>
+<a href="#ch-67" class="nav-item" data-ch="67">67장 &middot; 시간의 소녀의 정체</a>
+<a href="#ch-68" class="nav-item" data-ch="68">68장 &middot; 팬텀 네오</a>
+<a href="#ch-69" class="nav-item" data-ch="69">69장 &middot; 요마의 마을로</a>
+<a href="#ch-70" class="nav-item" data-ch="70">70장 &middot; 지장보살 순례</a>
+<a href="#ch-71" class="nav-item" data-ch="71">71장 &middot; 요마 황궁의 결계</a>
+<a href="#ch-72" class="nav-item" data-ch="72">72장 &middot; 소케라와의 대결</a>
+<a href="#ch-73" class="nav-item" data-ch="73">73장 &middot; 꼭두각시 공주</a>
+<a href="#ch-74" class="nav-item" data-ch="74">74장 &middot; 새틀라이트 스타디움</a>
+<a href="#ch-75" class="nav-item" data-ch="75">75장 &middot; 스타디움 전투</a>
+<a href="#ch-76" class="nav-item" data-ch="76">76장 &middot; 오너와 몽견관의 주인</a>
+<a href="#ch-77" class="nav-item" data-ch="77">77장 &middot; 잊힌 땅</a>
+<a href="#ch-78" class="nav-item" data-ch="78">78장 &middot; 명협계</a>
+<a href="#ch-80" class="nav-item" data-ch="80">80장 &middot; 황천의 방주 진입</a>
+<a href="#ch-81" class="nav-item" data-ch="81">81장 &middot; 박명의 섬으로</a>
+<a href="#ch-82" class="nav-item" data-ch="82">82장 &middot; 사람 표식의 관</a>
+<a href="#ch-83" class="nav-item" data-ch="83">83장 &middot; 신 표식의 관</a>
+<a href="#ch-84" class="nav-item" data-ch="84">84장 &middot; 시공을 넘는 공명</a>
+  <div class="nav-part">&#9670; 제3부 &mdash; 공허한 시층의 윤회 편</div>
+  <a href="#ch-85" class="nav-item" data-ch="85">85장 &middot; 공허한 시층</a>
+<a href="#ch-86" class="nav-item" data-ch="86">86장 &middot; 심장 도둑</a>
+<a href="#ch-87" class="nav-item" data-ch="87">87장 &middot; 오메가폴리스</a>
+<a href="#ch-88" class="nav-item" data-ch="88">88장 &middot; 래시발</a>
+<a href="#ch-89" class="nav-item" data-ch="89">89장 &middot; 잠든 진주호 수리</a>
+<a href="#ch-90" class="nav-item" data-ch="90">90장 &middot; 횡단 열차 사건</a>
+<a href="#ch-91" class="nav-item" data-ch="91">91장 &middot; 귀부인의 저택</a>
+<a href="#ch-92" class="nav-item" data-ch="92">92장 &middot; 시간이 열리는 나무</a>
+<a href="#ch-93" class="nav-item" data-ch="93">93장 &middot; 시간 제국</a>
+<a href="#ch-94" class="nav-item" data-ch="94">94장 &middot; 전투 후</a>
+<a href="#ch-95" class="nav-item" data-ch="95">95장 &middot; 묘인 세계 도착</a>
+<a href="#ch-96" class="nav-item" data-ch="96">96장 &middot; 길바데스 수리 준비</a>
+<a href="#ch-97" class="nav-item" data-ch="97">97장 &middot; 사코리타스 유적</a>
+<a href="#ch-98" class="nav-item" data-ch="98">98장 &middot; 토르루탄 도착</a>
+<a href="#ch-99" class="nav-item" data-ch="99">99장 &middot; 죽음의 미로</a>
+<a href="#ch-100" class="nav-item" data-ch="100">100장 &middot; 야나투</a>
+<a href="#ch-101" class="nav-item" data-ch="101">101장 &middot; 어둠의 등불</a>
+<a href="#ch-102" class="nav-item" data-ch="102">102장 &middot; 세계의 중심</a>
+<a href="#ch-103" class="nav-item" data-ch="103">103장 &middot; 사념의 단편</a>
+<a href="#ch-104" class="nav-item" data-ch="104">104장 &middot; 날개 달린 짐승</a>
+<a href="#ch-105" class="nav-item" data-ch="105">105장</a>
+<a href="#ch-106" class="nav-item" data-ch="106">106장</a>
+<a href="#ch-107" class="nav-item" data-ch="107">107장</a>
+<a href="#ch-108" class="nav-item" data-ch="108">108-109장</a>
+<a href="#ch-110" class="nav-item" data-ch="110">110장</a>
+<a href="#ch-111" class="nav-item" data-ch="111">111장</a>
+<a href="#ch-112" class="nav-item" data-ch="112">112장</a>
+<a href="#ch-113" class="nav-item" data-ch="113">113-114장</a>
+<a href="#ch-115" class="nav-item" data-ch="115">115장</a>
+<a href="#ch-116" class="nav-item" data-ch="116">116장</a>
+<a href="#ch-117" class="nav-item" data-ch="117">117장</a>
+<a href="#ch-118" class="nav-item" data-ch="118">118장</a>
+<a href="#ch-119" class="nav-item" data-ch="119">119장</a>
+<a href="#ch-120" class="nav-item" data-ch="120">120장</a>
+<a href="#ch-121" class="nav-item" data-ch="121">121-123장</a>
 </nav>
 <div id="search-bar">
-  <input type="text" id="search-input" placeholder="대사 검색... (Enter)" />
+  <input type="text" id="search-input" placeholder="&#9670; 대사 검색..." />
   <button id="search-btn">검색</button>
-  <span id="search-count" style="color:#aaa;font-size:12px;"></span>
+  <span id="search-count" style="color:var(--gold-dim);font-size:11px;"></span>
 </div>
-<div id="main"><div id="loading-msg">데이터 로딩 중...</div></div>
+<div id="main"><div id="loading-msg">&#9670; 시공의 문을 여는 중... &#9670;</div></div>
 
 <script>
-const COLORS={"알도": "#4A90D9", "피네": "#E91E63", "사이러스": "#4CAF50", "에이미": "#FF9800", "리이카": "#00BCD4", "헬레나": "#9C27B0", "길드너": "#F44336", "알테나": "#8BC34A", "애쉬티어": "#3F51B5", "캄라녜쥬": "#607D8B", "베레토": "#795548", "미나르카": "#673AB7", "질퍼니": "#009688", "니르야": "#CDDC39", "코먼자크": "#FF5722", "오우거베인": "#212121", "마도카": "#E040FB", "크로노스": "#B71C1C", "세바스 박사": "#0097A7", "바레스": "#D32F2F", "아멜리": "#1976D2", "검재": "#424242", "히미카": "#E040FB", "다리오스": "#8D6E63", "합성귀룡": "#546E7A", "키코": "#F06292", "린도": "#5C6BC0", "겐신": "#EF5350", "가넬리": "#AB47BC", "미글랜스 왕": "#FFA726", "촌장": "#A1887F", "할아버지": "#A1887F", "마수": "#616161", "[?]": "#757575", "???": "#757575"};
+const COLORS={"알도":"#5a9ad8","피네":"#e8a0b8","사이러스":"#6ab87a","에이미":"#e8a850","리이카":"#50bcd4","헬레나":"#b070d0","길드너":"#d05a5a","알테나":"#90c060","애쉬티어":"#7080c8","캄라녜쥬":"#8898a0","베레토":"#a08068","미나르카":"#9060c0","질퍼니":"#50a898","니르야":"#c8d050","코먼자크":"#d87050","오우거베인":"#606060","마도카":"#d070e8","크로노스":"#c04040","세바스 박사":"#50a0b0","바레스":"#c05050","아멜리":"#5080c8","검재":"#787878","히미카":"#d070e8","다리오스":"#a08878","합성귀룡":"#708898","키코":"#e080a0","린도":"#7078c0","겐신":"#d06060","가넬리":"#b070c0","미글랜스 왕":"#d8a050","촌장":"#a89888","할아버지":"#a89888","마수":"#808080","[?]":"#a09080","???":"#a09080"};
 const PORTRAITS={"알도":true,"피네":true,"사이러스":true,"에이미":true,"리이카":true,"헬레나":true,"길드너":true,"알테나":true,"애쉬티어":true,"캄라녜쥬":true,"베레토":true,"미나르카":true,"질퍼니":true,"니르야":true};
 function getPortrait(n){return PORTRAITS[n]?'images/chars/'+encodeURIComponent(n)+'.png':null;}
 const FRAME_BASE='https://ggobugithesquirtle.github.io/AE-Story-Frames/';
-var FMAP={};  // chapter -> {vid, frame_start, frame_end}
+var FMAP={};
 const mainEl=document.getElementById('main');
 var DATA=[];
 
-function getColor(n){if(COLORS[n])return COLORS[n];let h=0;for(let i=0;i<n.length;i++)h=n.charCodeAt(i)+((h<<5)-h);return'hsl('+Math.abs(h)%360+',55%,45%)'}
+function getColor(n){if(COLORS[n])return COLORS[n];let h=0;for(let i=0;i<n.length;i++)h=n.charCodeAt(i)+((h<<5)-h);return'hsl('+Math.abs(h)%360+',40%,55%)'}
 function getInit(n){if(!n||n==='[?]'||n==='???')return'?';return n.charAt(0)}
 function escH(s){return s?s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'):''}
 
@@ -224,7 +450,7 @@ function renderCh(ch){
       h+='<div class="msg'+(isAldo?' right':'')+'">';
       var portrait=getPortrait(line.char);
       if(portrait){h+='<div class="avatar"><img src="'+portrait+'" alt="'+escH(line.char)+'"></div>';}
-      else{h+='<div class="avatar" style="background:'+color+'">'+getInit(line.char)+'</div>';}
+      else{h+='<div class="avatar" style="background:rgba(201,164,76,.1)">'+getInit(line.char)+'</div>';}
       h+='<div class="bubble"><span class="name" style="color:'+color+'">'+escH(line.char)+'</span>'+escH(line.text)+'</div></div>';
     }
   }
@@ -249,13 +475,10 @@ function init(){
     });
   },{rootMargin:'300px'});
   document.querySelectorAll('.chapter.loading').forEach(function(el){obs.observe(el)});
-
-  // Handle hash after init
   if(window.location.hash){
     setTimeout(function(){
       var el=document.querySelector(window.location.hash);
       if(el){
-        // Force render this chapter
         if(el.classList.contains('loading')){
           var idx=parseInt(el.dataset.idx);
           rendered[String(idx)]=true;
@@ -268,7 +491,7 @@ function init(){
   }
 }
 
-// Fetch JSON data + frame mapping
+// Fetch
 Promise.all([
   fetch('data/story_all.json').then(function(r){return r.json()}),
   fetch('data/frame_mapping.json').then(function(r){return r.json()}).catch(function(){return[]})
@@ -276,10 +499,9 @@ Promise.all([
   DATA=results[0];
   results[1].forEach(function(fm){FMAP[fm.chapter]=fm});
   init();
-})
-  .catch(function(e){
-    mainEl.innerHTML='<div id="loading-msg" style="color:var(--accent)">데이터 로딩 실패: '+e.message+'<br>data/story_all.json 파일을 확인하세요.</div>';
-  });
+}).catch(function(e){
+  mainEl.innerHTML='<div id="loading-msg" style="color:var(--gold)">데이터 로딩 실패: '+e.message+'</div>';
+});
 
 // Sidebar highlight
 var navItems=document.querySelectorAll('.nav-item');
@@ -314,7 +536,7 @@ function doSearch(){
   var re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
   document.querySelectorAll('.bubble,.narration').forEach(function(el){
     if(el.textContent.toLowerCase().indexOf(q)>=0){
-      el.innerHTML=el.innerHTML.replace(re,'<mark class="search-hl" style="background:#e94560;color:#fff;padding:0 2px;border-radius:2px">$1</mark>');
+      el.innerHTML=el.innerHTML.replace(re,'<mark class="search-hl">$1</mark>');
       searchResults.push(el);
     }
   });

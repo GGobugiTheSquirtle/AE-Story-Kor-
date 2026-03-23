@@ -4,58 +4,130 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>어나더에덴 메인스토리 가이드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#1a1a2e;--bg2:#16213e;--bg3:#0f3460;--text:#e0e0e0;--text2:#a0a0a0;--accent:#e94560;--card-bg:#1e2a3a}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI','Malgun Gothic',sans-serif;line-height:1.7}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
+:root{--bg:#0b0d1a;--bg2:#111428;--bg3:#1a1d35;--text:#e8e0d0;--text2:#9a9080;--gold:#c9a44c;--gold2:#b8963e;--gold-dim:#6b5a2a;--gold-bright:#e8cc6e;--card-bg:rgba(22,25,48,.85);--border:#2a2d45}
+body{background:var(--bg);color:var(--text);font-family:'Noto Serif KR','Malgun Gothic',serif;line-height:1.8;
+  background-image:radial-gradient(ellipse 800px 600px at 50% 0%, rgba(30,40,80,.5) 0%, transparent 70%);
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,.12) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 65%, rgba(201,164,76,.1) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 75% 15%, rgba(255,255,255,.08) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 75%, rgba(201,164,76,.08) 0%, transparent 100%);
+}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold-bright)}
 
 /* Hero */
-.hero{text-align:center;padding:60px 20px 40px;background:linear-gradient(135deg,var(--bg2),var(--bg3));border-bottom:2px solid var(--accent)}
-.hero h1{font-size:2.4em;color:#fff;margin-bottom:8px;letter-spacing:2px}
-.hero .subtitle{font-size:1.1em;color:var(--text2)}
-.hero .badge{display:inline-block;margin-top:12px;padding:4px 16px;border:1px solid var(--accent);border-radius:20px;color:var(--accent);font-size:0.85em}
+.hero{
+  text-align:center;padding:80px 20px 50px;position:relative;
+  background:linear-gradient(180deg, rgba(17,20,40,.9) 0%, var(--bg) 100%);
+  border-bottom:1px solid var(--gold-dim);
+}
+.hero::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent 10%, var(--gold) 50%, transparent 90%);
+}
+.hero h1{font-size:2.2em;color:var(--text);margin-bottom:10px;letter-spacing:4px;font-weight:400}
+.hero .subtitle{font-size:1em;color:var(--text2);letter-spacing:1px}
+.hero .badge{
+  display:inline-block;margin-top:16px;padding:5px 24px;
+  border:1px solid var(--gold-dim);color:var(--gold);
+  font-size:0.8em;letter-spacing:2px;
+  background:rgba(201,164,76,.05);
+}
 
 /* Nav Cards */
-.nav-cards{display:flex;gap:20px;max-width:900px;margin:30px auto;padding:0 20px;flex-wrap:wrap}
-.nav-card{flex:1;min-width:240px;background:var(--card-bg);border-radius:12px;padding:24px 20px;text-align:center;border:1px solid #333;transition:all .2s;cursor:pointer;text-decoration:none;color:var(--text)}
-.nav-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 20px rgba(233,69,96,.2);text-decoration:none}
-.nav-card.active{border-color:var(--accent);background:rgba(233,69,96,.08)}
-.nav-card .icon{font-size:2em;margin-bottom:8px;display:block}
-.nav-card h3{font-size:1.1em;margin-bottom:6px;color:#fff}
-.nav-card p{font-size:0.85em;color:var(--text2)}
-.nav-card .arrow{display:inline-block;margin-top:8px;color:var(--accent);font-size:0.9em}
+.nav-cards{display:flex;gap:20px;max-width:900px;margin:40px auto;padding:0 20px;flex-wrap:wrap}
+.nav-card{
+  flex:1;min-width:240px;background:var(--card-bg);
+  padding:28px 20px;text-align:center;
+  border:1px solid var(--border);transition:all .3s;
+  cursor:pointer;text-decoration:none;color:var(--text);
+  backdrop-filter:blur(4px);
+}
+.nav-card:hover{border-color:var(--gold-dim);box-shadow:0 4px 24px rgba(201,164,76,.1)}
+.nav-card.active{border-color:var(--gold);background:rgba(201,164,76,.06)}
+.nav-card .icon{font-size:1.6em;margin-bottom:10px;display:block;opacity:.8}
+.nav-card h3{font-size:1.05em;margin-bottom:6px;color:var(--text);font-weight:400;letter-spacing:1px}
+.nav-card p{font-size:0.82em;color:var(--text2);line-height:1.6}
+.nav-card .arrow{display:inline-block;margin-top:10px;color:var(--gold);font-size:0.85em;letter-spacing:.5px}
 
 /* Content */
 .content{max-width:900px;margin:0 auto;padding:20px 20px 60px}
-.part{margin-bottom:40px}
-.part-header{font-size:1.4em;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px}
-.part-header .part-num{font-size:0.7em;background:var(--accent);color:#fff;padding:3px 12px;border-radius:12px;white-space:nowrap}
-.chapter-block{margin-bottom:16px;padding:16px 20px;background:var(--card-bg);border-radius:10px;border-left:3px solid var(--bg3);transition:border-color .2s}
-.chapter-block:hover{border-left-color:var(--accent)}
-.chapter-block h3{font-size:1em;margin-bottom:6px}
-.chapter-block h3 a{color:#fff;transition:color .2s}
-.chapter-block h3 a:hover{color:var(--accent)}
-.chapter-block .ch-badge{font-size:0.75em;background:var(--bg3);color:var(--accent);padding:2px 8px;border-radius:8px;margin-right:6px;white-space:nowrap}
-.chapter-block p{font-size:0.9em;color:var(--text2);line-height:1.6}
+.part{margin-bottom:48px}
+.part-header{
+  font-size:1.2em;color:var(--text);padding-bottom:12px;margin-bottom:24px;
+  display:flex;align-items:center;gap:12px;font-weight:400;letter-spacing:.5px;
+  position:relative;border:none;
+}
+.part-header::before,.part-header::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg, var(--gold-dim), transparent);
+}
+.part-header::after{background:linear-gradient(270deg, var(--gold-dim), transparent)}
+.part-header .part-num{
+  font-size:0.65em;color:var(--gold);padding:3px 14px;
+  border:1px solid var(--gold-dim);letter-spacing:2px;
+  white-space:nowrap;background:rgba(201,164,76,.05);
+}
+.chapter-block{
+  margin-bottom:14px;padding:16px 20px;
+  background:var(--card-bg);
+  border-left:2px solid var(--gold-dim);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  border-right:1px solid var(--border);
+  transition:all .2s;
+}
+.chapter-block:hover{border-left-color:var(--gold);background:rgba(201,164,76,.03)}
+.chapter-block h3{font-size:0.95em;margin-bottom:6px;font-weight:400}
+.chapter-block h3 a{color:var(--text);transition:color .2s}
+.chapter-block h3 a:hover{color:var(--gold-bright)}
+.chapter-block .ch-badge{
+  font-size:0.7em;color:var(--gold);padding:2px 10px;
+  border:1px solid var(--gold-dim);margin-right:8px;
+  white-space:nowrap;letter-spacing:1px;
+  background:rgba(201,164,76,.05);
+}
+.chapter-block p{font-size:0.88em;color:var(--text2);line-height:1.7}
 
 /* Characters */
-.characters{margin-top:40px;padding:24px;background:var(--card-bg);border-radius:12px;border:1px solid #333}
-.characters h2{color:var(--accent);font-size:1.2em;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #333}
-.char-group{margin-bottom:16px}
-.char-group h4{color:#fff;font-size:0.95em;margin-bottom:8px}
+.characters{
+  margin-top:48px;padding:28px;background:var(--card-bg);
+  border:1px solid var(--border);
+}
+.characters h2{
+  color:var(--gold);font-size:1.1em;margin-bottom:20px;padding-bottom:10px;
+  border-bottom:1px solid var(--border);font-weight:400;letter-spacing:2px;
+  text-align:center;
+}
+.char-group{margin-bottom:18px}
+.char-group h4{color:var(--text);font-size:0.9em;margin-bottom:10px;font-weight:400;letter-spacing:.5px}
 .char-list{display:flex;flex-wrap:wrap;gap:8px}
-.char-tag{background:var(--bg3);padding:4px 10px;border-radius:6px;font-size:0.82em;color:var(--text)}
+.char-tag{
+  background:rgba(201,164,76,.06);padding:4px 12px;
+  border:1px solid var(--border);font-size:0.8em;color:var(--text2);
+  letter-spacing:.3px;
+}
 
 /* Footer */
-footer{text-align:center;padding:30px 20px;color:var(--text2);font-size:0.85em;border-top:1px solid #333;margin-top:40px}
+footer{
+  text-align:center;padding:36px 20px;color:var(--text-dim,#685e4e);
+  font-size:0.8em;letter-spacing:1px;
+  border-top:1px solid var(--border);margin-top:40px;
+}
 
 /* Scrollbar */
-::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:3px}
 
 @media(max-width:600px){
-  .hero h1{font-size:1.6em}
+  .hero h1{font-size:1.5em}
   .nav-cards{flex-direction:column}
   .chapter-block{padding:12px 14px}
 }
@@ -269,7 +341,7 @@ footer{text-align:center;padding:30px 20px;color:var(--text2);font-size:0.85em;b
       <h4>3부 합류 동료</h4>
       <div class="char-list">
         <span class="char-tag">애쉬티어 &mdash; 천재 과학자</span>
-        <span class="char-tag">칼라네쥬 &mdash; 크로노스의 아들</span>
+        <span class="char-tag">캄라녜쥬 &mdash; 크로노스의 아들</span>
         <span class="char-tag">베레토 &mdash; 고고학자</span>
         <span class="char-tag">미나르카 &mdash; 시간 제국 처형관</span>
         <span class="char-tag">질퍼니 &mdash; 검의 일족</span>
