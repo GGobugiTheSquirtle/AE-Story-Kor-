@@ -26,7 +26,8 @@ body{background:var(--bg);color:var(--text);font-family:'Segoe UI','Malgun Gothi
 .chapter h2 .ch-num{font-size:12px;background:var(--accent);color:#fff;padding:2px 8px;border-radius:10px;white-space:nowrap}
 .msg{display:flex;gap:10px;margin:4px 0;align-items:flex-start}
 .msg.right{flex-direction:row-reverse}
-.avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold;color:#fff}
+.avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:bold;color:#fff;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .bubble{max-width:70%;padding:8px 12px;border-radius:12px;font-size:14px;line-height:1.5}
 .msg:not(.right) .bubble{background:var(--bubble-l);border-top-left-radius:4px}
 .msg.right .bubble{background:var(--bubble-r);border-top-right-radius:4px}
@@ -184,6 +185,8 @@ html{scroll-behavior:smooth}
 
 <script>
 const COLORS={"알도": "#4A90D9", "피네": "#E91E63", "사이러스": "#4CAF50", "에이미": "#FF9800", "리이카": "#00BCD4", "헬레나": "#9C27B0", "길드너": "#F44336", "알테나": "#8BC34A", "애쉬티어": "#3F51B5", "캄라녜쥬": "#607D8B", "베레토": "#795548", "미나르카": "#673AB7", "질퍼니": "#009688", "니르야": "#CDDC39", "코먼자크": "#FF5722", "오우거베인": "#212121", "마도카": "#E040FB", "크로노스": "#B71C1C", "세바스 박사": "#0097A7", "바레스": "#D32F2F", "아멜리": "#1976D2", "검재": "#424242", "히미카": "#E040FB", "다리오스": "#8D6E63", "합성귀룡": "#546E7A", "키코": "#F06292", "린도": "#5C6BC0", "겐신": "#EF5350", "가넬리": "#AB47BC", "미글랜스 왕": "#FFA726", "촌장": "#A1887F", "할아버지": "#A1887F", "마수": "#616161", "[?]": "#757575", "???": "#757575"};
+const PORTRAITS={"알도":true,"피네":true,"사이러스":true,"에이미":true,"리이카":true,"헬레나":true,"길드너":true,"알테나":true,"애쉬티어":true,"캄라녜쥬":true,"베레토":true,"미나르카":true,"질퍼니":true,"니르야":true};
+function getPortrait(n){return PORTRAITS[n]?'images/chars/'+encodeURIComponent(n)+'.png':null;}
 const mainEl=document.getElementById('main');
 var DATA=[];
 
@@ -203,7 +206,9 @@ function renderCh(ch){
       var isAldo=line.char==='알도';
       var color=getColor(line.char);
       h+='<div class="msg'+(isAldo?' right':'')+'">';
-      h+='<div class="avatar" style="background:'+color+'">'+getInit(line.char)+'</div>';
+      var portrait=getPortrait(line.char);
+      if(portrait){h+='<div class="avatar"><img src="'+portrait+'" alt="'+escH(line.char)+'"></div>';}
+      else{h+='<div class="avatar" style="background:'+color+'">'+getInit(line.char)+'</div>';}
       h+='<div class="bubble"><span class="name" style="color:'+color+'">'+escH(line.char)+'</span>'+escH(line.text)+'</div></div>';
     }
   }
