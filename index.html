@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>어나더에덴 메인스토리 가이드</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#1a1a2e;--bg2:#16213e;--bg3:#0f3460;--text:#e0e0e0;--text2:#a0a0a0;--accent:#e94560;--card-bg:#1e2a3a}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI','Malgun Gothic',sans-serif;line-height:1.7}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Hero */
+.hero{text-align:center;padding:60px 20px 40px;background:linear-gradient(135deg,var(--bg2),var(--bg3));border-bottom:2px solid var(--accent)}
+.hero h1{font-size:2.4em;color:#fff;margin-bottom:8px;letter-spacing:2px}
+.hero .subtitle{font-size:1.1em;color:var(--text2)}
+.hero .badge{display:inline-block;margin-top:12px;padding:4px 16px;border:1px solid var(--accent);border-radius:20px;color:var(--accent);font-size:0.85em}
+
+/* Nav Cards */
+.nav-cards{display:flex;gap:20px;max-width:900px;margin:30px auto;padding:0 20px;flex-wrap:wrap}
+.nav-card{flex:1;min-width:240px;background:var(--card-bg);border-radius:12px;padding:24px 20px;text-align:center;border:1px solid #333;transition:all .2s;cursor:pointer;text-decoration:none;color:var(--text)}
+.nav-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 4px 20px rgba(233,69,96,.2);text-decoration:none}
+.nav-card.active{border-color:var(--accent);background:rgba(233,69,96,.08)}
+.nav-card .icon{font-size:2em;margin-bottom:8px;display:block}
+.nav-card h3{font-size:1.1em;margin-bottom:6px;color:#fff}
+.nav-card p{font-size:0.85em;color:var(--text2)}
+.nav-card .arrow{display:inline-block;margin-top:8px;color:var(--accent);font-size:0.9em}
+
+/* Content */
+.content{max-width:900px;margin:0 auto;padding:20px 20px 60px}
+.part{margin-bottom:40px}
+.part-header{font-size:1.4em;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.part-header .part-num{font-size:0.7em;background:var(--accent);color:#fff;padding:3px 12px;border-radius:12px;white-space:nowrap}
+.chapter-block{margin-bottom:16px;padding:16px 20px;background:var(--card-bg);border-radius:10px;border-left:3px solid var(--bg3);transition:border-color .2s}
+.chapter-block:hover{border-left-color:var(--accent)}
+.chapter-block h3{font-size:1em;margin-bottom:6px}
+.chapter-block h3 a{color:#fff;transition:color .2s}
+.chapter-block h3 a:hover{color:var(--accent)}
+.chapter-block .ch-badge{font-size:0.75em;background:var(--bg3);color:var(--accent);padding:2px 8px;border-radius:8px;margin-right:6px;white-space:nowrap}
+.chapter-block p{font-size:0.9em;color:var(--text2);line-height:1.6}
+
+/* Characters */
+.characters{margin-top:40px;padding:24px;background:var(--card-bg);border-radius:12px;border:1px solid #333}
+.characters h2{color:var(--accent);font-size:1.2em;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid #333}
+.char-group{margin-bottom:16px}
+.char-group h4{color:#fff;font-size:0.95em;margin-bottom:8px}
+.char-list{display:flex;flex-wrap:wrap;gap:8px}
+.char-tag{background:var(--bg3);padding:4px 10px;border-radius:6px;font-size:0.82em;color:var(--text)}
+
+/* Footer */
+footer{text-align:center;padding:30px 20px;color:var(--text2);font-size:0.85em;border-top:1px solid #333;margin-top:40px}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#444;border-radius:3px}
+
+@media(max-width:600px){
+  .hero h1{font-size:1.6em}
+  .nav-cards{flex-direction:column}
+  .chapter-block{padding:12px 14px}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>어나더에덴 메인스토리</h1>
+  <p class="subtitle">제1부 ~ 제3부 전 123장 완전판</p>
+  <span class="badge">Another Eden Main Story Archive</span>
+</div>
+
+<div class="nav-cards">
+  <div class="nav-card active">
+    <span class="icon">&#128209;</span>
+    <h3>요약본</h3>
+    <p>각 장의 핵심 줄거리를 한눈에. 스포일러 최소화.</p>
+    <span class="arrow">현재 페이지</span>
+  </div>
+  <a href="detail.html" class="nav-card">
+    <span class="icon">&#128214;</span>
+    <h3>상세본</h3>
+    <p>장면별 상세 서술 + 주요 대사 인용 + 핵심 포인트 분석.</p>
+    <span class="arrow">상세본 보기 &rarr;</span>
+  </a>
+  <a href="full.html" class="nav-card">
+    <span class="icon">&#128172;</span>
+    <h3>풀버전 (전체 대사)</h3>
+    <p>게임 내 전체 대사를 채팅 버블 형태로. 검색 지원.</p>
+    <span class="arrow">풀버전 보기 &rarr;</span>
+  </a>
+</div>
+
+<div class="content">
+
+  <!-- 1부 -->
+  <div class="part">
+    <h2 class="part-header"><span class="part-num">1부</span> 시간의 미아 &mdash; 별을 꿈꾸는 소녀와 시간을 달리는 소년</h2>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">1장</span><a href="detail.html#ch1">바르오키의 아침과 마수왕의 습격</a></h3>
+      <p>바르오키 마을의 경비대원 알도는 여동생 피네, 양아버지인 촌장과 평화롭게 살고 있다. 마수왕과 부하 바레스가 마을을 습격해 피네를 납치하고, 전설의 검 오우거베인이 각성하면서 알도는 시공의 소용돌이에 휘말려 다른 시대로 날려 보내진다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">2-3장</span><a href="detail.html#ch2">미래 도시 엘자이온과 새로운 동료들</a></h3>
+      <p>AD 1100년 공중 도시 엘자이온에 도착한 알도는 헌터 에이미와 안드로이드 리이카를 만나 동료가 된다. 에이미는 어머니의 마지막 메시지를 듣고 마음의 정리를 하며, 알도가 원래 시대로 돌아갈 방법을 함께 찾겠다고 약속한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">4-7장</span><a href="detail.html#ch4">합성인간 격퇴와 원시시대 표류</a></h3>
+      <p>갤리어드가 이끄는 합성인간 세력을 격퇴하고, 시공 이상으로 수만 년 전 원시시대에 표류한다. 나다라 화산의 샐러맨더로부터 "모든 것을 삼키는 검은 파도"에 대한 경고를 듣고, 파르지팔 왕궁을 향해 나아간다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">8-11장</span><a href="detail.html#ch8">파르지팔 왕의 음모와 시간의 탑</a></h3>
+      <p>파르지팔 왕의 역사 재구축 음모를 저지하기 위해 시간의 탑에 잠입. 환시 태아들을 제거해 엘자이온이 존재하는 미래를 복원하지만, 가면의 예언자가 진정한 원흉임이 드러난다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">12-15장</span><a href="detail.html#ch12">현대 귀환, 오우거베인의 진실, 마수왕 재대결</a></h3>
+      <p>현대 바르오키로 귀환해 촌장과 재회. 오우거베인이 삼천 년간 인간을 살육해온 저주의 검이라는 진실이 폭로되고, 알도는 저주를 깨뜨린 뒤 마수왕을 격퇴한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">16-19장</span><a href="detail.html#ch16">제노 도메인, 시층회랑, 거대 시공 지진</a></h3>
+      <p>알도와 피네의 본래 이름이 에덴과 세실이었음이 밝혀진다. 팬텀들의 거대 시공 지진을 샐러맨더가 몸을 던져 저지하지만, 일행은 뿔뿔이 흩어진다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">19-20장</span><a href="detail.html#ch19">합성귀룡 잠입과 시간을 달리는 날개</a></h3>
+      <p>합성인간의 차원전함에 폭죽 대포로 잠입하여 격파. 합성귀룡이 세 시대를 오갈 수 있는 이동수단이 되고, 헬레나도 동료로 합류한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">21-22장</span><a href="detail.html#ch21">별의 탑, 마수성, 피네의 구출</a></h3>
+      <p>마수성에서 지오 프리즈마가 폭주한 거대 마수를 격파해 피네를 구출. 알테나가 피네와의 약속을 남기고 소멸하며, 바르오키로 귀환한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">23-25장</span><a href="detail.html#ch23">차원의 소용돌이와 최종 결전</a></h3>
+      <p>크로노스 메나스의 정체와 알도=에덴, 피네=세실이라는 충격적 진실이 완전히 드러난다. 알도는 자기 희생 끝에 키로스에 의해 되살아나고, 동료들은 각 시대로 돌아가며 1부가 마무리된다.</p>
+    </div>
+  </div>
+
+  <!-- 1.5부 -->
+  <div class="part">
+    <h2 class="part-header"><span class="part-num">1.5부</span> 새로운 출발 &mdash; 오우거와 성검의 나선율</h2>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">26장</span><a href="detail.html#ch26">새로운 출발</a></h3>
+      <p>1부 결말 이후, 전 마수왕 길드너가 알테나와 재회하여 본래의 모습을 되찾고 새로운 삶을 시작한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">27-28장</span><a href="detail.html#ch27">고대 전쟁 유적과 미글랜스 왕</a></h3>
+      <p>고대 전쟁 유적에서 오우거족과 우레왕을 만나고, 미글랜스 왕과 대면시켜 상황을 공유한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">29-31장</span><a href="detail.html#ch29">뱀뼈 섬, 코니움 마을, 용신의 시련</a></h3>
+      <p>알테나, 길드너와 합류해 코니움 마을에서 바레스의 의외의 모습을 보고, 용신의 시련을 통과한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">32-35장</span><a href="detail.html#ch32">앙길라스의 습격과 정령의 무구</a></h3>
+      <p>홍수 앙길라스의 기습으로 알테나가 납치되고, 오우거 제논이 사대정령의 무구를 요구한다. 연옥계에서 무구를 모아 가져가지만 제논에게 배신당한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">36-40장</span><a href="detail.html#ch36">오우거의 열쇠와 공성전</a></h3>
+      <p>시간대를 넘나들며 오우거의 열쇠를 확보하고, 왕국 기사단과 함께 대규모 공성전을 벌여 오우거 요새에 진격한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">41-44장</span><a href="detail.html#ch41">오우거베인의 폭주와 최종 결전</a></h3>
+      <p>오우거베인이 알도의 의식을 지배해 폭주하지만 동료들이 정신을 되찾아준다. 오우거 제논과의 최종 결전에서 승리하고, 알테나를 구출하며 1.5부가 마무리된다.</p>
+    </div>
+  </div>
+
+  <!-- 2부 -->
+  <div class="part">
+    <h2 class="part-header"><span class="part-num">2부</span> 동방 대륙의 시간 개변과 신의 능묘</h2>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">45-47장</span><a href="detail.html#ch45">역사의 개변과 동방으로</a></h3>
+      <p>역사가 개변되어 미글랜스 왕국이 동방 동맹의 지배를 받게 된다. 알도 일행은 동방의 가를레아 대륙으로 향한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">48-51장</span><a href="detail.html#ch48">이자나 도착과 겐신과의 만남</a></h3>
+      <p>동방 도시 이자나에서 키요스케와 미카 남매를 구출하고, 영주 겐신을 만나 역사 개변의 단서를 얻는다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">52-55장</span><a href="detail.html#ch52">츠바메의 배신과 스자쿠의 습격</a></h3>
+      <p>츠바메 사칭 사건, 요마전에서의 동방의 진실, 거대 병기 지라이야와의 전투를 거친다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">56-60장</span><a href="detail.html#ch56">가다로와 시간의 꿈의 책</a></h3>
+      <p>사이러스의 고향 가다로를 거쳐 알테나가 정령의 힘을 계승하고, 시간의 꿈의 책을 발견한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">61-68장</span><a href="detail.html#ch61">공중 성곽과 시간의 소녀의 정체</a></h3>
+      <p>크로노 클랜과 협력하며 시간의 소녀의 정체가 마도카 박사임이 밝혀진다. 신의 능묘가 솟아오르며 세계 종말의 위기가 시작된다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">69-78장</span><a href="detail.html#ch69">요마의 마을에서 명협계까지</a></h3>
+      <p>요마 마을 이토이스, 요마 황궁, 잊힌 땅 호키시를 거쳐 명협계의 차원 대성당에서 히미카와 재회한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">80-84장</span><a href="detail.html#ch80">황천의 방주와 명왕릉</a></h3>
+      <p>에덴을 부활시키지만 팬텀에게 다시 납치당하고, 명왕릉에서 팬텀 에덴과 최종 결전. 마도카는 자장가로 마지막 메시지를 전하며, 에덴과 마도카를 되찾겠다는 새로운 결의를 다진다.</p>
+    </div>
+  </div>
+
+  <!-- 3부 -->
+  <div class="part">
+    <h2 class="part-header"><span class="part-num">3부</span> 공허한 시층과 시간 제국</h2>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">85-92장</span><a href="detail.html#ch85">공허한 시층과 시간 제국</a></h3>
+      <p>기계 생명체 '기인'이 사는 세계에서 시간 제국의 존재를 알게 되고, 크로노스 황제가 알도와 피네의 '또 다른 세계의 아버지'임이 밝혀진다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">93-104장</span><a href="detail.html#ch93">묘인 세계와 길바데스</a></h3>
+      <p>BC 2만 년의 묘인 세계에서 길바데스를 탈취하고 새 동료들과 함께 크로노스 황제와 대결한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">105-114장</span><a href="detail.html#ch105">석화 문명과 허무와의 대결</a></h3>
+      <p>지스몬데에서 코먼자크의 충격적 진실이 드러나고, 질퍼니가 동료로 합류. 검의 저택에서 허무를 격파한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">115-120장</span><a href="detail.html#ch115">식시 영역과 동료 재결집</a></h3>
+      <p>오우거베인 폭주로 세계가 뒤섞인 이공간 "식시 영역"이 발생. 모든 동료가 재결집하고, 크로노스 황제의 배신을 거쳐 합성귀룡들을 소환한다.</p>
+    </div>
+
+    <div class="chapter-block">
+      <h3><span class="ch-badge">121-123장</span><a href="detail.html#ch121">시간의 바다 주르반, 최후의 결전</a></h3>
+      <p>마도카, 에덴과 감동적으로 재회. 크로노스 사바스와의 최종 결전에서 승리하고, 마도카는 시간의 바다에 남으며 에덴은 새 여정을 시작한다. 알도와 피네는 바르오키에서 일상으로 돌아간다.</p>
+    </div>
+  </div>
+
+  <!-- Characters -->
+  <div class="characters">
+    <h2>등장인물 (주요)</h2>
+
+    <div class="char-group">
+      <h4>알도 일행 (핵심 파티)</h4>
+      <div class="char-list">
+        <span class="char-tag">알도 (에덴) &mdash; 주인공</span>
+        <span class="char-tag">피네 (세실) &mdash; 알도의 여동생</span>
+        <span class="char-tag">사이러스 &mdash; 개구리 기사</span>
+        <span class="char-tag">에이미 &mdash; 미래의 헌터</span>
+        <span class="char-tag">리이카 &mdash; 안드로이드</span>
+        <span class="char-tag">헬레나 &mdash; 합성인간</span>
+        <span class="char-tag">길드너 &mdash; 전 마수왕</span>
+        <span class="char-tag">알테나 &mdash; 마수 소녀</span>
+      </div>
+    </div>
+
+    <div class="char-group">
+      <h4>3부 합류 동료</h4>
+      <div class="char-list">
+        <span class="char-tag">애쉬티어 &mdash; 천재 과학자</span>
+        <span class="char-tag">칼라네쥬 &mdash; 크로노스의 아들</span>
+        <span class="char-tag">베레토 &mdash; 고고학자</span>
+        <span class="char-tag">미나르카 &mdash; 시간 제국 처형관</span>
+        <span class="char-tag">질퍼니 &mdash; 검의 일족</span>
+        <span class="char-tag">니르야 &mdash; 식시 생명체</span>
+      </div>
+    </div>
+
+    <div class="char-group">
+      <h4>주요 NPC / 적대자</h4>
+      <div class="char-list">
+        <span class="char-tag">크로노스 황제</span>
+        <span class="char-tag">마도카 (시간의 여신)</span>
+        <span class="char-tag">오우거베인 (성검 파르지팔)</span>
+        <span class="char-tag">팬텀</span>
+        <span class="char-tag">오우거 제논</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  어나더에덴 메인스토리 대사 추출 프로젝트 | 2026
+</footer>
+
+</body>
+</html>
