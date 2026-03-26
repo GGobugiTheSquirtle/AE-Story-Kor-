@@ -1,0 +1,17 @@
+# Local Netlify folder
+.netlify
+
+# Fullscreen screenshots (885MB+)
+fullscreen/
+
+# Backup files
+*.bak.*
+
+# OCR intermediate data
+data/ocr/
+data/ocr_*.json
+data/truncated_*.json
+data/fullscreen_mapping.json
+
+# PDCA status (project-local)
+.pdca-status.json
