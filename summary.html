@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>어나더에덴 메인스토리 요약본</title>
+<meta name="description" content="어나더에덴 메인스토리 제1부~제3부 전 123장. 부 단위 서사 요약 + 장별 인덱스.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -35,18 +36,11 @@ a:hover{color:var(--gold-bright)}
   content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
   background:linear-gradient(90deg, transparent 0%, var(--gold-dim) 20%, var(--gold) 50%, var(--gold-dim) 80%, transparent 100%);
 }
-.topnav a{
-  color:var(--text2);font-size:13px;padding:6px 14px;
-  text-decoration:none;transition:all .3s;letter-spacing:.5px;
-  border:1px solid transparent;border-radius:2px;
-}
+.topnav a{color:var(--text2);font-size:13px;padding:6px 14px;text-decoration:none;transition:all .3s;letter-spacing:.5px;border:1px solid transparent}
 .topnav a:hover{color:var(--gold-bright);border-color:var(--gold-dim)}
 .topnav a.active{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
 .topnav .spacer{flex:1}
-.topnav .title-mark{
-  font-size:11px;color:var(--gold-dim);letter-spacing:2px;
-  text-transform:uppercase;margin-left:auto;
-}
+.topnav .title-mark{font-size:11px;color:var(--gold-dim);letter-spacing:2px;text-transform:uppercase}
 
 /* Hero */
 .hero{
@@ -60,92 +54,77 @@ a:hover{color:var(--gold-bright)}
 }
 .hero h1{font-size:2.2em;color:var(--text);margin-bottom:10px;letter-spacing:4px;font-weight:400}
 .hero .subtitle{font-size:1em;color:var(--text2);letter-spacing:1px}
-.hero .badge{
-  display:inline-block;margin-top:16px;padding:5px 24px;
-  border:1px solid var(--gold-dim);color:var(--gold);
-  font-size:0.8em;letter-spacing:2px;
-  background:rgba(201,164,76,.05);
-}
-
-/* Nav Cards */
-.nav-cards{display:flex;gap:20px;max-width:900px;margin:40px auto;padding:0 20px;flex-wrap:wrap}
-.nav-card{
-  flex:1;min-width:240px;background:var(--card-bg);
-  padding:28px 20px;text-align:center;
-  border:1px solid var(--border);transition:all .3s;
-  cursor:pointer;text-decoration:none;color:var(--text);
-  backdrop-filter:blur(4px);
-}
-.nav-card:hover{border-color:var(--gold-dim);box-shadow:0 4px 24px rgba(201,164,76,.1)}
-.nav-card.active{border-color:var(--gold);background:rgba(201,164,76,.06)}
-.nav-card .icon{font-size:1.6em;margin-bottom:10px;display:block;opacity:.8}
-.nav-card h3{font-size:1.05em;margin-bottom:6px;color:var(--text);font-weight:400;letter-spacing:1px}
-.nav-card p{font-size:0.82em;color:var(--text2);line-height:1.6}
-.nav-card .arrow{display:inline-block;margin-top:10px;color:var(--gold);font-size:0.85em;letter-spacing:.5px}
+.hero .badge{display:inline-block;margin-top:16px;padding:5px 24px;border:1px solid var(--gold-dim);color:var(--gold);font-size:0.8em;letter-spacing:2px;background:rgba(201,164,76,.05)}
 
 /* Content */
-.content{max-width:900px;margin:0 auto;padding:20px 20px 60px}
-.part{margin-bottom:48px}
-.part-header{
-  font-size:1.2em;color:var(--text);padding-bottom:12px;margin-bottom:24px;
-  display:flex;align-items:center;gap:12px;font-weight:400;letter-spacing:.5px;
-  position:relative;border:none;
+.content{max-width:820px;margin:0 auto;padding:20px 20px 60px}
+
+/* Part section */
+.part{margin-bottom:64px}
+
+/* Part prologue */
+.part-prologue{
+  margin:0 0 28px;padding:28px 24px;
+  background:linear-gradient(135deg, rgba(20,23,50,.95) 0%, rgba(30,25,45,.9) 100%);
+  border:1px solid rgba(201,164,76,.2);position:relative;overflow:hidden;
 }
-.part-header::before,.part-header::after{
-  content:'';flex:1;height:1px;
-  background:linear-gradient(90deg, var(--gold-dim), transparent);
-}
-.part-header::after{background:linear-gradient(270deg, var(--gold-dim), transparent)}
-.part-header .part-num{
-  font-size:0.65em;color:var(--gold);padding:3px 14px;
-  border:1px solid var(--gold-dim);letter-spacing:2px;
-  white-space:nowrap;background:rgba(201,164,76,.05);
-}
-.chapter-block{
-  margin-bottom:14px;padding:16px 20px;
-  background:var(--card-bg);
-  border-left:2px solid var(--gold-dim);
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  border-right:1px solid var(--border);
-  transition:all .2s;
-}
-.chapter-block:hover{border-left-color:var(--gold);background:rgba(201,164,76,.03)}
-.chapter-block h3{font-size:0.95em;margin-bottom:4px;font-weight:400}
-.chapter-block p{font-size:0.85em;color:var(--text2);line-height:1.7;margin:0}
-.chapter-block h3 a{color:var(--text);transition:color .2s}
-.chapter-block h3 a:hover{color:var(--gold-bright)}
-.chapter-block .ch-badge{
-  font-size:0.7em;color:var(--gold);padding:2px 10px;
-  border:1px solid var(--gold-dim);margin-right:8px;
-  white-space:nowrap;letter-spacing:1px;
-  background:rgba(201,164,76,.05);
+.part-prologue::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent)}
+.part-prologue .part-title{font-size:1.15em;color:var(--gold);letter-spacing:3px;margin-bottom:8px;text-align:center;font-weight:400}
+.part-prologue .part-subtitle{font-size:0.75em;color:var(--text2);text-align:center;margin-bottom:16px;letter-spacing:1px}
+.part-prologue .part-body{font-size:0.88em;color:var(--text);line-height:2;text-indent:1em}
+.part-prologue .part-body p{margin:6px 0}
+
+/* Narrative */
+.narrative{margin-bottom:24px}
+.narrative p{font-size:0.92em;line-height:2;margin:14px 0;color:var(--text);text-indent:1em}
+
+/* Time marker */
+.time-mark{
+  display:inline-block;font-size:0.72em;color:var(--gold);
+  padding:2px 10px;border:1px solid var(--gold-dim);
+  letter-spacing:1px;background:rgba(201,164,76,.06);
+  margin:18px 0 8px;text-indent:0;
 }
 
+/* Quote */
+.quote{
+  margin:14px 0;padding:10px 18px;
+  border-left:2px solid var(--gold-dim);background:rgba(201,164,76,.03);
+  font-size:0.88em;font-style:italic;color:var(--text);text-indent:0;
+}
+.quote .speaker{display:block;font-style:normal;font-weight:700;color:var(--gold);font-size:0.82em;margin-bottom:2px;letter-spacing:.5px}
+
+/* Term annotation */
+.term{border-bottom:1px dotted var(--gold-dim);cursor:help}
+
+/* Chapter index accordion */
+.ch-index{margin-top:16px;border:1px solid var(--border)}
+.ch-index summary{
+  padding:10px 16px;background:var(--bg3);color:var(--text2);
+  font-size:0.85em;letter-spacing:.5px;cursor:pointer;
+  list-style:none;display:flex;align-items:center;gap:8px;
+}
+.ch-index summary::before{content:'▸';color:var(--gold-dim);font-size:10px;transition:transform .2s}
+.ch-index[open] summary::before{transform:rotate(90deg)}
+.ch-index summary::-webkit-details-marker{display:none}
+.ch-list{padding:8px 0}
+.ch-list a{
+  display:block;padding:4px 16px;color:var(--text2);
+  font-size:0.82em;text-decoration:none;transition:all .2s;
+  border-left:2px solid transparent;
+}
+.ch-list a:hover{color:var(--gold-bright);background:rgba(201,164,76,.04);border-left-color:var(--gold-dim)}
+
 /* Characters */
-.characters{
-  margin-top:48px;padding:28px;background:var(--card-bg);
-  border:1px solid var(--border);
-}
-.characters h2{
-  color:var(--gold);font-size:1.1em;margin-bottom:20px;padding-bottom:10px;
-  border-bottom:1px solid var(--border);font-weight:400;letter-spacing:2px;
-  text-align:center;
-}
+.characters{margin-top:48px;padding:28px;background:var(--card-bg);border:1px solid var(--border)}
+.characters h2{color:var(--gold);font-size:1.1em;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border);font-weight:400;letter-spacing:2px;text-align:center}
 .char-group{margin-bottom:18px}
 .char-group h4{color:var(--text);font-size:0.9em;margin-bottom:10px;font-weight:400;letter-spacing:.5px}
 .char-list{display:flex;flex-wrap:wrap;gap:8px}
-.char-tag{
-  background:rgba(201,164,76,.06);padding:4px 12px;
-  border:1px solid var(--border);font-size:0.8em;color:var(--text2);
-  letter-spacing:.3px;
-}
+.char-tag{background:rgba(201,164,76,.06);padding:4px 12px;border:1px solid var(--border);font-size:0.8em;color:var(--text2);letter-spacing:.3px}
 
 /* Footer */
-footer{
-  text-align:center;padding:36px 20px;color:var(--text-dim,#685e4e);
-  font-size:0.8em;letter-spacing:1px;
-  border-top:1px solid var(--border);margin-top:40px;
-}
+footer{text-align:center;padding:36px 20px;color:var(--text-dim,#685e4e);font-size:0.8em;letter-spacing:1px;border-top:1px solid var(--border);margin-top:40px}
 
 /* Scrollbar */
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}
@@ -153,8 +132,8 @@ footer{
 
 @media(max-width:600px){
   .hero h1{font-size:1.5em}
-  .nav-cards{flex-direction:column}
-  .chapter-block{padding:12px 14px}
+  .part-prologue{padding:20px 16px}
+  .narrative p{font-size:0.88em}
   .topnav .title-mark{display:none}
 }
 </style>
@@ -165,215 +144,340 @@ footer{
   <a href="index.html">&larr; 인덱스</a>
   <a class="active">요약본</a>
   <a href="detail.html">상세본</a>
-  <a href="full.html">풀버전</a>
-  <a href="dialogue.html">대사집</a>
   <span class="spacer"></span>
   <span class="title-mark">Another Eden &mdash; Chronicle</span>
 </div>
 
 <div class="hero">
   <h1>어나더에덴 메인스토리</h1>
-  <p class="subtitle">요약본 &mdash; 전 123장 에피소드 줄거리</p>
-  <span class="badge">Episode Summary</span>
+  <p class="subtitle">제1부 ~ 제3부 &mdash; 서사 요약</p>
+  <span class="badge">Story Chronicle</span>
 </div>
 
 <div class="content">
 
-  <!-- 1부 -->
-  <div class="part">
-    <h2 class="part-header"><span class="part-num">1부</span> 시공을 넘는 고양이</h2>
-    <div class="chapter-block"><h3><span class="ch-badge">1장</span><a href="detail.html#ch1">과거의 기억</a></h3><p>바르오키 마을의 청년 알도는 여동생 피네와 평화로운 일상을 보내고 있었으나, 마수왕의 습격으로 피네가 납치되고 전설의 검 오우거베인이 각성하며 시공의 소용돌이에 빨려 들어간다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">2장</span><a href="detail.html#ch2">바레스와의 전투</a></h3><p>알도는 마수왕의 부하 바레스를 추격하지만 오히려 함정에 빠지고, 눈앞에 나타난 시공의 빛에 빨려 들어가 하늘에 떠 있는 거대한 미래 도시를 목격하며 시간 여행이 시작된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">3장</span><a href="detail.html#ch3">미래 엘자이온 도착</a></h3><p>AD 1100년 미래 도시 엘자이온에 도착한 알도는 헌터 에이미와 안드로이드 리이카를 만나고, 합성인간의 리더 갤리어드와 조우하며 &#x27;또 하나의 에덴&#x27;이라는 핵심 주제가 처음 언급된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">4장</span><a href="detail.html#ch4">합성인간의 리더</a></h3><p>합성인간의 리더 갤리어드와 부관 헬레나를 추격하는 과정에서, 갤리어드는 합성인간이 별의 새로운 미래를 이끌겠다는 신념을 드러낸다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">5장</span><a href="detail.html#ch5">에이미의 승리</a></h3><p>에이미와 갤리어드의 정면 대결 끝에 일행이 승리하고, 에이미는 알도가 원래 시대로 돌아갈 방법을 함께 찾겠다고 약속하지만 갑작스러운 이변이 발생한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">6장</span><a href="detail.html#ch6">피네와 알테나 (과거 회상)</a></h3><p>과거 회상으로, 피네가 다친 마수 소녀 알테나를 치료해주며 종족의 벽을 넘은 우정이 싹트는 장면이 그려진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">7장</span><a href="detail.html#ch7">원시시대</a></h3><p>알도와 리이카는 수만 년 전의 원시시대에 불시착하여 소년 베론을 만나고, 샐러맨더로부터 세계를 삼키려는 &#x27;검은 파도&#x27;의 경고를 듣고 가면의 예언자와 조우한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">8장</span><a href="detail.html#ch8">파르지팔 왕궁</a></h3><p>파르지팔 왕은 미래를 자신의 뜻대로 재구축하겠다는 야망을 드러내며, 항의하는 알도 일행을 지하수로로 떨어뜨린다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">9장</span><a href="detail.html#ch9">지하수로</a></h3><p>지하수로에서 파르지팔 왕의 폭정에 맞서다 개구리 저주를 받은 최강의 기사 사이러스를 만나 동료로 맞이한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">10장</span><a href="detail.html#ch10">오우거베인의 봉인</a></h3><p>마술사 라체트의 도움으로 오우거베인에 걸린 봉인을 일시적으로 해제하고, 파르지팔 왕가에 전해지는 성검의 존재가 언급된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">11장</span><a href="detail.html#ch11">시간의 탑</a></h3><p>시간의 탑에서 환시 태아들이 역사를 제어하는 장치를 발견한 알도는 엘자이온이 존재하는 원래의 미래로 역사를 되돌리지만, 시공이 산산조각 나며 새로운 위기가 닥친다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">12장</span><a href="detail.html#ch12">현대로 귀환</a></h3><p>현대의 바르오키 마을로 귀환한 알도는 촌장에게 여행 경위를 보고하고, 피네가 마수들과 함께 있다는 소문을 듣는다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">13장</span><a href="detail.html#ch13">미글랜스 왕성</a></h3><p>마수 무리의 진격으로 긴장감이 감도는 미글랜스 왕성에서, 알도는 피네의 마수 친구 모베차와 페포리를 만나 피네가 무사하다는 소식을 전해 듣는다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">14장</span><a href="detail.html#ch14">오우거베인의 진실</a></h3><p>오우거베인이 전설의 성검이 아니라 삼천 년간 사용자를 이용하고 죽여온 저주받은 검이었음이 밝혀지고, 알도는 분노하며 그 저주를 부순다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">15장</span><a href="detail.html#ch15">마수왕과의 대결</a></h3><p>마수 무리가 미글랜스 왕성을 공격하고, 에이미의 합류와 함께 마수왕에게 도전하지만, 마수왕은 피네 안의 힘이 각성하면 소멸할 수 있다는 충격적 사실을 밝힌다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">16장</span><a href="detail.html#ch16">제노 도메인 내부</a></h3><p>제노 도메인의 폐쇄된 연구소에서 알도의 본래 이름이 &#x27;에덴&#x27;, 피네가 &#x27;세실&#x27;이었음이 밝혀지며, 크로노스 박사의 제노 프리즈마 연구의 실체가 확인된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">17장</span><a href="detail.html#ch17">제노 프리즈마의 폭주</a></h3><p>제노 프리즈마 프로토타입이 폭주하여 엘자이온 전체가 긴급 사태에 돌입하고, 기면의 남자가 나타나 시층의 뒤틀림을 해소하면 거대 시공 지진을 막을 수 있다는 단서를 제공한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">18장</span><a href="detail.html#ch18">시층회랑</a></h3><p>시층의 뒤틀림을 해소하기 위해 물질 전송 머신으로 시층회랑 안에 직접 뛰어드는 알도 일행에게, 행정관은 &#x27;이 세계를 부탁하겠네&#x27;라는 말을 남긴다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">19장</span><a href="detail.html#ch19">거대 시공 지진</a></h3><p>시층회랑에서 팬텀이 나타나 시공 지진파를 일으키고, 샐러맨더가 몸을 던져 충격파를 저지하지만 일행은 뿔뿔이 흩어진다. 몽견관의 주인의 격려로 다시 모인 동료들은 재기를 다짐한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">20장</span><a href="detail.html#ch20">합성귀룡 전투</a></h3><p>폭죽 구슬에 탑승해 합성귀룡의 등에 착지한 일행은 격렬한 전투 끝에 합성귀룡을 쓰러뜨리고, 헬레나와 갤리어드가 추락하는 함선을 함께 지탱하는 기적적 장면이 펼쳐진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">21장</span><a href="detail.html#ch21">별의 탑으로</a></h3><p>예언자가 미래에서 온 사람임을 밝히며 제노 프리즈마가 없는 미래를 만들려 역사를 개변했다고 고백하고, 파르지팔 왕의 광기가 한층 심화된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">22장</span><a href="detail.html#ch22">마수성</a></h3><p>마수성에서 마수들도 피네에게 진심으로 감화되어 있었음이 밝혀지고, 지오 프리즈마가 폭주하여 &#x27;황천을 다스리던 하늘의 사도&#x27; 지오 앙길라스가 출현한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">23장</span><a href="detail.html#ch23">차원의 소용돌이</a></h3><p>원초의 귀석을 장전한 합성귀룡으로 차원의 소용돌이를 돌파하며, 최후의 저항을 시도한 팬텀을 물리치고 소용돌이 너머로 길이 열린다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">24장</span><a href="detail.html#ch24">에덴의 진실</a></h3><p>크로노스 박사의 아들 에덴이 바로 알도 자신이고, 여동생 세실이 피네라는 최대의 반전이 밝혀지며, 1장의 숲속 아기 장면 등 모든 복선이 연결된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">25장</span><a href="detail.html#ch25">최종 결전</a></h3><p>피네의 격려로 다시 일어선 알도는 크로노스 메나스와의 최종 결전에 임하며, 크로노스 가족의 행복했던 과거가 투영되는 가운데 시간의 어둠을 이겨낸다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">26장</span><a href="detail.html#ch26">새로운 출발</a></h3><p>사이러스, 리이카, 에이미, 헬레나가 각자의 결의를 밝히며 알도 곁에 모이고, 세계 곳곳에서 새로운 사건이 기다리는 가운데 열린 결말로 1부가 마무리된다.</p></div>
-  </div>
+<!-- ═══════════════ 제1부 ═══════════════ -->
+<div class="part">
+<div class="part-prologue">
+<div class="part-title">제1부 &mdash; 시공을 넘는 고양이</div>
+<div class="part-subtitle">THE CAT BEYOND TIME AND SPACE &middot; Ch.1&ndash;26</div>
+<div class="part-body">
+<p>태초에 시간의 바다 '주르반'만이 존재했다. 그 바다에서 어머니 여신과 암흑신이 태어나 싸웠고, 암흑신이 봉인된 뒤에도 그 흔적은 세계 곳곳에 남아 있다 &mdash; 고대의 유적에, 전설 속에, 그리고 사람들이 <span class="term" title="고대 정령의 파편에서 생겨난 에너지 결정. 세계 곳곳에 흩어져 있다.">프리즈마</span>라 부르는 빛나는 결정 속에.</p>
+</div>
+</div>
 
-  <!-- 1.5부 -->
-  <div class="part">
-    <h2 class="part-header"><span class="part-num">1.5부</span> 오우거 전쟁편</h2>
-    <div class="chapter-block"><h3><span class="ch-badge">27장</span><a href="detail.html#ch27">고대 전쟁 유적</a></h3><p>AD 300년 고대 전쟁 유적으로 시간여행한 일행은 디아드라의 경고 속에 망자들의 신음이 가득한 전쟁터에서 오우거족 전쟁의 수수께끼를 풀기 시작한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">28장</span><a href="detail.html#ch28">미글랜스 왕과의 만남</a></h3><p>고대의 우레왕과 현대의 미글랜스 왕이 역사적으로 대면하며, 두 왕이 전쟁과 마수에 대한 정보를 공유하고 협력을 시작한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">29장</span><a href="detail.html#ch29">뱀뼈 섬</a></h3><p>뱀뼈 섬에서 알테나와 감격적으로 재회하고, 전 마수왕 길드너가 과거를 반성하며 예전과는 다른 길을 걷겠다는 의지를 보인다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">30장</span><a href="detail.html#ch30">코니움 마을</a></h3><p>인간과 마수가 공존하는 코니움 마을에서 뜻밖에도 바레스가 나타나고, 길드너가 더 이상 마수왕이 아님을 선언하면서 새로운 관계가 정립된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">31장</span><a href="detail.html#ch31">용신의 시련</a></h3><p>용신의 수하 갈군과의 전투를 거쳐 용신이 알도와 오우거베인을 &#x27;희망&#x27;이라 부르며, 알도가 이 별의 다양한 힘을 흡수하여 성장하게 될 것이라는 예언이 주어진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">32장</span><a href="detail.html#ch32">앙길라스의 습격</a></h3><p>앙길라스의 기습으로 알테나가 납치되고, 분노한 길드너는 자신의 과거 모습인 마수왕과 조우하며 알테나 구출을 위해 즉시 출발한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">33장</span><a href="detail.html#ch33">정령의 무구를 찾아서</a></h3><p>알테나 구출을 위해 정령의 무구가 필요함을 깨달은 일행은, 짐단의 조언에 따라 연옥계의 환령들에게 인정을 받으러 떠난다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">34장</span><a href="detail.html#ch34">연옥계</a></h3><p>연옥계에서 형태를 잃어가는 영혼들을 목격하고, 기억이 희미해진 파르지팔 왕의 영혼과 재회하여 사이러스가 필사적으로 그의 이름을 불러 기억을 되살린다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">35장</span><a href="detail.html#ch35">오우거 제논의 배신</a></h3><p>오우거 제논이 일행을 배신하고 앙길라스 측에 붙으면서, 알테나 구출이 더욱 어려워지고 새로운 적과의 전투가 벌어진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">36장</span><a href="detail.html#ch36">앙길라스 결전</a></h3><p>정령의 무구를 획득한 일행이 앙길라스와의 최종 결전에 돌입하여 치열한 전투 끝에 승리하고, 납치되었던 알테나를 무사히 구출한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">37장</span><a href="detail.html#ch37">에이미의 맹세</a></h3><p>에이미가 잃어버린 미래를 되찾겠다는 맹세를 하며, 합성인간과 인간의 공존에 대한 새로운 결의를 다진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">38장</span><a href="detail.html#ch38">제국 교전일지</a></h3><p>시간 제국과의 첫 교전이 기록되며, 제국의 군사력과 위협이 구체적으로 드러나기 시작한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">39장</span><a href="detail.html#ch39">판다오쿠의 날</a></h3><p>판다오쿠라는 사건의 날이 다가오면서, 과거의 비밀과 현재의 위기가 교차하며 긴장감이 고조된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">40장</span><a href="detail.html#ch40">오우거 전쟁 전야</a></h3><p>오우거 전쟁이 임박하면서 일행은 전쟁 준비에 나서고, 각 세력의 이해관계가 복잡하게 얽히기 시작한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">41장</span><a href="detail.html#ch41">오우거 전쟁 개전</a></h3><p>오우거 전쟁이 마침내 시작되면서 인간과 오우거족이 격돌하고, 알도 일행은 전장의 한복판에서 전쟁의 참혹함을 목격한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">42장</span><a href="detail.html#ch42">오우거베인의 기억</a></h3><p>오우거베인에 깃든 과거의 기억이 밝혀지며, 검에 얽힌 삼천 년의 역사와 저주의 근원이 더 깊이 파헤쳐진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">43장</span><a href="detail.html#ch43">오우거베인의 진화</a></h3><p>오우거베인이 저주를 넘어 새로운 힘으로 진화하며, 알도와 검 사이의 유대가 한층 깊어진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">44장</span><a href="detail.html#ch44">오우거 전쟁편의 결말 끝나지 않은 전쟁</a></h3><p>오우거 전쟁편이 마무리되지만 전쟁의 상처와 여파는 남아, 끝나지 않은 갈등 속에서 일행은 새로운 여정을 준비한다.</p></div>
-  </div>
+<div class="narrative">
+<p class="time-mark">AD 300 &mdash; 미글랜스 왕국</p>
+<p>변방의 작은 마을 바르오키. 경비대 청년 알도는 여동생 피네와 평화롭게 살고 있었다. 그 일상은 마수왕의 습격으로 산산이 부서진다. 피네가 납치되고, 알도의 허리에 찬 검 <span class="term" title="삼천 년 전 전멸한 오우거족의 분노가 응축된 저주의 검. 주인을 바꿔가며 복수를 반복해왔다.">오우거베인</span>이 각성하며, 알도는 시공의 소용돌이에 빨려 들어간다.</p>
 
-  <!-- 2부 -->
-  <div class="part">
-    <h2 class="part-header"><span class="part-num">2부</span> 동방의 대지와 천공의 하늘</h2>
-    <div class="chapter-block"><h3><span class="ch-badge">45장</span><a href="detail.html#ch45">동방의 대지</a></h3><p>알도 일행은 동방의 대지에 첫발을 내딛으며, 서양과는 전혀 다른 문화와 풍경을 가진 새로운 세계가 펼쳐진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">46장</span><a href="detail.html#ch46">쿠니가이의 여행 가르마씨</a></h3><p>동방의 대지에서 가르마라는 인물과 동행하며, 쿠니가이 지방의 문화와 전통을 체험하고 새로운 단서를 얻는다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">47장</span><a href="detail.html#ch47">이자나기전</a></h3><p>이자나기전에서 동방의 신화와 역사에 얽힌 사건이 전개되며, 고대의 힘과 현재의 위기가 연결되기 시작한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">48장</span><a href="detail.html#ch48">무코나 저택</a></h3><p>무코나 저택에서 수수께끼의 사건을 조사하며, 저택에 숨겨진 비밀과 동방 대지의 역사적 단서를 발견한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">49장</span><a href="detail.html#ch49">키쿄스키와 미카</a></h3><p>키쿄스키와 미카라는 인물들과 만나면서 동방의 정치적 갈등과 음모의 실마리가 드러나기 시작한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">50장</span><a href="detail.html#ch50">승려님의 수행</a></h3><p>승려와 함께 수행의 여정에 나서며, 정신적 시련을 통해 동방의 힘과 철학을 체득하는 과정이 그려진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">51장</span><a href="detail.html#ch51">신기검의 고향</a></h3><p>신기검이 탄생한 고향을 방문하여, 동방의 전설적인 무기에 깃든 역사와 검에 담긴 의지를 알게 된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">52장</span><a href="detail.html#ch52">누구라도 싫다?</a></h3><p>동료 간의 갈등과 오해가 불거지면서 인간관계의 시련이 찾아오지만, 서로를 이해하려는 노력 속에 유대가 더 깊어진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">53장</span><a href="detail.html#ch53">강풍 채석</a></h3><p>강풍이 몰아치는 채석장에서 특수 광물을 확보하기 위한 위험한 임무를 수행하며, 예상치 못한 적과 조우한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">54장</span><a href="detail.html#ch54">아름다운 마을로</a></h3><p>아름다운 마을에 도착한 일행은 잠시 평화를 누리지만, 마을에 드리운 어둠의 그림자를 감지하고 조사에 나선다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">55장</span><a href="detail.html#ch55">카무다히메 사건</a></h3><p>카무다히메라는 존재와 관련된 사건이 발생하며, 동방의 신격과 인간 세계의 경계가 흔들리는 위기가 다가온다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">56장</span><a href="detail.html#ch56">바르오키의 코니움</a></h3><p>바르오키와 코니움의 연결고리가 밝혀지며, 알도의 고향과 마수 마을 사이에 숨겨진 역사적 인연이 드러난다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">57장</span><a href="detail.html#ch57">쿠다라니</a></h3><p>쿠다라니라는 장소에서 동방 세력과의 갈등이 격화되고, 알도 일행은 외교와 전투 사이에서 어려운 선택을 해야 한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">58장</span><a href="detail.html#ch58">코미와 키코</a></h3><p>코미와 키코가 중요한 역할을 맡으며, 크로노 클랜의 존재와 시간의 여신에 관한 단서가 처음 등장한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">59장</span><a href="detail.html#ch59">미스트레아 돌진</a></h3><p>미스트레아로 돌진하는 일행은 적의 방어선을 뚫으며, 시간의 꿈의 책에 관한 중대한 정보를 손에 넣는다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">60장</span><a href="detail.html#ch60">시간의 꿈의 책</a></h3><p>시간의 꿈의 책이라는 신비한 유물의 존재가 본격적으로 밝혀지며, 시간의 여신과 세계의 운명을 잇는 열쇠임이 드러난다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">61장</span><a href="detail.html#ch61">공중 성곽 이지아</a></h3><p>밀디의 에어십으로 공중 성곽 이지아에 도착한 일행은 캄라녜쥬와 재회하고, 크로노 클랜의 거점과 시간의 여신의 신교회를 둘러본다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">62장</span><a href="detail.html#ch62">오백 광년의 귀신</a></h3><p>키코의 아버지 린도가 이마에 두 개의 뿔이 난 &#x27;오백 광년의 귀신&#x27;이며 살아있다는 사실이 밝혀지고, 암흑 공역의 감옥선 가르파겐에서 감동적인 부녀 재회가 이루어진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">63장</span><a href="detail.html#ch63">크로노 클랜</a></h3><p>크로노스 박사가 만든 대합성인간 병기와 린도의 관계가 설명되고, 시간의 꿈의 책이 어떤 장치의 단말 기기임이 밝혀지나 KMS사의 습격으로 책을 빼앗긴다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">64장</span><a href="detail.html#ch64">리 아 발크</a></h3><p>리 아 발크가 나타나 KMS사 동방 지부에 두 팀으로 나눠 동시 침입하는 위험한 작전을 제안하고, 호버 보드로 자동 방어 레이저를 돌파하며 돌입한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">65장</span><a href="detail.html#ch65">데라메어의 요새</a></h3><p>KMS 동방 지부 깊숙이 침투한 일행은 데라메어가 소환한 거대 존재 미륵 디저스터와 치열한 전투를 벌이며, 키코는 아버지의 원수를 갚겠다고 다짐한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">66장</span><a href="detail.html#ch66">시간의 꿈의 책</a></h3><p>되찾은 시간의 꿈의 책을 기동한 알도가 &#x27;어나더 에덴&#x27;이라는 이름을 외치자, 시공의 균열에서 마도카 박사가 나타나 자신이 고대 가다로의 귀도의 여왕 히미카임을 밝힌다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">67장</span><a href="detail.html#ch67">시간의 소녀의 정체</a></h3><p>시간의 소녀가 알도와 피네의 어머니 마도카 박사였다는 사실에 일행이 동요하고, 마호라 호수의 교회에서 그녀와 재회하여 진실을 추궁한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">68장</span><a href="detail.html#ch68">팬텀 네오</a></h3><p>팬텀이 다시 나타나 낙원의 문은 처음부터 닫혀 있다고 선언하고, 오우거베인과 요마의 공진 현상으로 바닷속에서 거대한 &#x27;신의 능묘&#x27;가 솟아오른다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">69장</span><a href="detail.html#ch69">요마의 마을로</a></h3><p>요마전 서쪽의 숨겨진 마을 이토이스를 찾아가는 도중 소년 텀텀을 구출하고, 글래스터 연성 장인 네코마샤와 만나며 요마의 세계로 발을 들인다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">70장</span><a href="detail.html#ch70">지장보살 순례</a></h3><p>이토이스에서 지장보살 순례를 통해 방문자의 선악을 판별하는 시험을 통과하고, 성혼제 축제를 즐기며 마을과의 유대를 쌓는다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">71장</span><a href="detail.html#ch71">요마 황궁의 결계</a></h3><p>무투파 요마들이 설치한 얼음벽 결계에 가로막힌 일행은 네코마샤의 파사의 화살과 자올이 만든 황금강철 화살촉으로 결계를 깨뜨리고 요마 황궁에 진입한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">72장</span><a href="detail.html#ch72">소케라와의 대결</a></h3><p>요마 황궁 최심부에서 소케라가 유키노의 과거를 폭로하며 동요를 유발하지만, 유키노는 단호히 맞서 팽후를 소환한 소케라를 물리치고 신의 능묘에 대한 단서를 얻는다.</p></div>
-  </div>
+<p class="time-mark">AD 1100 &mdash; 미래 도시 엘자이온</p>
+<p>800년 후의 미래에 도착한 알도는 헌터 에이미, 안드로이드 리이카와 만나 첫 파티를 결성한다. 합성인간의 리더 갤리어드, 그의 부관 헬레나와 대치하며, '또 하나의 에덴'이라는 말이 처음 등장한다. 에이미가 갤리어드를 정면 대결로 꺾은 뒤, 이변이 발생하여 일행은 다시 시간 속으로 내던져진다.</p>
 
-  <!-- 2.5부 -->
-  <div class="part">
-    <h2 class="part-header"><span class="part-num">2.5부</span> 명협계·방주편</h2>
-    <div class="chapter-block"><h3><span class="ch-badge">73장</span><a href="detail.html#ch73">꼭두각시 공주</a></h3><p>꼭두각시 공주가 건강한 모습으로 돌아오고, 병사들의 습격에 분노를 폭발시키며 목각 인형이면서도 인간의 잔혹함을 꾸짖는다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">74장</span><a href="detail.html#ch74">새틀라이트 스타디움</a></h3><p>위험에 처한 클러그혼과 밀디를 찾아 새틀라이트 스타디움으로 향하며, KMS가 혁명을 표방하는 테러리스트 그룹을 적발하려는 음모가 드러난다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">75장</span><a href="detail.html#ch75">스타디움 전투</a></h3><p>데라메어가 스타디움의 중력 제어에 간섭하여 추락 위기를 초래하고, 알도 일행은 호버를 타고 데라메어를 추격하며 캄라녜쥬와 키코가 맞서 싸운다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">76장</span><a href="detail.html#ch76">오너와 몽견관의 주인</a></h3><p>오너와 몽견관의 주인이 각각 미래의 알도(아저씨·할아버지)임이 밝혀지고, 수수께끼의 인물 애쉬티어가 등장하며 시공 장치와 관련된 새로운 단서가 주어진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">77장</span><a href="detail.html#ch77">잊힌 땅</a></h3><p>으리으리 님이 알려준 샛길을 통해 타이탄족이 사는 잊힌 땅에 도착하고, 지모신의 자식인 타이탄들과 명왕신의 존재에 대해 알게 된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">78장</span><a href="detail.html#ch78">명협계</a></h3><p>신비롭고 쓸쓸한 명협계에 발을 들인 일행은 &#x27;혼돈의 아이&#x27;를 만나 안개를 걷어내고, 변질된 시간의 여신의 교회를 발견하여 차원 대성당의 깊은 곳으로 향한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">79장</span><a href="detail.html#ch79">(제79장)</a></h3><p>(데이터 준비 중)</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">80장</span><a href="detail.html#ch80">황천의 방주 진입</a></h3><p>차원 균열을 통해 황천의 방주에 진입한 일행은 오우거 클러스터와 대결하고, 가람배럴의 희생으로 오우거베인이 성검 파르지팔로 변환되는 기적이 일어난다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">81장</span><a href="detail.html#ch81">박명의 섬으로</a></h3><p>고양이 신사에서 낭지로가 능묘와 명왕신에 관한 이야기를 들려주고, 네코코의 안내로 표식의 방을 거쳐 박명의 섬을 향한 여정이 시작된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">82장</span><a href="detail.html#ch82">사람 표식의 관</a></h3><p>능묘에서 독기에 중독되어 광기에 빠진 겐신을 제압하고, 네코코가 사람 표식의 관을 봉인하며 고대 불멸의 영혼을 잠재운다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">83장</span><a href="detail.html#ch83">신 표식의 관</a></h3><p>신 표식의 관에서 두 갈래 길로 나뉜 일행은 빛의 유지와 만나고, 꿈속에서 영원한 어둠 속 에덴의 고독과 마주하며 시공을 넘는 교감을 경험한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">84장</span><a href="detail.html#ch84">시공을 넘는 공명</a></h3><p>오우거베인의 제안으로 피네가 공명 능력을 발동시켜 미글랜스 왕, 우레왕, 파르지팔 왕을 시공 너머에서 소환하고, 세 왕의 성검이 합쳐져 어둠의 봉인이 이루어진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">85장</span><a href="detail.html#ch85">공허한 시층</a></h3><p>캄라녜쥬가 납치되고 시간 제국의 역습이 시작되면서, 일행은 인간이 없고 기계 생명체 &#x27;기인&#x27;만 사는 전혀 다른 세계에 도착한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">86장</span><a href="detail.html#ch86">심장 도둑</a></h3><p>기인의 심장인 &#x27;기종&#x27;을 훔쳐가는 심장 도둑 사건이 발생하고, 알도는 인간이건 기인이건 눈앞의 생명을 포기할 수 없다며 새 기종 확보를 위해 공허한 시층으로 향한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">87장</span><a href="detail.html#ch87">오메가폴리스</a></h3><p>시간 제국이 지배하는 군사 국가의 수도 오메가폴리스 하층 빈민가에 도착한 일행은, 미나르카와 만나고 제국 병사들의 횡포에 맞서 싸우기 시작한다.</p></div>
-  </div>
+<p class="time-mark">BC 수만 년 &mdash; 원시시대 / AD 300 &mdash; 파르지팔 왕궁</p>
+<p>원시시대에서 사대정령 샐러맨더의 경고를 듣고, 파르지팔 왕궁에서는 개구리 저주를 받은 기사 사이러스를 동료로 맞이한다. 오우거베인에 걸린 봉인이 부분 해제되면서 이 검의 진짜 정체가 서서히 드러난다 &mdash; 전설의 성검이 아니라, 삼천 년간 사용자를 이용하고 죽여온 저주받은 검이었다.</p>
 
-  <!-- 3부 -->
-  <div class="part">
-    <h2 class="part-header"><span class="part-num">3부</span> 빛과 그림자의 끝에</h2>
-    <div class="chapter-block"><h3><span class="ch-badge">88장</span><a href="detail.html#ch88">래시발</a></h3><p>활기 넘치는 항구 도시 래시발에 도착한 일행은 아카시아 유성단의 음모를 경계하면서, 다리오스의 부탁으로 바다 깊은 곳의 전설의 보물을 찾는 모험에 나선다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">89장</span><a href="detail.html#ch89">잠든 진주호 수리</a></h3><p>전설의 배 잠든 진주호의 외륜이 불안정한 상태이므로, 데리클 섬의 장인 푸가토와 애쉬티어가 협력하여 수리를 완료한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">90장</span><a href="detail.html#ch90">횡단 열차 사건</a></h3><p>아카시아 유성단이 폭약을 실은 횡단 열차를 탈취하여 오메가폴리스로 달리고, 수리를 마친 잠든 진주호의 부스트 노바로 추격에 성공하여 폭탄을 해제한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">91장</span><a href="detail.html#ch91">귀부인의 저택</a></h3><p>귀부인의 저택에서 죽은 줄 알았던 다리오스가 살아서 나타나고, 심장 도둑 사건의 진범이 귀부인이었으며 친구 유우키가 제국에 팔려갔다는 진실이 폭로된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">92장</span><a href="detail.html#ch92">시간이 열리는 나무</a></h3><p>정체불명의 위협이 도사리는 시간이 열리는 나무 내부로 진입하며, 과거의 미나르카와 순수한 기인 유우키의 따뜻한 만남이 회상으로 펼쳐진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">93장</span><a href="detail.html#ch93">시간 제국</a></h3><p>크로노스 황제가 애쉬티어를 도망친 자라 비난하고, 공허한 시층의 봉인이 풀리는 위기 속에서 일행은 시간 제국의 영역으로 초대되어 진입한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">94장</span><a href="detail.html#ch94">전투 후</a></h3><p>피네의 기도로 일행이 거인 길바데스와 하나가 되어 합체 전투에 돌입하고, 캄라녜쥬가 길바데스의 진정한 파일럿으로서 최후의 결전을 이끈다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">95장</span><a href="detail.html#ch95">묘인 세계 도착</a></h3><p>전투의 여파로 좌표 불명의 미지 세계에 불시착한 일행은, 캄라녜쥬가 길바데스를 조종하여 위기를 넘기고 제국 역적이 된 채 새로운 세계를 탐색하기 시작한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">96장</span><a href="detail.html#ch96">길바데스 수리 준비</a></h3><p>BC 2만 년, 두 발로 걷고 말하는 고양이 &#x27;묘인&#x27;들이 사는 세계에 도착한 일행은, 과부하로 손상된 길바데스의 수리를 위해 사코리타스 유적의 기술자를 소개받는다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">97장</span><a href="detail.html#ch97">사코리타스 유적</a></h3><p>길바데스 수리 부품을 찾기 위해 사코리타스 유적을 탐사하며, 고대 묘인 문명의 놀라운 기술력과 호환 가능한 고대 장치들을 발견한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">98장</span><a href="detail.html#ch98">토르루탄 도착</a></h3><p>묘인 세계의 교역 거점 토르루탄에서 &#x27;날개 달린 짐승&#x27;의 전설과 야나투라는 신비로운 장소의 존재를 알게 되고, 바다를 건너기 위한 길바데스 개조를 진행한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">99장</span><a href="detail.html#ch99">죽음의 미로</a></h3><p>시공이 뒤틀린 &#x27;죽음의 미로&#x27;에서 각자 과거의 환상과 마주하는 정신적 시련을 겪으며, 미나르카와 캄라녜쥬가 과거를 극복하고 미로의 수호자를 물리친다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">100장</span><a href="detail.html#ch100">야나투</a></h3><p>야나투에 도착하여 게마잘레의 쌍둥이 도르조바를 만나고, &#x27;날개 달린 짐승&#x27;과 &#x27;시공을 넘는 고양이&#x27;에 대한 전설이 전해지며 마을 근처 탑의 중요성이 부각된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">101장</span><a href="detail.html#ch101">어둠의 등불</a></h3><p>세계의 균형이 무너지고 있음을 알리는 &#x27;어둠의 등불&#x27; 현상을 목격하며, 시간 제국의 야망이 그 근원임을 확인하고 일행은 희망을 놓지 않고 전진한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">102장</span><a href="detail.html#ch102">세계의 중심</a></h3><p>모든 시공이 교차하는 세계의 중심에 도달하여 시간이 열리는 나무, 공허한 시계, 길바데스가 연결된 이유가 밝혀지고, 크로노스 황제가 시간 자체를 재구축하려는 계획이 드러난다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">103장</span><a href="detail.html#ch103">사념의 단편</a></h3><p>시공 속에 떠다니는 사념의 단편들을 통해 묘인 문명의 전성기, 기인의 탄생, 시간 제국의 기원에 이르는 역사가 단편적으로 밝혀지며 크로노스에 대항할 단서를 얻는다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">104장</span><a href="detail.html#ch104">날개 달린 짐승</a></h3><p>전설의 날개 달린 짐승이 마침내 모습을 드러내 시공을 넘는 힘에 대한 조언을 전하고, 일행의 여정은 더 넓은 세계를 향한 새로운 국면에 접어든다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">105장</span><a href="detail.html#ch105">그리고 고양이까지 몇 광년일까</a></h3><p>시공을 넘는 고양이의 존재가 세계를 구할 핵심 열쇠라는 확신 아래 묘인 세계의 더 깊은 곳으로 진입하며, 공허한 시계의 영향으로 뒤틀린 시공 현상을 목격한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">106장</span><a href="detail.html#ch106">결정 도시 지스몬데</a></h3><p>결정체로 이루어진 고대 학술 도시 지스몬데에서, 자연물로 여겨졌던 시간이 열리는 나무가 사실은 고대 묘인 문명이 인공적으로 만든 것이라는 충격적 사실이 밝혀진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">107장</span><a href="detail.html#ch107">유리 영묘, 지스몬데의 악마는 속삭인다</a></h3><p>결정 도시 깊은 곳의 유리 영묘에서 봉인된 지스몬데의 악마가 깨어나 달콤한 속삭임으로 일행을 회유하려 하지만, 알도와 동료들은 흔들리지 않고 맞서 싸운다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">108장</span><a href="detail.html#ch108">정령의 숲을 헤매다 비밀의 문 너머로</a></h3><p>생명력 넘치는 정령의 숲에서 각자 흩어진 일행은 정령으로부터 시간이 열리는 나무가 세계의 &#x27;기억과 약속&#x27;이라는 수수께끼 같은 힌트를 듣고, 비밀의 문을 발견한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">109장</span><a href="detail.html#ch109">(제109장)</a></h3><p>(데이터 준비 중)</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">110장</span><a href="detail.html#ch110">기인의 유산, 해류의 벽을 넘어라</a></h3><p>비밀의 문을 통과한 일행은 시간이 열리는 나무가 길바데스와 공명하는 것을 목격하고, 검의 일족 출신 질퍼니가 합류하여 오라버니 검재 갈도매기스를 찾아 나선다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">111장</span><a href="detail.html#ch111">구 래시발 해저 횡단 열차에서 만나자!</a></h3><p>예지의 탑에서 대회 파트너를 찾지 못한 묘인 소녀 튜시아와 만나 함께 대회에 참가하며, 숨겨진 재능을 지닌 튜시아와의 인연이 시작된다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">112장</span><a href="detail.html#ch112">항진하라! 구름 저편의 예지의 탑</a></h3><p>구름 위로 솟은 예지의 탑 상층부에 도달하고, 질퍼니의 안내로 검의 저택에 접근하며 검의 일족이 시간이 열리는 나무의 수호자였다는 사실이 밝혀진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">113장</span><a href="detail.html#ch113">태초의 제반, 검제의 그림자에 안겨</a></h3><p>질퍼니가 할멈과 재회한 뒤 동생 코먼자크가 검귀가 되었다는 소식에 쓰러지고, 검재 갈도매기스와의 대면에서 검의 일족의 사명과 비밀이 드러나기 시작한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">114장</span><a href="detail.html#ch114">(제114장)</a></h3><p>(데이터 준비 중)</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">115장</span><a href="detail.html#ch115">그리고 묘홍이 고양이에 다다르는 수 광년...</a></h3><p>오우거베인의 폭주로 길바데스가 붉게 변하고 차원 함대가 대거 출현하는 가운데, 크로노스 황제조차 예측하지 못한 거대한 소용돌이가 모든 것을 집어삼키며 일행이 뿔뿔이 흩어진다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">116장</span><a href="detail.html#ch116">변신 전환, 흐르는 생명의 극장</a></h3><p>애쉬티어의 &#x27;살살 이론&#x27;으로 제국 전함 내부에 진입하여 세바스 박사를 구출하고, 극적으로 나타난 합성귀룡의 지원으로 거대 식시 생명을 격파한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">117장</span><a href="detail.html#ch117">동료를 찾는 회귀의 여정</a></h3><p>리이카와 극적으로 재회하며 &#x27;원 로터스 엔트러스트 라이프&#x27;를 맹세하고, 크로노스 황제가 엘지온에 있다는 정보를 얻어 흩어진 동료들을 하나씩 찾아 나선다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">118장</span><a href="detail.html#ch118">시시의 나무 밑 오렐듀주의 갤럴론?</a></h3><p>시시의 나무 아래에서 고대 의식 &#x27;오렐듀주의 갤럴론&#x27;의 흔적을 해독하고, 시공의 균형이 완전히 무너졌음을 확인하며 공허한 시계에 대항할 마지막 준비를 시작한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">119장</span><a href="detail.html#ch119">제119장</a></h3><p>엘지온을 목전에 둔 일행에게 마지막 휴식의 시간이 주어지고, 알도는 크로노스 황제를 세계를 위협하는 적으로서 마주할 결의를 굳히며 총력전 태세로 돌입을 시작한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">120장</span><a href="detail.html#ch120">홍양의 제노 도메인, 환영 정식?</a></h3><p>크로노스와의 충돌로 식시 영역 최하층에 추락한 일행은, 거대화한 식시 생명 제노바데스와 사투를 벌이며 길바데스를 강화하는 전략으로 탈출을 모색한다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">121장</span><a href="detail.html#ch121">아득한 시간의 강가에서</a></h3><p>시간의 바다 주르반에 도달하여 시간의 여신, 크로노스, 마도카, 에덴과 재회하지만, 니르야가 오우거베인과 합체하여 배신하며 최후의 위기가 닥친다.</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">122장</span><a href="detail.html#ch122">(제122장)</a></h3><p>(데이터 준비 중)</p></div>
-    <div class="chapter-block"><h3><span class="ch-badge">123장</span><a href="detail.html#ch123">(제123장)</a></h3><p>(데이터 준비 중)</p></div>
-  </div>
+<blockquote class="quote"><span class="speaker">알도</span>이 검이 모든 생명을 저주하고 인간을 멸하려 한다고?</blockquote>
 
-  <div class="characters">
-    <h2>등장인물 (주요)</h2>
+<p>분노한 알도는 오우거베인의 저주를 정면으로 부수고, 마수왕과의 결전을 거쳐 크로노스 박사의 연구 시설 <span class="term" title="크로노스 박사가 프리즈마 연구를 수행한 비밀 연구소.">제노 도메인</span>에 도달한다. 그곳에서 밝혀지는 충격적 진실: 알도의 진짜 이름은 '에덴', 피네는 '세실' &mdash; 둘은 크로노스 박사와 마도카의 아이였다. 1장에서 숲에 버려진 아기가 바로 알도 자신이었던 것이다.</p>
 
-    <div class="char-group">
-      <h4>알도 일행 (핵심 파티)</h4>
-      <div class="char-list">
-        <span class="char-tag">알도 &mdash; 주인공</span>
-        <span class="char-tag">피네 &mdash; 알도의 여동생</span>
-        <span class="char-tag">사이러스 &mdash; 개구리 기사</span>
-        <span class="char-tag">에이미 &mdash; 미래의 헌터</span>
-        <span class="char-tag">리이카 &mdash; 안드로이드</span>
-        <span class="char-tag">헬레나 &mdash; 합성인간</span>
-        <span class="char-tag">길드너 &mdash; 전 마수왕</span>
-        <span class="char-tag">알테나 &mdash; 마수 소녀</span>
-      </div>
+<p>세계를 삼키려는 거대 괴수 <span class="term" title="시공의 어둠에서 태어난 거대 존재. 1부 최종 보스.">크로노스 메나스</span>와의 최종전. 피네의 격려로 다시 일어선 알도가 승리를 거두고, 동료들은 각자의 결의를 밝히며 알도 곁에 다시 모인다. 1부 완결 &mdash; 그러나 '잃어버린 미래'라는 미해결 과제가 남는다.</p>
+</div>
+
+<details class="ch-index">
+<summary>장별 인덱스 (26장)</summary>
+<div class="ch-list">
+<a href="detail.html#ch1">1장 과거의 기억</a>
+<a href="detail.html#ch2">2장 바레스와의 전투</a>
+<a href="detail.html#ch3">3장 미래 엘자이온 도착</a>
+<a href="detail.html#ch4">4장 합성인간의 리더</a>
+<a href="detail.html#ch5">5장 에이미의 승리</a>
+<a href="detail.html#ch6">6장 피네와 알테나 (과거 회상)</a>
+<a href="detail.html#ch7">7장 원시시대</a>
+<a href="detail.html#ch8">8장 파르지팔 왕궁</a>
+<a href="detail.html#ch9">9장 지하수로</a>
+<a href="detail.html#ch10">10장 오우거베인의 봉인</a>
+<a href="detail.html#ch11">11장 시간의 탑</a>
+<a href="detail.html#ch12">12장 현대로 귀환</a>
+<a href="detail.html#ch13">13장 미글랜스 왕성</a>
+<a href="detail.html#ch14">14장 오우거베인의 진실</a>
+<a href="detail.html#ch15">15장 마수왕과의 대결</a>
+<a href="detail.html#ch16">16장 제노 도메인 내부</a>
+<a href="detail.html#ch17">17장 제노 프리즈마의 폭주</a>
+<a href="detail.html#ch18">18장 시층회랑</a>
+<a href="detail.html#ch19">19장 거대 시공 지진</a>
+<a href="detail.html#ch20">20장 합성귀룡 전투</a>
+<a href="detail.html#ch21">21장 별의 탑으로</a>
+<a href="detail.html#ch22">22장 마수성</a>
+<a href="detail.html#ch23">23장 차원의 소용돌이</a>
+<a href="detail.html#ch24">24장 에덴의 진실</a>
+<a href="detail.html#ch25">25장 최종 결전</a>
+<a href="detail.html#ch26">26장 새로운 출발</a>
+</div>
+</details>
+</div>
+
+<!-- ═══════════════ 제1.5부 ═══════════════ -->
+<div class="part">
+<div class="part-prologue">
+<div class="part-title">제1.5부 &mdash; 오우거 전쟁편</div>
+<div class="part-subtitle">OGRE WARS &middot; Ch.27&ndash;44</div>
+<div class="part-body">
+<p>BC 3000년, 타이탄족의 저주가 발현하여 일족의 일부가 오우거로 변했다. 인간과의 전쟁 끝에 오우거는 전멸했고, 그 분노가 한 자루의 검으로 응축되었다 &mdash; 오우거베인. 검에는 빛과 어둠이 있다. 마검이 있다면, 타이탄이 벼린 <span class="term" title="타이탄족이 암흑신에 대항하기 위해 벼린 전설의 검.">성검</span>도 있다.</p>
+</div>
+</div>
+
+<div class="narrative">
+<p class="time-mark">AD 300 &mdash; 고대 전쟁 유적</p>
+<p>고대 전쟁 유적에서 망자들의 신음이 울려퍼지는 가운데, 알도 일행은 오우거 전쟁의 수수께끼를 풀기 시작한다. 뱀뼈 섬에서 마수 소녀 알테나와 감격적으로 재회하고, 전 마수왕 길드너가 과거를 반성하며 동료로 합류한다. 인간과 마수가 공존하는 코니움 마을에서 예전의 적 바레스까지 나타나며, 세 종족의 얽힌 관계가 풀리기 시작한다.</p>
+
+<p>용신의 시련을 통과한 알도에게 '이 별의 다양한 힘을 흡수하여 성장할 것'이라는 예언이 주어지지만, 기쁨은 오래가지 않는다. 앙길라스의 기습으로 알테나가 납치되고, 분노한 길드너는 과거의 자신 &mdash; 마수왕과 마주하게 된다.</p>
+
+<blockquote class="quote"><span class="speaker">알테나</span>자네들, 피네의 평화를 이루려는 게 아니라 피네를 이용하는 거 아니야?!</blockquote>
+
+<p>알테나를 구하기 위해 정령의 무구가 필요한 일행은 연옥계로 향한다. 그곳에서 기억이 희미해진 파르지팔 왕의 영혼과 재회하고, 사이러스가 필사적으로 그의 이름을 불러 기억을 되살린다. 정령의 무구를 손에 넣은 뒤, 오우거 제논의 배신이라는 새로운 위기를 넘어 앙길라스와의 최종전에 돌입한다.</p>
+
+<p>치열한 전투 끝에 알테나를 구출하고, 오우거베인은 저주를 넘어 새로운 힘으로 진화한다. 인간, 마수, 오우거 &mdash; 삼천 년의 원한이 비로소 풀리기 시작하며, 알도와 검 사이의 유대가 한층 깊어진다. 전쟁의 상처는 남았지만, 공존의 가능성이 열린 채 1.5부가 마무리된다.</p>
+</div>
+
+<details class="ch-index">
+<summary>장별 인덱스 (18장)</summary>
+<div class="ch-list">
+<a href="detail.html#ch27">27장 고대 전쟁 유적</a>
+<a href="detail.html#ch28">28장 미글랜스 왕과의 만남</a>
+<a href="detail.html#ch29">29장 뱀뼈 섬</a>
+<a href="detail.html#ch30">30장 코니움 마을</a>
+<a href="detail.html#ch31">31장 용신의 시련</a>
+<a href="detail.html#ch32">32장 앙길라스의 습격</a>
+<a href="detail.html#ch33">33장 정령의 무구를 찾아서</a>
+<a href="detail.html#ch34">34장 연옥계</a>
+<a href="detail.html#ch35">35장 오우거 제논의 배신</a>
+<a href="detail.html#ch36">36장 오우거의 열쇠</a>
+<a href="detail.html#ch37">37장 에이미의 과거</a>
+<a href="detail.html#ch38">38장 토토 드림랜드</a>
+<a href="detail.html#ch39">39장 밀다와의 대면</a>
+<a href="detail.html#ch40">40장 오우거 요새 공략</a>
+<a href="detail.html#ch41">41장 오우거 요새 내부</a>
+<a href="detail.html#ch42">42장 오우거베인의 폭주</a>
+<a href="detail.html#ch43">43장 오우거베인의 진실</a>
+<a href="detail.html#ch44">44장 오우거 제논과의 최종 결전</a>
+</div>
+</details>
+</div>
+
+<!-- ═══════════════ 제2부 ═══════════════ -->
+<div class="part">
+<div class="part-prologue">
+<div class="part-title">제2부 &mdash; 동방 기담과 시간의 여신</div>
+<div class="part-subtitle">TALES FROM THE EAST &middot; RETURN OF THE GODDESS OF TIME &middot; Ch.45&ndash;72</div>
+<div class="part-body">
+<p>미그레이나 대륙 너머, 동쪽 바다 건너편에 '가를레아'라는 대륙이 있다. 벚꽃이 흩날리고, 닌자가 지붕을 뛰어다니며, 오래된 신사에 용이 잠든 땅. 에이미가 이야기한 '잃어버린 미래'와 크로노스 박사의 진정한 의도, 그리고 '시간의 여신'의 정체가 이 동방에서 풀리기 시작한다.</p>
+</div>
+</div>
+
+<div class="narrative">
+<p class="time-mark">AD 1100 &mdash; 동방 가를레아 대륙</p>
+<p>유니건의 동방 연락소를 거쳐 가를레아에 도착한 알도 일행은 서양과는 전혀 다른 문화와 마주한다. 이자나에서 키요스케와 미카를 만나고, 류노신의 저택을 탐색하며 겐신, 츠바메 등 동방의 전사들과 인연을 맺는다. 이 과정에서 <span class="term" title="크로노스 박사가 시간 연구를 위해 조직한 비밀 집단.">크로노 클랜</span>의 존재와 <span class="term" title="시간의 여신과 연결된 신비한 유물. 시공의 열쇠 역할을 한다.">시간의 꿈의 책</span>에 관한 단서가 하나둘 드러난다.</p>
+
+<p>밀디의 에어십으로 공중 성곽 이지아에 도착한 일행은 크로노 클랜의 거점을 발견한다. 키코의 아버지 린도가 '오백 광년의 귀신'으로 살아있다는 사실이 밝혀지고, 감옥선 가르파겐에서 감동적인 부녀 재회가 이루어진다. KMS사의 방해를 뚫고 시간의 꿈의 책을 되찾은 알도가 '어나더 에덴'이라는 이름을 외치자, 시공의 균열에서 마도카 박사가 나타난다.</p>
+
+<blockquote class="quote"><span class="speaker">사이러스</span>시간의 꿈의 책이라는 것은 어디서라든 이야기도 있고 탄생의 문지도 있다는 이야기도 있습니다만&hellip;</blockquote>
+
+<p>시간의 소녀의 정체가 알도와 피네의 어머니 마도카 박사였다는 반전. 팬텀이 다시 나타나 '낙원의 문은 처음부터 닫혀 있다'고 선언하고, 오우거베인과 요마의 공진 현상으로 바닷속에서 거대한 '신의 능묘'가 솟아오른다. 요마 마을 이토이스를 찾아가 지장보살 순례를 통과한 일행은 요마 황궁에 진입하여, 소케라와의 결전 끝에 능묘에 대한 결정적 단서를 손에 넣는다.</p>
+
+<p><span class="term" title="미그레이나 대륙과 가를레아 대륙을 잇는 시공의 개념. 알도가 아는 세계 너머에 다른 세계가 존재할 수 있다는 가능성.">병렬세계</span>라는 개념이 처음 모습을 드러내며, 시간을 넘는 것만으로는 부족하다면 세계 자체를 넘어야 한다는 새로운 과제가 알도 앞에 놓인다.</p>
+</div>
+
+<details class="ch-index">
+<summary>장별 인덱스 (28장)</summary>
+<div class="ch-list">
+<a href="detail.html#ch45">45장 역사의 개변</a>
+<a href="detail.html#ch46">46장 유니건의 동방 연락소</a>
+<a href="detail.html#ch47">47장 동방으로</a>
+<a href="detail.html#ch48">48장 이자나 도착</a>
+<a href="detail.html#ch49">49장 키요스케와 미카</a>
+<a href="detail.html#ch50">50장 류노신의 저택</a>
+<a href="detail.html#ch51">51장 겐신과의 만남</a>
+<a href="detail.html#ch52">52장 츠바메의 배신?</a>
+<a href="detail.html#ch53">53장 단풍 부채</a>
+<a href="detail.html#ch54">54장 아마토 섬으로</a>
+<a href="detail.html#ch55">55장 스자쿠의 습격</a>
+<a href="detail.html#ch56">56장 바레스와 코니움</a>
+<a href="detail.html#ch57">57장 가다로</a>
+<a href="detail.html#ch58">58장 자미와 짐단</a>
+<a href="detail.html#ch59">59장 곤쥬로와 뱃묘지</a>
+<a href="detail.html#ch60">60장 시간의 꿈의 책</a>
+<a href="detail.html#ch61">61장 공중 성곽 이지아</a>
+<a href="detail.html#ch62">62장 오백 광년의 귀신</a>
+<a href="detail.html#ch63">63장 크로노 클랜</a>
+<a href="detail.html#ch64">64장 리 아 발크</a>
+<a href="detail.html#ch65">65장 데라메어의 요새</a>
+<a href="detail.html#ch66">66장 시간의 꿈의 책</a>
+<a href="detail.html#ch67">67장 시간의 소녀의 정체</a>
+<a href="detail.html#ch68">68장 팬텀 네오</a>
+<a href="detail.html#ch69">69장 요마의 마을로</a>
+<a href="detail.html#ch70">70장 지장보살 순례</a>
+<a href="detail.html#ch71">71장 요마 황궁의 결계</a>
+<a href="detail.html#ch72">72장 소케라와의 대결</a>
+</div>
+</details>
+</div>
+
+<!-- ═══════════════ 제2.5부 ═══════════════ -->
+<div class="part">
+<div class="part-prologue">
+<div class="part-title">제2.5부 &mdash; 명협계&middot;방주편</div>
+<div class="part-subtitle">THE HOLLOW BARQUE &middot; Ch.73&ndash;87</div>
+<div class="part-body">
+<p>세계의 뒤틀림은 갈수록 심해지고, 알도가 '본래의 시간층'이라 믿었던 세계 너머에 다른 층이 존재한다. <span class="term" title="타이탄족이 사는 잊힌 영역. 지모신의 자식들이 명왕신의 봉인을 지키고 있다.">잊힌 땅</span>의 타이탄족, 명왕신의 봉인, 황천의 방주 &mdash; 이 모든 것이 하나로 이어지는 최대 규모의 시공 위기가 다가온다.</p>
+</div>
+</div>
+
+<div class="narrative">
+<p>꼭두각시 공주가 건강한 모습으로 돌아오고, 새틀라이트 스타디움에서 KMS의 음모를 저지한 일행은 충격적인 진실과 마주한다 &mdash; 차원의 틈새에서 만난 오너와 몽견관의 주인이 사실은 미래의 알도(아저씨와 할아버지)라는 것. 수수께끼의 인물 애쉬티어가 등장하며, 시공 장치와 관련된 새로운 단서를 제공한다.</p>
+
+<p class="time-mark">시공 너머 &mdash; 잊힌 땅 / 명협계</p>
+<p>잊힌 땅에서 타이탄족을 만난 일행은 '지모신의 자식'인 타이탄들과 명왕신의 존재에 대해 알게 된다. 신비롭고 쓸쓸한 명협계에 발을 들여 '혼돈의 아이'를 만나고, 변질된 시간의 여신의 교회를 발견한다. 차원 대성당 깊은 곳에서 차원 균열을 통해 <span class="term" title="명왕신이 봉인된 고대의 배. 오우거 클러스터가 지키고 있다.">황천의 방주</span>에 진입한다.</p>
+
+<blockquote class="quote"><span class="speaker">피네</span>인종이 다르든 시대가 다르든 이런 마음으로 사이좋게 지내면 돌아갈 수 있다는 걸&hellip;</blockquote>
+
+<p>오우거 클러스터와의 대결에서 가람배럴이 희생하고, 그 순간 오우거베인이 성검 파르지팔로 변환되는 기적이 일어난다. 고양이 신사에서 능묘의 비밀을 듣고 표식의 방을 거쳐 능묘 깊숙이 진입하는 일행. 사람 표식의 관에서 광기에 빠진 겐신을 구하고, 신 표식의 관에서 빛의 유지와 만난다.</p>
+
+<p>마침내, 오우거베인의 제안으로 피네가 공명 능력을 발동시킨다. 미글랜스 왕, 우레왕, 파르지팔 왕 &mdash; 세 시대의 왕이 시공 너머에서 소환되고, 세 왕의 성검이 합쳐져 어둠의 봉인이 이루어진다. 시공을 넘는 공명. 이 장면에서 '시공을 넘는 고양이'라는 작품 부제의 의미가 비로소 완성된다.</p>
+</div>
+
+<details class="ch-index">
+<summary>장별 인덱스 (15장)</summary>
+<div class="ch-list">
+<a href="detail.html#ch73">73장 꼭두각시 공주</a>
+<a href="detail.html#ch74">74장 새틀라이트 스타디움</a>
+<a href="detail.html#ch75">75장 스타디움 전투</a>
+<a href="detail.html#ch76">76장 오너와 몽견관의 주인</a>
+<a href="detail.html#ch77">77장 잊힌 땅</a>
+<a href="detail.html#ch78">78장 명협계</a>
+<a href="detail.html#ch79">79장</a>
+<a href="detail.html#ch80">80장 황천의 방주 진입</a>
+<a href="detail.html#ch81">81장 박명의 섬으로</a>
+<a href="detail.html#ch82">82장 사람 표식의 관</a>
+<a href="detail.html#ch83">83장 신 표식의 관</a>
+<a href="detail.html#ch84">84장 시공을 넘는 공명</a>
+<a href="detail.html#ch85">85장 공허한 시층</a>
+<a href="detail.html#ch86">86장 심장 도둑</a>
+<a href="detail.html#ch87">87장 오메가폴리스</a>
+</div>
+</details>
+</div>
+
+<!-- ═══════════════ 제3부 ═══════════════ -->
+<div class="part">
+<div class="part-prologue">
+<div class="part-title">제3부 &mdash; 빛과 그림자의 끝에</div>
+<div class="part-subtitle">INTO THE HOLLOW &middot; THE CHRONOS EMPIRE STRIKES BACK &middot; Ch.88&ndash;123</div>
+<div class="part-body">
+<p>3부의 무대는 '공허의 시층' &mdash; 인간은 보이지 않고 <span class="term" title="공허한 시층에 사는 기계 생명체. '기종'이라는 심장을 가진다.">기인</span>이라는 기계 생명체가 사는 병렬세계다. '시간 제국'이라 불리는 미지의 세력이 역사를 조작하고 있으며, 크로노스 박사가 남긴 마지막 수수께끼 &mdash; '프로젝트: 어나더 에덴'의 진정한 의미가 밝혀질 때, 알도는 '세계란 무엇인가'라는 질문과 마주한다.</p>
+</div>
+</div>
+
+<div class="narrative">
+<p class="time-mark">공허한 시층 &mdash; 래시발 / 오메가폴리스</p>
+<p>캄라녜쥬가 납치되고 시간 제국의 역습이 시작된다. 인간이 없는 세계에 도착한 알도는 기인의 심장인 '기종'을 훔쳐가는 사건에 휘말리며, 인간이건 기인이건 눈앞의 생명을 포기할 수 없다고 선언한다. 활기 넘치는 항구 도시 래시발에서 잠든 진주호를 수리하고, 폭약을 실은 횡단 열차를 추격하는 모험을 거쳐, 시간 제국이 지배하는 오메가폴리스에 발을 들인다. 처형관 미나르카, 천재 과학자 애쉬티어가 동료로 합류한다.</p>
+
+<p>크로노스 황제와의 첫 대면. 피네의 기도로 거인 <span class="term" title="고대 병기이자 시공을 넘나드는 이동 수단. 캄라녜쥬가 진정한 파일럿.">길바데스</span>와 하나가 되어 전투에 돌입하지만, 전투의 여파로 좌표 불명의 미지 세계에 불시착한다.</p>
+
+<p class="time-mark">BC 2만 년 &mdash; 묘인 세계</p>
+<p>두 발로 걷고 말하는 고양이 '묘인'들이 사는 세계. 사코리타스 유적에서 길바데스 수리 부품을 찾고, 교역 거점 토르루탄을 거쳐 시공이 뒤틀린 '죽음의 미로'에서 각자 과거의 환상과 마주하는 시련을 겪는다. 야나투에 도착하여 '날개 달린 짐승'과 '시공을 넘는 고양이'의 전설을 듣고, 결정 도시 지스몬데에서는 시간이 열리는 나무가 고대 묘인 문명이 인공적으로 만든 것이라는 충격적 사실이 밝혀진다.</p>
+
+<blockquote class="quote"><span class="speaker">애쉬티어</span>이 나무의 존재 자체가 세계의 '기억과 약속'이라구요&hellip;</blockquote>
+
+<p>검의 일족 출신 질퍼니가 합류하고, 정령의 숲에서 비밀의 문을 발견한다. 오우거베인의 폭주로 길바데스가 붉게 변하고 차원 함대가 대거 출현하는 가운데, 크로노스 황제조차 예측하지 못한 거대한 소용돌이가 모든 것을 집어삼킨다. 흩어진 동료들을 하나씩 찾아 나선 알도는 리이카와 극적으로 재회하며 '원 로터스 엔트러스트 라이프'를 맹세한다.</p>
+
+<p>시간의 바다 주르반에 도달하여 시간의 여신, 크로노스, 마도카와 재회하지만, 니르야가 오우거베인과 합체하여 배신하며 최후의 위기가 닥친다. '나는 누구인가'를 넘어 '세계란 무엇인가' &mdash; 알도의 여정은 아직 끝나지 않았다.</p>
+</div>
+
+<details class="ch-index">
+<summary>장별 인덱스 (36장)</summary>
+<div class="ch-list">
+<a href="detail.html#ch88">88장 래시발</a>
+<a href="detail.html#ch89">89장 잠든 진주호 수리</a>
+<a href="detail.html#ch90">90장 횡단 열차 사건</a>
+<a href="detail.html#ch91">91장 귀부인의 저택</a>
+<a href="detail.html#ch92">92장 시간이 열리는 나무</a>
+<a href="detail.html#ch93">93장 시간 제국</a>
+<a href="detail.html#ch94">94장 전투 후</a>
+<a href="detail.html#ch95">95장 묘인 세계 도착</a>
+<a href="detail.html#ch96">96장 길바데스 수리 준비</a>
+<a href="detail.html#ch97">97장 사코리타스 유적</a>
+<a href="detail.html#ch98">98장 토르루탄 도착</a>
+<a href="detail.html#ch99">99장 죽음의 미로</a>
+<a href="detail.html#ch100">100장 야나투</a>
+<a href="detail.html#ch101">101장 어둠의 등불</a>
+<a href="detail.html#ch102">102장 세계의 중심</a>
+<a href="detail.html#ch103">103장 사념의 단편</a>
+<a href="detail.html#ch104">104장 날개 달린 짐승</a>
+<a href="detail.html#ch105">105장 그리고 고양이까지 몇 광년일까</a>
+<a href="detail.html#ch106">106장 결정 도시 지스몬데</a>
+<a href="detail.html#ch107">107장 유리 영묘</a>
+<a href="detail.html#ch108">108장 정령의 숲을 헤매다</a>
+<a href="detail.html#ch109">109장</a>
+<a href="detail.html#ch110">110장 기인의 유산</a>
+<a href="detail.html#ch111">111장 구 래시발 해저 횡단 열차</a>
+<a href="detail.html#ch112">112장 구름 저편의 예지의 탑</a>
+<a href="detail.html#ch113">113장 태초의 제반</a>
+<a href="detail.html#ch114">114장</a>
+<a href="detail.html#ch115">115장 묘홍이 고양이에 다다르는 수 광년</a>
+<a href="detail.html#ch116">116장 변신 전환, 흐르는 생명의 극장</a>
+<a href="detail.html#ch117">117장 동료를 찾는 회귀의 여정</a>
+<a href="detail.html#ch118">118장 시시의 나무 밑</a>
+<a href="detail.html#ch119">119장</a>
+<a href="detail.html#ch120">120장 홍양의 제노 도메인</a>
+<a href="detail.html#ch121">121장 아득한 시간의 강가에서</a>
+<a href="detail.html#ch122">122장 (데이터 준비 중)</a>
+<a href="detail.html#ch123">123장 (데이터 준비 중)</a>
+</div>
+</details>
+</div>
+
+<!-- ═══════════════ 등장인물 ═══════════════ -->
+<div class="characters">
+  <h2>등장인물 (주요)</h2>
+  <div class="char-group">
+    <h4>알도 일행 (핵심 파티)</h4>
+    <div class="char-list">
+      <span class="char-tag">알도 &mdash; 주인공, 진명 에덴</span>
+      <span class="char-tag">피네 &mdash; 알도의 여동생, 진명 세실</span>
+      <span class="char-tag">사이러스 &mdash; 개구리 저주의 기사</span>
+      <span class="char-tag">에이미 &mdash; 미래의 헌터</span>
+      <span class="char-tag">리이카 &mdash; 안드로이드</span>
+      <span class="char-tag">헬레나 &mdash; 합성인간</span>
+      <span class="char-tag">길드너 &mdash; 전 마수왕</span>
+      <span class="char-tag">알테나 &mdash; 마수 소녀</span>
     </div>
-
-    <div class="char-group">
-      <h4>3부 합류 동료</h4>
-      <div class="char-list">
-        <span class="char-tag">애쉬티어 &mdash; 천재 과학자</span>
-        <span class="char-tag">캄라녜쥬 &mdash; 크로노스의 아들</span>
-        <span class="char-tag">베레토 &mdash; 고고학자</span>
-        <span class="char-tag">미나르카 &mdash; 시간 제국 처형관</span>
-        <span class="char-tag">질퍼니 &mdash; 검의 일족</span>
-        <span class="char-tag">니르야 &mdash; 식시 생명체</span>
-      </div>
-    </div>
-
-    <div class="char-group">
-      <h4>주요 NPC / 적대자</h4>
-      <div class="char-list">
-        <span class="char-tag">크로노스 황제</span>
-        <span class="char-tag">마도카 (시간의 여신)</span>
-        <span class="char-tag">오우거베인 (성검 파르지팔)</span>
-        <span class="char-tag">팬텀</span>
-        <span class="char-tag">오우거 제논</span>
-      </div>
+  </div>
+  <div class="char-group">
+    <h4>2부&ndash;3부 합류 동료</h4>
+    <div class="char-list">
+      <span class="char-tag">애쉬티어 &mdash; 천재 과학자</span>
+      <span class="char-tag">캄라녜쥬 &mdash; 크로노스의 아들, 길바데스 파일럿</span>
+      <span class="char-tag">미나르카 &mdash; 시간 제국 처형관</span>
+      <span class="char-tag">질퍼니 &mdash; 검의 일족</span>
+      <span class="char-tag">니르야 &mdash; 식시 생명체</span>
     </div>
   </div>
-
+  <div class="char-group">
+    <h4>주요 NPC / 적대자</h4>
+    <div class="char-list">
+      <span class="char-tag">크로노스 황제</span>
+      <span class="char-tag">마도카 &mdash; 시간의 여신, 알도의 어머니</span>
+      <span class="char-tag">오우거베인 &mdash; 저주의 검 / 성검 파르지팔</span>
+      <span class="char-tag">팬텀</span>
+      <span class="char-tag">갤리어드 &mdash; 합성인간의 리더</span>
+    </div>
+  </div>
 </div>
 
 </div>
 
 <footer>
-  어나더에덴 메인스토리 대사 추출 프로젝트 | 2026
+  어나더에덴 메인스토리 가이드 | 2026
 </footer>
 
 </body>
