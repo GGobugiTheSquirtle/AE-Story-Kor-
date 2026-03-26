@@ -97,8 +97,8 @@ a:hover{color:var(--gold-bright)}
 .kp-header{font-weight:700;color:var(--gold);font-size:0.88em;margin-bottom:8px;letter-spacing:1px}
 .kp-item{font-size:0.85em;color:var(--text2);padding:2px 0 2px 14px;line-height:1.6}
 
-/* Part prologue */
-.part-prologue{margin:0 0 32px;padding:28px 24px;background:linear-gradient(135deg, rgba(20,23,50,.95) 0%, rgba(30,25,45,.9) 100%);border:1px solid rgba(201,164,76,.2);border-radius:2px;position:relative;overflow:hidden}
+/* Part prologue — hidden by default to prevent FOUC, shown via JS */
+.part-prologue{margin:0 0 32px;padding:28px 24px;background:linear-gradient(135deg, rgba(20,23,50,.95) 0%, rgba(30,25,45,.9) 100%);border:1px solid rgba(201,164,76,.2);border-radius:2px;position:relative;overflow:hidden;display:none}
 .part-prologue::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg, transparent, var(--gold-dim), var(--gold), var(--gold-dim), transparent)}
 .part-prologue .part-title{font-size:1.1em;color:var(--gold);letter-spacing:3px;margin-bottom:16px;text-align:center;font-weight:400}
 .part-prologue .part-subtitle{font-size:0.78em;color:var(--text2);text-align:center;margin-bottom:18px;letter-spacing:1px}
@@ -2929,11 +2929,14 @@ html{scroll-behavior:smooth}
 </div>
 
 <script>
-// === 1. Move prologues into first chapter of each part ===
+// === 1. Move prologues into first chapter of each part & make visible ===
 document.querySelectorAll('.part-prologue').forEach(function(p){
   var next=p.nextElementSibling;
   while(next && !next.classList.contains('chapter')) next=next.nextElementSibling;
-  if(next) next.insertBefore(p, next.firstChild);
+  if(next){
+    next.insertBefore(p, next.firstChild);
+    p.style.display='block';
+  }
 });
 
 // === 2. Sidebar accordion — wrap nav-items into collapsible groups ===
