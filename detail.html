@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>어나더에덴 메인스토리 상세본</title>
+<meta name="description" content="어나더에덴 메인스토리 제1부~제3부 전 123장 상세 공략. 장면별 줄거리, 대사, 키포인트, 로어노트.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0b0d1a;--bg2:#111428;--bg3:#1a1d35;--text:#e8e0d0;--text2:#9a9080;--gold:#c9a44c;--gold2:#b8963e;--gold-dim:#6b5a2a;--gold-bright:#e8cc6e;--card-bg:rgba(22,25,48,.85);--border:#2a2d45;--sidebar-w:200px}
+:root{--bg:#0b0d1a;--bg2:#111428;--bg3:#1a1d35;--text:#e8e0d0;--text2:#b0a590;--gold:#c9a44c;--gold2:#b8963e;--gold-dim:#6b5a2a;--gold-bright:#e8cc6e;--card-bg:rgba(22,25,48,.85);--border:#2a2d45;--sidebar-w:200px}
 body{background:var(--bg);color:var(--text);font-family:'Noto Serif KR','Malgun Gothic',serif;line-height:1.8;
   background-image:radial-gradient(ellipse 600px 600px at 20% 10%, rgba(30,40,80,.4) 0%, transparent 70%);
 }
@@ -32,7 +33,7 @@ a:hover{color:var(--gold-bright)}
 .topnav::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent 0%, var(--gold-dim) 20%, var(--gold) 50%, var(--gold-dim) 80%, transparent 100%)}
 .topnav a{color:var(--text2);font-size:13px;padding:6px 14px;text-decoration:none;transition:all .3s;letter-spacing:.5px;border:1px solid transparent}
 .topnav a:hover{color:var(--gold-bright);border-color:var(--gold-dim)}
-.topnav a.active{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
+.topnav a[aria-current]{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
 .topnav .spacer{flex:1}
 .topnav .title-mark{font-size:11px;color:var(--gold-dim);letter-spacing:2px;text-transform:uppercase;margin-left:auto}
 
@@ -57,7 +58,7 @@ a:hover{color:var(--gold-bright)}
   border-radius:4px;transition:all .2s;
 }
 .ch-nav:hover{color:var(--gold);border-color:var(--gold-dim);background:var(--bg2)}
-.ch-nav.disabled{pointer-events:none;opacity:0}
+.ch-nav.disabled{pointer-events:none;opacity:.15}
 #ch-prev{left:6px}
 #ch-next{right:6px}
 
@@ -96,6 +97,7 @@ a:hover{color:var(--gold-bright)}
 /* Key points */
 .keypoints{margin:18px 0;padding:16px;background:rgba(201,164,76,.04);border:1px solid rgba(201,164,76,.15)}
 .kp-header{font-weight:700;color:var(--gold);font-size:0.88em;margin-bottom:8px;letter-spacing:1px}
+.kp-list{list-style:none;margin:0;padding:0}
 .kp-item{font-size:0.85em;color:var(--text2);padding:2px 0 2px 14px;line-height:1.6}
 
 /* Route line */
@@ -146,6 +148,13 @@ body.sb-collapsed .ch-nav#ch-prev{left:6px}
 /* Scrollbar */
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:3px}
 html{scroll-behavior:smooth}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button.ch-nav{background:none;border:none;font:inherit}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.btt{position:fixed;bottom:24px;right:24px;z-index:100;width:44px;height:44px;background:var(--gold-dim);color:var(--text);border:none;border-radius:50%;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;font-size:1em}
+.btt.show{opacity:.8;pointer-events:auto}
+.btt:hover{opacity:1;background:var(--gold)}
+.sidebar-overlay{display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.5)}
 
 @media(max-width:768px){
   #sidebar{transform:translateX(-100%)}
@@ -164,20 +173,22 @@ html{scroll-behavior:smooth}
 </head>
 <body>
 
-<div class="topnav">
+<nav class="topnav" aria-label="메인 네비게이션">
   <a href="index.html">&larr; 인덱스</a>
   <a href="summary.html">요약본</a>
-  <a class="active">상세본</a>
+  <a aria-current="page">상세본</a>
+  <a href="dialogue.html">대사집</a>
+  <a href="full.html">전문</a>
   <span class="spacer"></span>
   <span class="title-mark">Another Eden &mdash; Chronicle</span>
-</div>
+</nav>
 
 <button id="menu-toggle">&#9776;</button>
 <button id="sidebar-toggle" title="사이드바 접기/펼치기">&#9664;</button>
-<div id="ch-prev" class="ch-nav disabled">&#10094;</div>
-<div id="ch-next" class="ch-nav disabled">&#10095;</div>
+<button id="ch-prev" class="ch-nav disabled" aria-label="이전 장">&#10094;</button>
+<button id="ch-next" class="ch-nav disabled" aria-label="다음 장">&#10095;</button>
 
-<nav id="sidebar">
+<nav id="sidebar" aria-label="장 목록">
   <h2>목차</h2>
 <div class="nav-part">&#9670; 제1부 &mdash; 시공을 넘는 고양이</div>
 <a href="#ch1" class="nav-item" data-ch="1">1장 과거의 기억</a>
@@ -308,8 +319,9 @@ html{scroll-behavior:smooth}
 <a href="#ch122" class="nav-item" data-ch="122">122장</a>
 <a href="#ch123" class="nav-item" data-ch="123">123장</a>
 </nav>
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-<div id="main">
+<main id="main">
 
 <div class="part-prologue">
 <div class="part-title">제1부 &mdash; 시공을 넘는 고양이</div>
@@ -346,11 +358,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">마수왕</span>하지만 잊지 마라, 애송이. 우리가 다음에 만났을 때, 넌 반드시 죽는다는 것을……</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 숲에서 발견된 아기에게 잠든 &#x27;특별한 힘&#x27; — 1부 전체를 관통하는 최대 복선</div>
-<div class="kp-item">- 마수왕이 피네를 납치한 이유: 피네 안에 잠든 힘과 연관된 목적</div>
-<div class="kp-item">- 오우거베인의 각성: 주인을 선택하는 전설의 검이 알도를 택함</div>
-<div class="kp-item">- 알도가 시공의 소용돌이에 빨려 들어감 — 시간 여행의 시작점</div>
-<div class="kp-item">- 바르오키 마을의 일상 묘사: 이후 파괴되는 평화와의 대비</div>
+<ul class="kp-list">
+<li class="kp-item">숲에서 발견된 아기에게 잠든 &#x27;특별한 힘&#x27; — 1부 전체를 관통하는 최대 복선</li>
+<li class="kp-item">마수왕이 피네를 납치한 이유: 피네 안에 잠든 힘과 연관된 목적</li>
+<li class="kp-item">오우거베인의 각성: 주인을 선택하는 전설의 검이 알도를 택함</li>
+<li class="kp-item">알도가 시공의 소용돌이에 빨려 들어감 — 시간 여행의 시작점</li>
+<li class="kp-item">바르오키 마을의 일상 묘사: 이후 파괴되는 평화와의 대비</li>
+</ul>
 <div class="lore-note">
 <div class="ln-header">세계관 노트</div>
 <div class="ln-item">프리즈마: 이 세계의 만능 에너지원. 2만 년 전 4대 정령이 자기희생하며 남긴 파편으로, 문명의 근간을 이룬다.</div>
@@ -374,9 +388,11 @@ html{scroll-behavior:smooth}
 <p>빛의 구멍에 빨려 들어간 알도는, 정신을 차렸을 때 발밑에 땅이 없었다. 하늘에 떠 있는 금속 도시. 이곳이 어디인지도 모른 채, 알도의 시간 여행이 본격적으로 시작된다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 바레스의 '구세주' 언급 &mdash; 피네의 힘이 마수들에게 어떤 의미인지 암시</div>
-<div class="kp-item">- 키마이라 전투 &mdash; 알도 단독 전투의 한계와 오우거베인의 불안정한 힘</div>
-<div class="kp-item">- 시공의 빛(포탈)의 첫 등장 &mdash; 이후 반복되는 시간 이동의 시작</div>
+<ul class="kp-list">
+<li class="kp-item">바레스의 '구세주' 언급 &mdash; 피네의 힘이 마수들에게 어떤 의미인지 암시</li>
+<li class="kp-item">키마이라 전투 &mdash; 알도 단독 전투의 한계와 오우거베인의 불안정한 힘</li>
+<li class="kp-item">시공의 빛(포탈)의 첫 등장 &mdash; 이후 반복되는 시간 이동의 시작</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch3">
@@ -398,11 +414,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">에이미</span>언젠가 우리들이 또 하나의 에덴에 도착할 수 있도록.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 무대가 AD 1100년 미래 도시 엘지온으로 확대 — 시간 여행 본격화</div>
-<div class="kp-item">- 에이미(헌터), 리이카(안드로이드) 합류 — 핵심 파티 형성</div>
-<div class="kp-item">- 합성인간이라는 새로운 적 세력의 등장과 갤리어드의 &#x27;영혼&#x27; 테마</div>
-<div class="kp-item">- 에이미 어머니의 사운드 오브 — 에이미의 동기 부여와 캐릭터 깊이</div>
-<div class="kp-item">- '또 하나의 에덴' 언급 — 작품 제목과 연결되는 핵심 주제</div>
+<ul class="kp-list">
+<li class="kp-item">무대가 AD 1100년 미래 도시 엘지온으로 확대 — 시간 여행 본격화</li>
+<li class="kp-item">에이미(헌터), 리이카(안드로이드) 합류 — 핵심 파티 형성</li>
+<li class="kp-item">합성인간이라는 새로운 적 세력의 등장과 갤리어드의 &#x27;영혼&#x27; 테마</li>
+<li class="kp-item">에이미 어머니의 사운드 오브 — 에이미의 동기 부여와 캐릭터 깊이</li>
+<li class="kp-item">'또 하나의 에덴' 언급 — 작품 제목과 연결되는 핵심 주제</li>
+</ul>
 <div class="lore-note">
 <div class="ln-header">세계관 노트</div>
 <div class="ln-item">엘지온: AD 1000년에 건립된 부유도시. 대지가 오염되자 인류는 하늘 위로 이주했다. 현재 거대기업 KMS가 실질적으로 지배하고 있다.</div>
@@ -423,9 +441,11 @@ html{scroll-behavior:smooth}
 <p>격렬한 전투가 시작된다. 갤리어드의 압도적인 전투력에 일행은 밀리지만, 에이미의 근성과 리이카의 분석, 알도의 오우거베인이 맞물리며 가까스로 균형을 잡아간다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 갤리어드의 사상: 합성인간이 별의 새로운 미래를 이끌겠다는 신념</div>
-<div class="kp-item">- 헬레나의 첫 등장 &mdash; 냉정하지만 '기계 이상'의 존재감. 이후 핵심 동료</div>
-<div class="kp-item">- 3인 파티(알도+에이미+리이카)의 첫 본격 연계 전투</div>
+<ul class="kp-list">
+<li class="kp-item">갤리어드의 사상: 합성인간이 별의 새로운 미래를 이끌겠다는 신념</li>
+<li class="kp-item">헬레나의 첫 등장 &mdash; 냉정하지만 '기계 이상'의 존재감. 이후 핵심 동료</li>
+<li class="kp-item">3인 파티(알도+에이미+리이카)의 첫 본격 연계 전투</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch5">
@@ -441,9 +461,11 @@ html{scroll-behavior:smooth}
 <p>서로의 빚을 갚겠다는 약속이 오가는 그 따뜻한 순간 &mdash; 갑자기 세계 전체가 요동친다. 발밑이 갈라지듯 거대한 이변이 시작되고, 하늘에 시공의 균열이 열린다. 에이미가 알도의 손을 잡고 뛰기 시작한다. 원시시대로 이어지는, 두 번째 시간 이동이 시작된다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 에이미와 알도의 상호 약속 &mdash; 파티 유대의 강화</div>
-<div class="kp-item">- 갤리어드의 '영혼' 테마 &mdash; 패배해도 굴복하지 않는 신념</div>
-<div class="kp-item">- 이변 발생으로 원시시대로의 시간 이동 &mdash; 6장으로 연결</div>
+<ul class="kp-list">
+<li class="kp-item">에이미와 알도의 상호 약속 &mdash; 파티 유대의 강화</li>
+<li class="kp-item">갤리어드의 '영혼' 테마 &mdash; 패배해도 굴복하지 않는 신념</li>
+<li class="kp-item">이변 발생으로 원시시대로의 시간 이동 &mdash; 6장으로 연결</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch6">
@@ -458,10 +480,12 @@ html{scroll-behavior:smooth}
 <p>이 회상은 5장의 이변 직후, 시공의 혼란 속에서 알도의 의식에 흘러든 기억의 파편이다. 피네가 마수와 연결되어 있다는 것, 그 유대가 적이 아닌 우정에서 시작되었다는 것 &mdash; 이것을 알도는 아직 모른다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 피네와 알테나의 우정 &mdash; 인간과 마수의 공존 가능성을 상징</div>
-<div class="kp-item">- 버섯매실이라는 소재가 두 사람을 잇는 연결고리</div>
-<div class="kp-item">- 이 우정이 1.5부 오우거 전쟁편에서 핵심 동기로 작용</div>
-<div class="kp-item">- 회상 삽입의 의미 &mdash; 피네의 납치가 단순한 적대가 아님을 암시</div>
+<ul class="kp-list">
+<li class="kp-item">피네와 알테나의 우정 &mdash; 인간과 마수의 공존 가능성을 상징</li>
+<li class="kp-item">버섯매실이라는 소재가 두 사람을 잇는 연결고리</li>
+<li class="kp-item">이 우정이 1.5부 오우거 전쟁편에서 핵심 동기로 작용</li>
+<li class="kp-item">회상 삽입의 의미 &mdash; 피네의 납치가 단순한 적대가 아님을 암시</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch7">
@@ -478,10 +502,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>응…… 왕을 만날 수 있겠어. 하지만 예언자의 말이 신경 쓰여.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 원시시대(수만 년 전)라는 새로운 시간대 — 세계관의 대폭 확장</div>
-<div class="kp-item">- 샐러맨더의 &#x27;검은 파도&#x27; 경고 — 시공 붕괴의 전조</div>
-<div class="kp-item">- 가면의 예언자 첫 등장 — 정체불명의 핵심 인물</div>
-<div class="kp-item">- 파르지팔 왕궁이라는 다음 목적지의 제시</div>
+<ul class="kp-list">
+<li class="kp-item">원시시대(수만 년 전)라는 새로운 시간대 — 세계관의 대폭 확장</li>
+<li class="kp-item">샐러맨더의 &#x27;검은 파도&#x27; 경고 — 시공 붕괴의 전조</li>
+<li class="kp-item">가면의 예언자 첫 등장 — 정체불명의 핵심 인물</li>
+<li class="kp-item">파르지팔 왕궁이라는 다음 목적지의 제시</li>
+</ul>
 <div class="lore-note">
 <div class="ln-header">세계관 노트</div>
 <div class="ln-item">원시시대: 약 BC 2만 년 전후. 타이탄족이 아직 건재하며, 4대 정령(불·물·바람·땅)이 세계를 수호하는 시대. 이 시대의 끝에 '거대 시공 지진'이 일어나 4대 정령이 희생된다.</div>
@@ -503,9 +529,11 @@ html{scroll-behavior:smooth}
 <p>항의하는 알도를 향해 왕이 손짓하자, 발밑의 바닥이 열린다. 일행은 비명과 함께 어둠 속으로 떨어진다 &mdash; 궁전 아래에 숨겨진 지하수로. 악취와 어둠 속에서 알도는 이를 악문다. 이 왕은 대화로 설득할 수 있는 상대가 아니다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 파르지팔 왕의 절대적 자신감 &mdash; '별의 꿈'이라는 표현은 시간의 탑과 환시 태아의 복선</div>
-<div class="kp-item">- 궁전→지하수로 추락이라는 공간 전환 &mdash; 9장으로 직결</div>
-<div class="kp-item">- 이 왕이 1.5부에서 영혼으로 재등장할 때의 극적 대비 설정</div>
+<ul class="kp-list">
+<li class="kp-item">파르지팔 왕의 절대적 자신감 &mdash; '별의 꿈'이라는 표현은 시간의 탑과 환시 태아의 복선</li>
+<li class="kp-item">궁전→지하수로 추락이라는 공간 전환 &mdash; 9장으로 직결</li>
+<li class="kp-item">이 왕이 1.5부에서 영혼으로 재등장할 때의 극적 대비 설정</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch9">
@@ -516,9 +544,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>그래! 당신도 상당한 실력자 같은데 우리에게 힘을 빌려주지 않겠어?</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 사이러스 합류 — 고대편의 핵심 동료이자 충직한 기사</div>
-<div class="kp-item">- 개구리 저주라는 코믹한 설정 속에 왕에 맞선 기사의 비장함</div>
-<div class="kp-item">- 파르지팔 왕에 대한 반기를 들 수 있는 내부 인물 확보</div>
+<ul class="kp-list">
+<li class="kp-item">사이러스 합류 — 고대편의 핵심 동료이자 충직한 기사</li>
+<li class="kp-item">개구리 저주라는 코믹한 설정 속에 왕에 맞선 기사의 비장함</li>
+<li class="kp-item">파르지팔 왕에 대한 반기를 들 수 있는 내부 인물 확보</li>
+</ul>
 <div class="lore-note">
 <div class="ln-header">세계관 노트</div>
 <div class="ln-item">사이러스(Cyrus): 크로노 트리거의 '카에루(Frog/Glenn)'에 대응하는 캐릭터. 저주로 변한 외모, 충직한 기사도, 왕에 대한 복잡한 감정까지 &mdash; 오마주의 깊이에 주목.</div>
@@ -537,9 +567,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">사이러스</span>음…… 언젠가 모든 일이 정리되면 전부 말해 주겠소이다.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 오우거베인의 봉인이 부분적으로 해제됨 — 전투력 강화</div>
-<div class="kp-item">- 파르지팔 왕가의 성검 존재 암시 — 왕과의 대결 복선</div>
-<div class="kp-item">- 사이러스와 라체트의 과거 인연 — 캐릭터 깊이 추가</div>
+<ul class="kp-list">
+<li class="kp-item">오우거베인의 봉인이 부분적으로 해제됨 — 전투력 강화</li>
+<li class="kp-item">파르지팔 왕가의 성검 존재 암시 — 왕과의 대결 복선</li>
+<li class="kp-item">사이러스와 라체트의 과거 인연 — 캐릭터 깊이 추가</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch11">
@@ -556,10 +588,12 @@ html{scroll-behavior:smooth}
 <p>시공의 틈 속에서 몽견관의 오너를 만난 알도. 크로노스 스톤과 관련된 특별한 장소인 이곳에서 잠시 휴식을 취한다. 미달 할머니가 생명의 꿈이 쓰인 책을 모아오면 도움이 될 것이라 조언한다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 환시 태아를 통한 역사 복원 — 파르지팔 왕의 계획을 저지</div>
-<div class="kp-item">- 시공 붕괴 경고의 실현 — 단순히 역사를 되돌리는 것으로는 부족</div>
-<div class="kp-item">- 피네가 &#x27;주워온 아이&#x27;라는 사실과 차별당했던 과거</div>
-<div class="kp-item">- 알테나와의 우정이 피네의 정체성 형성에 미친 영향</div>
+<ul class="kp-list">
+<li class="kp-item">환시 태아를 통한 역사 복원 — 파르지팔 왕의 계획을 저지</li>
+<li class="kp-item">시공 붕괴 경고의 실현 — 단순히 역사를 되돌리는 것으로는 부족</li>
+<li class="kp-item">피네가 &#x27;주워온 아이&#x27;라는 사실과 차별당했던 과거</li>
+<li class="kp-item">알테나와의 우정이 피네의 정체성 형성에 미친 영향</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch12">
@@ -574,9 +608,11 @@ html{scroll-behavior:smooth}
 <p>세 시대 &mdash; 원시, 현대, 미래를 오가는 여행의 구조가 비로소 확립된다. 바르오키를 거점으로, 피네를 찾기 위한 본격적인 탐색이 시작된다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 세 시대(고대·현대·미래)를 오가는 여행 구조의 확립</div>
-<div class="kp-item">- 촌장이 전하는 피네 관련 소문 &mdash; 피네가 마수와 함께 있다는 정보</div>
-<div class="kp-item">- 4인 파티(알도+에이미+리이카+사이러스) 완성</div>
+<ul class="kp-list">
+<li class="kp-item">세 시대(고대·현대·미래)를 오가는 여행 구조의 확립</li>
+<li class="kp-item">촌장이 전하는 피네 관련 소문 &mdash; 피네가 마수와 함께 있다는 정보</li>
+<li class="kp-item">4인 파티(알도+에이미+리이카+사이러스) 완성</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch13">
@@ -590,9 +626,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">페포리</span>우리는 피네랑 억수로 친하데이. 진짜다. 거짓말이 아니라니까.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 미글랜스 왕성이라는 현대의 무대 확대</div>
-<div class="kp-item">- 모베차·페포리의 등장 — 인간과 마수의 가교 역할</div>
-<div class="kp-item">- 피네의 무사 확인과 오우거베인에 대한 새로운 정보 예고</div>
+<ul class="kp-list">
+<li class="kp-item">미글랜스 왕성이라는 현대의 무대 확대</li>
+<li class="kp-item">모베차·페포리의 등장 — 인간과 마수의 가교 역할</li>
+<li class="kp-item">피네의 무사 확인과 오우거베인에 대한 새로운 정보 예고</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch14">
@@ -606,9 +644,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">모베차</span>피네가 슬퍼하는 모습만큼은 절대 보고 싶지 않으니까.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 오우거베인의 반전 — 전설의 성검이 아닌 저주의 살육 도구</div>
-<div class="kp-item">- 알도가 오우거베인을 이긴 것은 단순 전투가 아닌 자아 확립의 상징</div>
-<div class="kp-item">- 모베차·페포리가 보여주는 마수와 인간의 공존 가능성</div>
+<ul class="kp-list">
+<li class="kp-item">오우거베인의 반전 — 전설의 성검이 아닌 저주의 살육 도구</li>
+<li class="kp-item">알도가 오우거베인을 이긴 것은 단순 전투가 아닌 자아 확립의 상징</li>
+<li class="kp-item">모베차·페포리가 보여주는 마수와 인간의 공존 가능성</li>
+</ul>
 <div class="lore-note">
 <div class="ln-header">세계관 노트</div>
 <div class="ln-item">오우거베인과 마사무네: 크로노 트리거의 마사무네(Masamune)도 영혼이 깃든 검이었다. 오우거베인은 그 어둠의 거울상 &mdash; 3천 년간 주인을 바꿔가며 살육을 반복한 저주의 검.</div>
@@ -632,10 +672,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">에이미</span>맞아…… 이 별들을…… 시공을……</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 마수왕의 진짜 목적: 피네 안의 힘으로 &#x27;마수의 미래&#x27;를 여는 것</div>
-<div class="kp-item">- 1장의 아기 회상 장면이 여기서 직접적으로 연결됨</div>
-<div class="kp-item">- 크로노스 박사, 제노 프리즈마, 에덴·세실이라는 핵심 키워드 등장</div>
-<div class="kp-item">- 우주에서 별을 보는 장면 — 세계관의 스케일 확대</div>
+<ul class="kp-list">
+<li class="kp-item">마수왕의 진짜 목적: 피네 안의 힘으로 &#x27;마수의 미래&#x27;를 여는 것</li>
+<li class="kp-item">1장의 아기 회상 장면이 여기서 직접적으로 연결됨</li>
+<li class="kp-item">크로노스 박사, 제노 프리즈마, 에덴·세실이라는 핵심 키워드 등장</li>
+<li class="kp-item">우주에서 별을 보는 장면 — 세계관의 스케일 확대</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch16">
@@ -653,9 +695,11 @@ html{scroll-behavior:smooth}
 <p>합성 드론과의 전투를 거치며 연구소 심부로 밀고 들어간 일행은, 마침내 크로노스 박사의 개인 연구실에 도달한다. 그곳에 남아 있는 마지막 기록이 모든 것을 바꿔놓을 진실을 담고 있다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 알도=에덴, 피네=세실이라는 본래 이름의 발견 &mdash; 1부 최대 반전 복선</div>
-<div class="kp-item">- 크로노스 박사의 제노 프리즈마 연구의 구체적 실체 확인</div>
-<div class="kp-item">- 공업섹터→연구섹터→개인 연구실이라는 공간 심화 구조</div>
+<ul class="kp-list">
+<li class="kp-item">알도=에덴, 피네=세실이라는 본래 이름의 발견 &mdash; 1부 최대 반전 복선</li>
+<li class="kp-item">크로노스 박사의 제노 프리즈마 연구의 구체적 실체 확인</li>
+<li class="kp-item">공업섹터→연구섹터→개인 연구실이라는 공간 심화 구조</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch17">
@@ -670,10 +714,12 @@ html{scroll-behavior:smooth}
 <p>기면의 남자가 가리킨 곳 &mdash; 시공회랑. 미래와 고대, 두 시간축을 잇는 통로가 뒤틀려 있으며, 이것을 바로잡지 않으면 모든 시대가 동시에 붕괴한다. 일행은 시공회랑으로 향한다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 시층의 뒤틀림이라는 핵심 위협의 구체화</div>
-<div class="kp-item">- 거대 시공 지진 &mdash; 세계 멸망급 위기의 도래</div>
-<div class="kp-item">- 기면의 남자 등장 &mdash; 정체불명이지만 시공 지식을 가진 인물</div>
-<div class="kp-item">- 시공회랑이라는 새로운 무대 제시 &mdash; 18장으로 연결</div>
+<ul class="kp-list">
+<li class="kp-item">시층의 뒤틀림이라는 핵심 위협의 구체화</li>
+<li class="kp-item">거대 시공 지진 &mdash; 세계 멸망급 위기의 도래</li>
+<li class="kp-item">기면의 남자 등장 &mdash; 정체불명이지만 시공 지식을 가진 인물</li>
+<li class="kp-item">시공회랑이라는 새로운 무대 제시 &mdash; 18장으로 연결</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch18">
@@ -686,9 +732,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">행정관</span>자네들…… 이 세계를 부탁하겠네!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 물질 전송이라는 SF적 장치로 시층회랑에 진입</div>
-<div class="kp-item">- 행정관의 배웅 — 세계의 운명을 소수에게 맡기는 무거운 순간</div>
-<div class="kp-item">- 크로노스 박사의 기술이 핵심 해결책으로 부상</div>
+<ul class="kp-list">
+<li class="kp-item">물질 전송이라는 SF적 장치로 시층회랑에 진입</li>
+<li class="kp-item">행정관의 배웅 — 세계의 운명을 소수에게 맡기는 무거운 순간</li>
+<li class="kp-item">크로노스 박사의 기술이 핵심 해결책으로 부상</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch19">
@@ -707,10 +755,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">헬레나</span>인간을 위해서가 아니라 이 세계…… 이 별을 위해서라면 내게도 책임은 있으니까.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 사대정령 샐러맨더의 자기 희생 — 세계를 지키려는 의지의 상징</div>
-<div class="kp-item">- 팬텀의 정체: 시간의 망령, 시공 붕괴를 원하는 존재</div>
-<div class="kp-item">- 폭죽 작전이라는 황당하지만 절박한 계획</div>
-<div class="kp-item">- 헬레나의 전향 — 적이었던 합성인간이 동료로</div>
+<ul class="kp-list">
+<li class="kp-item">사대정령 샐러맨더의 자기 희생 — 세계를 지키려는 의지의 상징</li>
+<li class="kp-item">팬텀의 정체: 시간의 망령, 시공 붕괴를 원하는 존재</li>
+<li class="kp-item">폭죽 작전이라는 황당하지만 절박한 계획</li>
+<li class="kp-item">헬레나의 전향 — 적이었던 합성인간이 동료로</li>
+</ul>
 <div class="lore-note">
 <div class="ln-header">세계관 노트</div>
 <div class="ln-item">거대 시공 지진: BC 2만 년에 한 번 일어나 4대 정령을 희생시킨 재앙. 정령의 파편이 프리즈마가 되었다. 이 사건이 다시 일어나면 세계 자체가 소멸한다.</div>
@@ -735,10 +785,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">합성귀룡</span>좋다. 앞으로 나 합성귀룡이 너희들을 서로 다른 세 시대 중</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 폭죽 작전의 성공 — 터무니없어 보이는 방법이 통하는 통쾌함</div>
-<div class="kp-item">- 합성귀룡이라는 이동 수단 확보 — 시간 여행의 자유도 극대화</div>
-<div class="kp-item">- 갤리어드의 재등장과 헬레나와의 관계</div>
-<div class="kp-item">- 적이었던 합성귀룡이 동료로 전환되는 전개</div>
+<ul class="kp-list">
+<li class="kp-item">폭죽 작전의 성공 — 터무니없어 보이는 방법이 통하는 통쾌함</li>
+<li class="kp-item">합성귀룡이라는 이동 수단 확보 — 시간 여행의 자유도 극대화</li>
+<li class="kp-item">갤리어드의 재등장과 헬레나와의 관계</li>
+<li class="kp-item">적이었던 합성귀룡이 동료로 전환되는 전개</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch21">
@@ -755,10 +807,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>좋아! 마수성에 가서 피네를 구하자.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 예언자의 정체: 미래인이 고대에서 역사를 바꾸려 한 장본인</div>
-<div class="kp-item">- 원초의 귀석 확보 — 차원의 소용돌이를 돌파할 열쇠</div>
-<div class="kp-item">- 바레스의 경고: 피네의 힘이 깨어나면 세계가 위기에 처함</div>
-<div class="kp-item">- 파르지팔 왕의 몰락 — 야망의 끝에 남은 것은 광기뿐</div>
+<ul class="kp-list">
+<li class="kp-item">예언자의 정체: 미래인이 고대에서 역사를 바꾸려 한 장본인</li>
+<li class="kp-item">원초의 귀석 확보 — 차원의 소용돌이를 돌파할 열쇠</li>
+<li class="kp-item">바레스의 경고: 피네의 힘이 깨어나면 세계가 위기에 처함</li>
+<li class="kp-item">파르지팔 왕의 몰락 — 야망의 끝에 남은 것은 광기뿐</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch22">
@@ -780,10 +834,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">촌장</span>그대들의 승전보를 기다리겠네. 이 별의 미래를 잘 부탁하네!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 지오 앙길라스: 지오 프리즈마의 힘으로 현현한 고대의 존재</div>
-<div class="kp-item">- 알테나의 희생 — 6장 우정의 결말, 피네에게 가장 큰 상실</div>
-<div class="kp-item">- 피네와 알도(에덴·세실)의 출생 비밀이 감정적으로 소화됨</div>
-<div class="kp-item">- 피네 구출 완료 — 1장에서 시작된 납치 사건의 해결</div>
+<ul class="kp-list">
+<li class="kp-item">지오 앙길라스: 지오 프리즈마의 힘으로 현현한 고대의 존재</li>
+<li class="kp-item">알테나의 희생 — 6장 우정의 결말, 피네에게 가장 큰 상실</li>
+<li class="kp-item">피네와 알도(에덴·세실)의 출생 비밀이 감정적으로 소화됨</li>
+<li class="kp-item">피네 구출 완료 — 1장에서 시작된 납치 사건의 해결</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch23">
@@ -798,9 +854,11 @@ html{scroll-behavior:smooth}
 <p>팬텀은 사라지면서 의미심장한 말을 남긴다 &mdash; '시공의 미래는 그의 손에'. '그'가 누구인지, 알도는 아직 모른다. 차원의 소용돌이 너머로, '시간의 어둠'이라 불리는 최종 무대가 입을 벌리고 있다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 팬텀 연결체 전투 &mdash; 헬레나 합류로 풀파티 최초 연계전</div>
-<div class="kp-item">- 팬텀의 '그의 손에 맡길 수밖에' &mdash; 이후 시리즈의 복선</div>
-<div class="kp-item">- 차원의 소용돌이 돌파 → 시간의 어둠(최종 무대) 진입</div>
+<ul class="kp-list">
+<li class="kp-item">팬텀 연결체 전투 &mdash; 헬레나 합류로 풀파티 최초 연계전</li>
+<li class="kp-item">팬텀의 '그의 손에 맡길 수밖에' &mdash; 이후 시리즈의 복선</li>
+<li class="kp-item">차원의 소용돌이 돌파 → 시간의 어둠(최종 무대) 진입</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch24">
@@ -815,9 +873,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">팬텀</span>후후후후………! 하하하하하하……!!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 1부 최대의 반전: 알도=에덴, 피네=세실, 크로노스 박사의 자녀</div>
-<div class="kp-item">- 1장 꿈 장면, 숲의 아기, 예언자 등 모든 복선이 회수됨</div>
-<div class="kp-item">- 세계 위기와 가족사가 하나의 선으로 연결되는 서사적 클라이맥스</div>
+<ul class="kp-list">
+<li class="kp-item">1부 최대의 반전: 알도=에덴, 피네=세실, 크로노스 박사의 자녀</li>
+<li class="kp-item">1장 꿈 장면, 숲의 아기, 예언자 등 모든 복선이 회수됨</li>
+<li class="kp-item">세계 위기와 가족사가 하나의 선으로 연결되는 서사적 클라이맥스</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch25">
@@ -839,10 +899,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">피네</span>어서 와…… 알도 오빠!!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 크로노스 메나스: 아버지의 사랑과 광기가 뒤섞인 최종 보스</div>
-<div class="kp-item">- 키로스(고양이)의 희생 — 작품 부제 &#x27;시공을 넘는 고양이&#x27;의 의미 완성</div>
-<div class="kp-item">- 에덴(알도)의 해방과 귀환 — 가족과 정체성의 회복</div>
-<div class="kp-item">- 동료들의 이별 — 각자의 시대로, 그러나 유대는 남아있음</div>
+<ul class="kp-list">
+<li class="kp-item">크로노스 메나스: 아버지의 사랑과 광기가 뒤섞인 최종 보스</li>
+<li class="kp-item">키로스(고양이)의 희생 — 작품 부제 &#x27;시공을 넘는 고양이&#x27;의 의미 완성</li>
+<li class="kp-item">에덴(알도)의 해방과 귀환 — 가족과 정체성의 회복</li>
+<li class="kp-item">동료들의 이별 — 각자의 시대로, 그러나 유대는 남아있음</li>
+</ul>
 <div class="lore-note">
 <div class="ln-header">1부를 마치며</div>
 <div class="ln-item">'시공을 넘는 고양이': 작품의 부제가 여기서 완성된다. 키로스라는 이름의 고양이가 시공을 넘어 에덴(알도)을 구한 것이다. 소리쿠(SORIKU)와 키로스(KIROSU)가 아나그램이라는 점까지 &mdash; 모든 것이 계산된 복선이었다.</div>
@@ -863,10 +925,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">헬레나</span>에덴을 구할 다른 미래…… 어떻게 해서든 새로운 가능성을 찾아내야만 해.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 동료들이 각자의 이유로 재집결 — 파티의 유대가 깊어짐</div>
-<div class="kp-item">- 에덴 구출, 잃어버린 미래 복원 등 미해결 과제의 제시</div>
-<div class="kp-item">- 열린 결말: 1부 종료이자 새로운 장(2부)으로의 다리</div>
-<div class="kp-item">- 작품 부제 &#x27;시공을 넘는 고양이&#x27;의 의미 — 키로스를 통한 귀환</div>
+<ul class="kp-list">
+<li class="kp-item">동료들이 각자의 이유로 재집결 — 파티의 유대가 깊어짐</li>
+<li class="kp-item">에덴 구출, 잃어버린 미래 복원 등 미해결 과제의 제시</li>
+<li class="kp-item">열린 결말: 1부 종료이자 새로운 장(2부)으로의 다리</li>
+<li class="kp-item">작품 부제 &#x27;시공을 넘는 고양이&#x27;의 의미 — 키로스를 통한 귀환</li>
+</ul>
 </div>
 </div>
 <div class="part-prologue">
@@ -909,11 +973,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 고대 전쟁 유적에서 수천 년 전 영혼들의 미련을 풀어주며, 과거 오우거 전쟁의 참상이 드러남</div>
-<div class="kp-item">- 오우거베인이 오우거족의 존재를 감지하며 반응 &mdash; 검에 깃든 원한의 본질이 암시됨</div>
-<div class="kp-item">- 오우거 제논의 첫 등장과 선전포고로 1.5부의 핵심 갈등 구도가 형성</div>
-<div class="kp-item">- 우레왕이 일행의 편에 합류하여 미글랜스 왕과의 연대 가능성이 열림</div>
-<div class="kp-item">- 과거의 대립(인간 vs 로봇, 마수 vs 인간)이 화해로 이어진 전례를 통해 &quot;공존&quot; 테마 강조</div>
+<ul class="kp-list">
+<li class="kp-item">고대 전쟁 유적에서 수천 년 전 영혼들의 미련을 풀어주며, 과거 오우거 전쟁의 참상이 드러남</li>
+<li class="kp-item">오우거베인이 오우거족의 존재를 감지하며 반응 &mdash; 검에 깃든 원한의 본질이 암시됨</li>
+<li class="kp-item">오우거 제논의 첫 등장과 선전포고로 1.5부의 핵심 갈등 구도가 형성</li>
+<li class="kp-item">우레왕이 일행의 편에 합류하여 미글랜스 왕과의 연대 가능성이 열림</li>
+<li class="kp-item">과거의 대립(인간 vs 로봇, 마수 vs 인간)이 화해로 이어진 전례를 통해 &quot;공존&quot; 테마 강조</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch28">
@@ -935,10 +1001,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 우레왕과 미글랜스 왕의 역사적 대면 &mdash; 수천 년의 시간을 넘은 두 왕의 연대</div>
-<div class="kp-item">- 성검 파르지팔을 통해 두 왕의 정통성이 상호 확인됨</div>
-<div class="kp-item">- 오우거베인의 기억 불확실성으로 &ldquo;진실의 거울&rdquo; 탐색이 다음 목표로 설정</div>
-<div class="kp-item">- 디아드라의 &ldquo;진실을 말하는 거울&rdquo; 언급 &mdash; 1부 스토리와의 연결 복선</div>
+<ul class="kp-list">
+<li class="kp-item">우레왕과 미글랜스 왕의 역사적 대면 &mdash; 수천 년의 시간을 넘은 두 왕의 연대</li>
+<li class="kp-item">성검 파르지팔을 통해 두 왕의 정통성이 상호 확인됨</li>
+<li class="kp-item">오우거베인의 기억 불확실성으로 &ldquo;진실의 거울&rdquo; 탐색이 다음 목표로 설정</li>
+<li class="kp-item">디아드라의 &ldquo;진실을 말하는 거울&rdquo; 언급 &mdash; 1부 스토리와의 연결 복선</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch29">
@@ -956,9 +1024,11 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 알테나와의 무사 재회 &mdash; 피네와 알테나의 우정이 재확인됨</div>
-<div class="kp-item">- 길드너(전 마수왕)의 내면 변화: 과거의 행동을 반성하고 새로운 삶을 모색</div>
-<div class="kp-item">- 코니움 마을이 다음 목적지로 설정되며 평화로운 전환 분위기 조성</div>
+<ul class="kp-list">
+<li class="kp-item">알테나와의 무사 재회 &mdash; 피네와 알테나의 우정이 재확인됨</li>
+<li class="kp-item">길드너(전 마수왕)의 내면 변화: 과거의 행동을 반성하고 새로운 삶을 모색</li>
+<li class="kp-item">코니움 마을이 다음 목적지로 설정되며 평화로운 전환 분위기 조성</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch30">
@@ -983,10 +1053,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 바레스와 물루스의 남매 관계 공개 &mdash; 바레스의 이중적 성격(변신 전/후)이 밝혀짐</div>
-<div class="kp-item">- 코니움 마을에서 인간과 마수의 공존 가능성이 구체적으로 묘사됨</div>
-<div class="kp-item">- 길드너가 용신의 가호라는 새로운 목표를 제시하며 파워업 루트 암시</div>
-<div class="kp-item">- 마수 아이들의 엇갈리는 반응을 통해 화해의 어려움과 희망이 동시에 표현됨</div>
+<ul class="kp-list">
+<li class="kp-item">바레스와 물루스의 남매 관계 공개 &mdash; 바레스의 이중적 성격(변신 전/후)이 밝혀짐</li>
+<li class="kp-item">코니움 마을에서 인간과 마수의 공존 가능성이 구체적으로 묘사됨</li>
+<li class="kp-item">길드너가 용신의 가호라는 새로운 목표를 제시하며 파워업 루트 암시</li>
+<li class="kp-item">마수 아이들의 엇갈리는 반응을 통해 화해의 어려움과 희망이 동시에 표현됨</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch31">
@@ -1007,10 +1079,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 용신의 가호 획득 &mdash; 알도가 &ldquo;이 별의 희망&rdquo;으로 지목되는 중요한 복선</div>
-<div class="kp-item">- 길드너의 예언: 알도가 별의 힘을 흡수하여 성장할 운명임이 암시됨</div>
-<div class="kp-item">- 홍수(검은 천사)의 급습으로 평화가 깨지며 위기 고조</div>
-<div class="kp-item">- &ldquo;재앙을 막으려는 자들&rdquo;이라는 표현이 후속 스토리의 핵심 떡밥으로 등장</div>
+<ul class="kp-list">
+<li class="kp-item">용신의 가호 획득 &mdash; 알도가 &ldquo;이 별의 희망&rdquo;으로 지목되는 중요한 복선</li>
+<li class="kp-item">길드너의 예언: 알도가 별의 힘을 흡수하여 성장할 운명임이 암시됨</li>
+<li class="kp-item">홍수(검은 천사)의 급습으로 평화가 깨지며 위기 고조</li>
+<li class="kp-item">&ldquo;재앙을 막으려는 자들&rdquo;이라는 표현이 후속 스토리의 핵심 떡밥으로 등장</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch32">
@@ -1043,11 +1117,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 길드너가 과거의 자신(마수왕)과 직접 대결하여 승리 &mdash; 내면의 성장을 상징하는 결정적 장면</div>
-<div class="kp-item">- 오우거 제논이 &ldquo;사대정령의 무구&rdquo;를 요구하며 새로운 퀘스트 라인 개시</div>
-<div class="kp-item">- 길드너(전 마수왕)가 알도 일행에 정식 합류 &mdash; 적에서 동료로의 전환 완성</div>
-<div class="kp-item">- 홍수왕 처치로 마수왕 시절의 인과에 종지부를 찍음</div>
-<div class="kp-item">- 두 왕(우레왕, 미글랜스 왕)의 연대가 더욱 공고해지며 연합군 체제 구축</div>
+<ul class="kp-list">
+<li class="kp-item">길드너가 과거의 자신(마수왕)과 직접 대결하여 승리 &mdash; 내면의 성장을 상징하는 결정적 장면</li>
+<li class="kp-item">오우거 제논이 &ldquo;사대정령의 무구&rdquo;를 요구하며 새로운 퀘스트 라인 개시</li>
+<li class="kp-item">길드너(전 마수왕)가 알도 일행에 정식 합류 &mdash; 적에서 동료로의 전환 완성</li>
+<li class="kp-item">홍수왕 처치로 마수왕 시절의 인과에 종지부를 찍음</li>
+<li class="kp-item">두 왕(우레왕, 미글랜스 왕)의 연대가 더욱 공고해지며 연합군 체제 구축</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch33">
@@ -1064,9 +1140,11 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 사대정령의 무구 수집이 알테나 구출의 핵심 조건으로 확립</div>
-<div class="kp-item">- 짐단의 등장과 연옥계라는 새로운 무대 제시</div>
-<div class="kp-item">- 길드너의 조급함과 일행의 냉정한 판단이 대비되며 팀워크 강조</div>
+<ul class="kp-list">
+<li class="kp-item">사대정령의 무구 수집이 알테나 구출의 핵심 조건으로 확립</li>
+<li class="kp-item">짐단의 등장과 연옥계라는 새로운 무대 제시</li>
+<li class="kp-item">길드너의 조급함과 일행의 냉정한 판단이 대비되며 팀워크 강조</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch34">
@@ -1091,11 +1169,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 연옥계에서 파르지팔 왕, 크로노스 등 1부 핵심 인물들의 영혼과 재회하는 감동적 장면</div>
-<div class="kp-item">- 사대환령(올생이맨더, 실프, 운디네, 샐러맨더, 노움)과의 전투를 통해 정령의 무구 4종 획득</div>
-<div class="kp-item">- 길드너의 내면 갈등: 알테나를 구하려는 절박함이 전투의 동력이 됨</div>
-<div class="kp-item">- 피네와 크로노스의 재회를 통해 1부 스토리의 감정선이 이어짐</div>
-<div class="kp-item">- 사이러스와 파르지팔 왕의 충성 관계가 연옥계에서도 변치 않음을 확인</div>
+<ul class="kp-list">
+<li class="kp-item">연옥계에서 파르지팔 왕, 크로노스 등 1부 핵심 인물들의 영혼과 재회하는 감동적 장면</li>
+<li class="kp-item">사대환령(올생이맨더, 실프, 운디네, 샐러맨더, 노움)과의 전투를 통해 정령의 무구 4종 획득</li>
+<li class="kp-item">길드너의 내면 갈등: 알테나를 구하려는 절박함이 전투의 동력이 됨</li>
+<li class="kp-item">피네와 크로노스의 재회를 통해 1부 스토리의 감정선이 이어짐</li>
+<li class="kp-item">사이러스와 파르지팔 왕의 충성 관계가 연옥계에서도 변치 않음을 확인</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch35">
@@ -1117,10 +1197,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 오우거 제논의 배신 &mdash; 알테나의 엘리멘탈을 이용해 정령대검을 만들어냄</div>
-<div class="kp-item">- 정령의 무구 수집이 적의 계략에 이용당하는 반전</div>
-<div class="kp-item">- 오우거 결계를 깰 방법을 찾기 위해 미래 시대의 세바스에게 도움을 구하기로 결정</div>
-<div class="kp-item">- 길드너의 분노와 좌절 &mdash; 알테나 구출이 더욱 어려운 상황으로 전개</div>
+<ul class="kp-list">
+<li class="kp-item">오우거 제논의 배신 &mdash; 알테나의 엘리멘탈을 이용해 정령대검을 만들어냄</li>
+<li class="kp-item">정령의 무구 수집이 적의 계략에 이용당하는 반전</li>
+<li class="kp-item">오우거 결계를 깰 방법을 찾기 위해 미래 시대의 세바스에게 도움을 구하기로 결정</li>
+<li class="kp-item">길드너의 분노와 좌절 &mdash; 알테나 구출이 더욱 어려운 상황으로 전개</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch36">
@@ -1148,11 +1230,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 시간여행을 활용한 인과 조작: 과거의 맥미널에게 미래 정보를 전달하여 박물관 부활</div>
-<div class="kp-item">- 오우거의 열쇠 확보 &mdash; 결계를 깨기 위한 핵심 아이템 획득</div>
-<div class="kp-item">- 세바스가 &ldquo;신인류 혁명&rdquo;이라는 수상한 단체를 경고 &mdash; 후속 스토리 복선</div>
-<div class="kp-item">- 맥미널 가문의 유머러스한 &ldquo;잘 속는 성격&rdquo;이 세대를 넘어 이어지는 코미디 요소</div>
-<div class="kp-item">- 장 마지막에 에이미를 부르는 의문의 목소리 &mdash; 다음 장으로의 긴장감 조성</div>
+<ul class="kp-list">
+<li class="kp-item">시간여행을 활용한 인과 조작: 과거의 맥미널에게 미래 정보를 전달하여 박물관 부활</li>
+<li class="kp-item">오우거의 열쇠 확보 &mdash; 결계를 깨기 위한 핵심 아이템 획득</li>
+<li class="kp-item">세바스가 &ldquo;신인류 혁명&rdquo;이라는 수상한 단체를 경고 &mdash; 후속 스토리 복선</li>
+<li class="kp-item">맥미널 가문의 유머러스한 &ldquo;잘 속는 성격&rdquo;이 세대를 넘어 이어지는 코미디 요소</li>
+<li class="kp-item">장 마지막에 에이미를 부르는 의문의 목소리 &mdash; 다음 장으로의 긴장감 조성</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch37">
@@ -1170,9 +1254,11 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 우레왕의 시한부 설정 공개: 오우거베인의 저주로 3년밖에 남지 않은 수명</div>
-<div class="kp-item">- 에이미의 과거 인간관계(밀디, 클러그혼)가 처음으로 깊이 다뤄짐</div>
-<div class="kp-item">- 신인류 혁명 그룹과 에이미의 옛 친구들이 연결되는 복선</div>
+<ul class="kp-list">
+<li class="kp-item">우레왕의 시한부 설정 공개: 오우거베인의 저주로 3년밖에 남지 않은 수명</li>
+<li class="kp-item">에이미의 과거 인간관계(밀디, 클러그혼)가 처음으로 깊이 다뤄짐</li>
+<li class="kp-item">신인류 혁명 그룹과 에이미의 옛 친구들이 연결되는 복선</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch38">
@@ -1190,9 +1276,11 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 토토 드림랜드라는 폐유원지 배경이 에이미의 과거와 겹치며 감성적 분위기 조성</div>
-<div class="kp-item">- 에이미, 밀디, 클러그혼 세 사람의 관계가 구체적으로 묘사됨</div>
-<div class="kp-item">- 에이미의 내면 갈등: 친구에 대한 그리움과 감정 부정 사이의 줄다리기</div>
+<ul class="kp-list">
+<li class="kp-item">토토 드림랜드라는 폐유원지 배경이 에이미의 과거와 겹치며 감성적 분위기 조성</li>
+<li class="kp-item">에이미, 밀디, 클러그혼 세 사람의 관계가 구체적으로 묘사됨</li>
+<li class="kp-item">에이미의 내면 갈등: 친구에 대한 그리움과 감정 부정 사이의 줄다리기</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch39">
@@ -1211,9 +1299,11 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 밀디와 클러그혼이 &ldquo;이드&rdquo;라는 초월적 힘을 다루며 신인류 혁명의 일원으로 활동 중</div>
-<div class="kp-item">- 에이미의 감정적 해소: 과거 친구와 현재 동료(세바스) 사이의 관계 정리</div>
-<div class="kp-item">- 세바스와 에이미의 우정이 깊어지는 따뜻한 장면</div>
+<ul class="kp-list">
+<li class="kp-item">밀디와 클러그혼이 &ldquo;이드&rdquo;라는 초월적 힘을 다루며 신인류 혁명의 일원으로 활동 중</li>
+<li class="kp-item">에이미의 감정적 해소: 과거 친구와 현재 동료(세바스) 사이의 관계 정리</li>
+<li class="kp-item">세바스와 에이미의 우정이 깊어지는 따뜻한 장면</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch40">
@@ -1235,11 +1325,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 오우거의 열쇠로 결계를 돌파하며 1.5부 클라이맥스의 시작</div>
-<div class="kp-item">- 우레왕의 철학적 조언과 시한부 운명이 결전의 무게를 더함</div>
-<div class="kp-item">- 왕국 기사단 + 천둥병단 + 알도 일행의 대규모 연합군 공성전</div>
-<div class="kp-item">- 몽견관의 &ldquo;나선율에 종지부&rdquo; 예언 &mdash; 오우거 전쟁편의 완결을 암시</div>
-<div class="kp-item">- 바레스의 성검 정비가 후반부 반전의 복선으로 기능</div>
+<ul class="kp-list">
+<li class="kp-item">오우거의 열쇠로 결계를 돌파하며 1.5부 클라이맥스의 시작</li>
+<li class="kp-item">우레왕의 철학적 조언과 시한부 운명이 결전의 무게를 더함</li>
+<li class="kp-item">왕국 기사단 + 천둥병단 + 알도 일행의 대규모 연합군 공성전</li>
+<li class="kp-item">몽견관의 &ldquo;나선율에 종지부&rdquo; 예언 &mdash; 오우거 전쟁편의 완결을 암시</li>
+<li class="kp-item">바레스의 성검 정비가 후반부 반전의 복선으로 기능</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch41">
@@ -1255,9 +1347,11 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 오우거 요새 내부 진입 &mdash; 상위 오우거와의 연속 전투</div>
-<div class="kp-item">- 오우거 바론이라는 개성 있는 적 캐릭터 등장 (전투를 즐기는 호전적 귀족)</div>
-<div class="kp-item">- 제논이 바론을 호출하며 최종 결전이 임박했음을 암시</div>
+<ul class="kp-list">
+<li class="kp-item">오우거 요새 내부 진입 &mdash; 상위 오우거와의 연속 전투</li>
+<li class="kp-item">오우거 바론이라는 개성 있는 적 캐릭터 등장 (전투를 즐기는 호전적 귀족)</li>
+<li class="kp-item">제논이 바론을 호출하며 최종 결전이 임박했음을 암시</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch42">
@@ -1274,9 +1368,11 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 오우거베인의 폭주 &mdash; 알도가 마검에 지배당하는 위기 상황</div>
-<div class="kp-item">- 동료들이 알도를 구하기 위해 &ldquo;오우거 알도&rdquo;와 싸워야 하는 비극적 전개</div>
-<div class="kp-item">- 오우거베인의 원한이 단순한 복수가 아닌, 수천 년의 고통에서 비롯된 것임이 드러남</div>
+<ul class="kp-list">
+<li class="kp-item">오우거베인의 폭주 &mdash; 알도가 마검에 지배당하는 위기 상황</li>
+<li class="kp-item">동료들이 알도를 구하기 위해 &ldquo;오우거 알도&rdquo;와 싸워야 하는 비극적 전개</li>
+<li class="kp-item">오우거베인의 원한이 단순한 복수가 아닌, 수천 년의 고통에서 비롯된 것임이 드러남</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch43">
@@ -1295,9 +1391,11 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 알도의 회복과 동료들의 유대감 확인 &mdash; 길드너와 알도의 관계 발전</div>
-<div class="kp-item">- 정복자의 탑이라는 최종 던전 구조 공개</div>
-<div class="kp-item">- 오우거 바론 재전투를 통해 탑 진입 열쇠 획득</div>
+<ul class="kp-list">
+<li class="kp-item">알도의 회복과 동료들의 유대감 확인 &mdash; 길드너와 알도의 관계 발전</li>
+<li class="kp-item">정복자의 탑이라는 최종 던전 구조 공개</li>
+<li class="kp-item">오우거 바론 재전투를 통해 탑 진입 열쇠 획득</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch44">
@@ -1329,11 +1427,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 오우거 제논과의 최종 결전 승리 &mdash; 암흑의 주님으로의 변신까지 완전 격파</div>
-<div class="kp-item">- 성검 교환의 반전: 우레왕과 바레스의 계략으로 두 성검이 뒤바뀌어 있었음</div>
-<div class="kp-item">- 알테나 구출 성공 &mdash; 정령검을 분해하여 원상복구</div>
-<div class="kp-item">- 우레왕의 감동적인 독백: 시한부 운명 속에서도 사랑하는 이들과의 영원을 꿈꿈</div>
-<div class="kp-item">- 1.5부 오우거 전쟁편 완결 &mdash; 마검과 오우거족의 공명이 사라지며 새로운 일상 시작</div>
+<ul class="kp-list">
+<li class="kp-item">오우거 제논과의 최종 결전 승리 &mdash; 암흑의 주님으로의 변신까지 완전 격파</li>
+<li class="kp-item">성검 교환의 반전: 우레왕과 바레스의 계략으로 두 성검이 뒤바뀌어 있었음</li>
+<li class="kp-item">알테나 구출 성공 &mdash; 정령검을 분해하여 원상복구</li>
+<li class="kp-item">우레왕의 감동적인 독백: 시한부 운명 속에서도 사랑하는 이들과의 영원을 꿈꿈</li>
+<li class="kp-item">1.5부 오우거 전쟁편 완결 &mdash; 마검과 오우거족의 공명이 사라지며 새로운 일상 시작</li>
+</ul>
 <div class="lore-note">
 <div class="ln-header">1.5부를 마치며</div>
 <div class="ln-item">세 자루의 검: 파르지팔 성검(빛), 오우거베인(어둠), 정령의 검(균형). 하나의 뿌리에서 갈라진 이 세 검은 인간·오우거·정령 세 존재의 관계를 상징한다. 크로노 트리거의 마사무네가 선과 악의 양면을 가졌듯, 이 세계의 검도 단순한 선악이 아닌 역사의 무게를 품고 있다.</div>
@@ -1365,11 +1465,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">헬레나</span>이대로 내버려 뒀다간 언젠가 우리들의 기억마저 바뀌고 말 거야.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 길드너가 피네 대신 알도를 깨운 것은 세계 변화의 첫 신호</div>
-<div class="kp-item">- 미글랜스 왕국이 동방 동맹의 속국이 된 역사 개변이 발생</div>
-<div class="kp-item">- 시간의 여신 숭배라는 새로운 종교가 등장 — 원래 세계에 없던 요소</div>
-<div class="kp-item">- 헬레나의 경고: 역사 개변의 파도가 기억까지 침식할 가능성</div>
-<div class="kp-item">- 2부 동방 모험의 출발점 — 알도 일행이 동방행을 결심</div>
+<ul class="kp-list">
+<li class="kp-item">길드너가 피네 대신 알도를 깨운 것은 세계 변화의 첫 신호</li>
+<li class="kp-item">미글랜스 왕국이 동방 동맹의 속국이 된 역사 개변이 발생</li>
+<li class="kp-item">시간의 여신 숭배라는 새로운 종교가 등장 — 원래 세계에 없던 요소</li>
+<li class="kp-item">헬레나의 경고: 역사 개변의 파도가 기억까지 침식할 가능성</li>
+<li class="kp-item">2부 동방 모험의 출발점 — 알도 일행이 동방행을 결심</li>
+</ul>
 </div>
 <div class="lore-note">
 <div class="ln-header">세계관 노트 — 2부 동방편</div>
@@ -1391,10 +1493,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">피네</span>네! 다녀올게요!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 미글랜스 왕국이 마수군과의 전쟁으로 피폐해진 상태에서 동방에 굴복한 배경 확인</div>
-<div class="kp-item">- 겐신이라는 동방의 영주가 서방에서도 숭배되는 권위자로 부상</div>
-<div class="kp-item">- 미글랜스 왕이 동방행 연락소를 알려주며 알도 일행의 여정을 공식 지원</div>
-<div class="kp-item">- 개변된 역사 속에서도 미글랜스 왕은 알도를 신뢰하고 있음</div>
+<ul class="kp-list">
+<li class="kp-item">미글랜스 왕국이 마수군과의 전쟁으로 피폐해진 상태에서 동방에 굴복한 배경 확인</li>
+<li class="kp-item">겐신이라는 동방의 영주가 서방에서도 숭배되는 권위자로 부상</li>
+<li class="kp-item">미글랜스 왕이 동방행 연락소를 알려주며 알도 일행의 여정을 공식 지원</li>
+<li class="kp-item">개변된 역사 속에서도 미글랜스 왕은 알도를 신뢰하고 있음</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch47">
@@ -1407,10 +1511,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>앗! 어? 이봐! 기다려! 잠깐, 애들아?!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 천하무적선을 타고 서방에서 동방 대륙으로 건너가는 전환점</div>
-<div class="kp-item">- 동방 대륙 도착 — 2부의 무대가 본격적으로 열림</div>
-<div class="kp-item">- 겐신, 오토하 등 동방 캐릭터들의 첫 등장 암시</div>
-<div class="kp-item">- 정체불명 인물의 독백: 사라진 나라에 대한 복선</div>
+<ul class="kp-list">
+<li class="kp-item">천하무적선을 타고 서방에서 동방 대륙으로 건너가는 전환점</li>
+<li class="kp-item">동방 대륙 도착 — 2부의 무대가 본격적으로 열림</li>
+<li class="kp-item">겐신, 오토하 등 동방 캐릭터들의 첫 등장 암시</li>
+<li class="kp-item">정체불명 인물의 독백: 사라진 나라에 대한 복선</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch48">
@@ -1427,11 +1533,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">냥지로</span>그런 당신께 고양이 신께서 내리신 축복의 선물을 드리겠습니다요.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 이자나 — 동방의 중심 도시로서 문화적 차이(신발, 주먹밥, 목도 등)를 체감</div>
-<div class="kp-item">- 미카와 키요스케 남매 첫 등장 — 이후 스토리의 중요 인물</div>
-<div class="kp-item">- 오우거 바론의 재등장: 1부 적이 동방에서 새 삶을 살고 있는 유머러스한 전개</div>
-<div class="kp-item">- 고양이 신의 사자 냥지로 등장 — 오토하와 고양이 신 계보 확장</div>
-<div class="kp-item">- 츠키하와 츠바메의 귀환을 의미심장하게 바라보는 마을 소녀 — 복선</div>
+<ul class="kp-list">
+<li class="kp-item">이자나 — 동방의 중심 도시로서 문화적 차이(신발, 주먹밥, 목도 등)를 체감</li>
+<li class="kp-item">미카와 키요스케 남매 첫 등장 — 이후 스토리의 중요 인물</li>
+<li class="kp-item">오우거 바론의 재등장: 1부 적이 동방에서 새 삶을 살고 있는 유머러스한 전개</li>
+<li class="kp-item">고양이 신의 사자 냥지로 등장 — 오토하와 고양이 신 계보 확장</li>
+<li class="kp-item">츠키하와 츠바메의 귀환을 의미심장하게 바라보는 마을 소녀 — 복선</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch49">
@@ -1444,10 +1552,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>네, 맡겨 두세요.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 키요스케와 미카 남매가 알도 일행과 유대를 형성하는 계기</div>
-<div class="kp-item">- 미카 유괴 사건 — 동방의 치안 불안과 거상 가문의 배경 암시</div>
-<div class="kp-item">- 리이카의 256% 확률 분석 — 특유의 유머러스한 과학적 추정</div>
-<div class="kp-item">- 알도의 즉각적인 구출 결심이 이후 류노신 가문과의 인연으로 이어짐</div>
+<ul class="kp-list">
+<li class="kp-item">키요스케와 미카 남매가 알도 일행과 유대를 형성하는 계기</li>
+<li class="kp-item">미카 유괴 사건 — 동방의 치안 불안과 거상 가문의 배경 암시</li>
+<li class="kp-item">리이카의 256% 확률 분석 — 특유의 유머러스한 과학적 추정</li>
+<li class="kp-item">알도의 즉각적인 구출 결심이 이후 류노신 가문과의 인연으로 이어짐</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch50">
@@ -1461,10 +1571,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">츠바메</span>지금 무슨 수를 쓰지 않으면 엄청난 일이 벌어질 거야!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 류노신 — 동방의 거상이자 무인으로, 알도 일행의 든든한 후원자가 됨</div>
-<div class="kp-item">- 겐신을 만나기 위한 소개장 획득 — 스토리 진행의 핵심 열쇠</div>
-<div class="kp-item">- 카모메와 츠바메의 밀담: 닌자 조직의 배신과 추격이라는 서브플롯 개시</div>
-<div class="kp-item">- 류노신의 미카 신랑 농담 — 동방 특유의 호쾌한 인정미 표현</div>
+<ul class="kp-list">
+<li class="kp-item">류노신 — 동방의 거상이자 무인으로, 알도 일행의 든든한 후원자가 됨</li>
+<li class="kp-item">겐신을 만나기 위한 소개장 획득 — 스토리 진행의 핵심 열쇠</li>
+<li class="kp-item">카모메와 츠바메의 밀담: 닌자 조직의 배신과 추격이라는 서브플롯 개시</li>
+<li class="kp-item">류노신의 미카 신랑 농담 — 동방 특유의 호쾌한 인정미 표현</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch51">
@@ -1484,11 +1596,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>좋아! 자, 가자. 요마의 궁전으로!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 겐신 — 익살스러우면서도 무언가를 숨기고 있는 복합적 캐릭터</div>
-<div class="kp-item">- 요마 박면귀 습격과 팬텀의 등장: 동방에서도 시간 관련 위협이 활동 중</div>
-<div class="kp-item">- 가넬리 — 용의 땅의 젊은 황제로, 요마 문제 해결을 알도에게 의뢰</div>
-<div class="kp-item">- 츠바메의 수상한 이탈 행동이 이후 배신 장면의 복선</div>
-<div class="kp-item">- 소돼지 찐빵 에피소드: 도술로 음식을 만드는 동방 특유의 문화 묘사</div>
+<ul class="kp-list">
+<li class="kp-item">겐신 — 익살스러우면서도 무언가를 숨기고 있는 복합적 캐릭터</li>
+<li class="kp-item">요마 박면귀 습격과 팬텀의 등장: 동방에서도 시간 관련 위협이 활동 중</li>
+<li class="kp-item">가넬리 — 용의 땅의 젊은 황제로, 요마 문제 해결을 알도에게 의뢰</li>
+<li class="kp-item">츠바메의 수상한 이탈 행동이 이후 배신 장면의 복선</li>
+<li class="kp-item">소돼지 찐빵 에피소드: 도술로 음식을 만드는 동방 특유의 문화 묘사</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch52">
@@ -1501,10 +1615,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">피네</span>츠바메 씨와 카모메 씨. 똑같이 생겼다고 생각했는데……</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 츠바메의 배신 — 알도 일행을 함정으로 유인한 충격적 전개</div>
-<div class="kp-item">- 카모메와 츠바메가 쌍둥이 닌자임이 밝혀짐</div>
-<div class="kp-item">- 50장에서의 카모메-츠바메 밀담이 이 배신의 복선이었음을 확인</div>
-<div class="kp-item">- 닌자 조직 내부의 갈등이 본격적으로 드러나기 시작</div>
+<ul class="kp-list">
+<li class="kp-item">츠바메의 배신 — 알도 일행을 함정으로 유인한 충격적 전개</li>
+<li class="kp-item">카모메와 츠바메가 쌍둥이 닌자임이 밝혀짐</li>
+<li class="kp-item">50장에서의 카모메-츠바메 밀담이 이 배신의 복선이었음을 확인</li>
+<li class="kp-item">닌자 조직 내부의 갈등이 본격적으로 드러나기 시작</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch53">
@@ -1514,9 +1630,11 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 단풍 부채 — 닌자 조직의 전설적 보물로 스토리의 맥거핀 역할</div>
-<div class="kp-item">- 츠바메의 배신이 진짜인지 위장인지 독자의 의문을 유지</div>
-<div class="kp-item">- 카모메와 츠바메, 쌍둥이 닌자의 복잡한 충성심이 교차</div>
+<ul class="kp-list">
+<li class="kp-item">단풍 부채 — 닌자 조직의 전설적 보물로 스토리의 맥거핀 역할</li>
+<li class="kp-item">츠바메의 배신이 진짜인지 위장인지 독자의 의문을 유지</li>
+<li class="kp-item">카모메와 츠바메, 쌍둥이 닌자의 복잡한 충성심이 교차</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch54">
@@ -1527,10 +1645,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">카모메 &amp;amp; 츠바메</span>내 정의여, 지금 일어서라! 내 목숨과 맞바꿔……!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 아마토 섬 — 시간의 여신과 관련된 신성한 장소로의 진입</div>
-<div class="kp-item">- 츠키하와 스자쿠의 관계가 본격적으로 묘사되기 시작</div>
-<div class="kp-item">- 지라이야 — 스자쿠가 동원한 거대 기계 병기</div>
-<div class="kp-item">- 카모메와 츠바메의 합동 기술이 위기를 돌파하는 핵심 전력</div>
+<ul class="kp-list">
+<li class="kp-item">아마토 섬 — 시간의 여신과 관련된 신성한 장소로의 진입</li>
+<li class="kp-item">츠키하와 스자쿠의 관계가 본격적으로 묘사되기 시작</li>
+<li class="kp-item">지라이야 — 스자쿠가 동원한 거대 기계 병기</li>
+<li class="kp-item">카모메와 츠바메의 합동 기술이 위기를 돌파하는 핵심 전력</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch55">
@@ -1543,10 +1663,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">스자쿠</span>알도…… 너희들과는 이런 상황이 아닌!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 카모메와 츠바메의 합심이 지라이야를 저지하는 결정적 장면</div>
-<div class="kp-item">- 태엽 사무라이: 죽은 자의 혼을 이용한 비인도적 병기</div>
-<div class="kp-item">- 스자쿠의 퇴장 — 적이지만 명예로운 무인으로서의 최후</div>
-<div class="kp-item">- 츠키하의 갈등: 사랑하는 이를 막아야 하는 비극적 역할</div>
+<ul class="kp-list">
+<li class="kp-item">카모메와 츠바메의 합심이 지라이야를 저지하는 결정적 장면</li>
+<li class="kp-item">태엽 사무라이: 죽은 자의 혼을 이용한 비인도적 병기</li>
+<li class="kp-item">스자쿠의 퇴장 — 적이지만 명예로운 무인으로서의 최후</li>
+<li class="kp-item">츠키하의 갈등: 사랑하는 이를 막아야 하는 비극적 역할</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch56">
@@ -1560,11 +1682,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알테나</span>내가 곁에 있어 줄게.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 바레스의 일상 에피소드: 서방에서 대기 중인 동료들의 소식</div>
-<div class="kp-item">- 팬텀의 시공 이동으로 가다로 근처(과거 또는 다른 시대)에 도착</div>
-<div class="kp-item">- 정령수의 폭주 — 시공 지진의 영향이 자연 존재에까지 미침</div>
-<div class="kp-item">- 알테나(지오 앙길라스)의 등장이 전투의 전환점</div>
-<div class="kp-item">- 피네와 알테나 사이의 마음 연결이라는 중요한 설정 제시</div>
+<ul class="kp-list">
+<li class="kp-item">바레스의 일상 에피소드: 서방에서 대기 중인 동료들의 소식</li>
+<li class="kp-item">팬텀의 시공 이동으로 가다로 근처(과거 또는 다른 시대)에 도착</li>
+<li class="kp-item">정령수의 폭주 — 시공 지진의 영향이 자연 존재에까지 미침</li>
+<li class="kp-item">알테나(지오 앙길라스)의 등장이 전투의 전환점</li>
+<li class="kp-item">피네와 알테나 사이의 마음 연결이라는 중요한 설정 제시</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch57">
@@ -1580,11 +1704,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">사이러스</span>이 또한 히미카 님의 빗이 우리를 인도해 준 것일지도 모르오.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 반과 히미카의 과거 회상: 거울 선물과 미래에 대한 불길한 예언</div>
-<div class="kp-item">- 히미카 실종 — 가다로의 귀도의 여왕이 사라진 미스터리</div>
-<div class="kp-item">- 알테나와 정령수의 유대 형성: 자연과 인간의 연결이라는 테마</div>
-<div class="kp-item">- 테츠지를 통해 반-사이러스-히미카의 과거 관계가 심화</div>
-<div class="kp-item">- 시공의 터널: 고대에서 미래로 이어지는 불안정한 시공간</div>
+<ul class="kp-list">
+<li class="kp-item">반과 히미카의 과거 회상: 거울 선물과 미래에 대한 불길한 예언</li>
+<li class="kp-item">히미카 실종 — 가다로의 귀도의 여왕이 사라진 미스터리</li>
+<li class="kp-item">알테나와 정령수의 유대 형성: 자연과 인간의 연결이라는 테마</li>
+<li class="kp-item">테츠지를 통해 반-사이러스-히미카의 과거 관계가 심화</li>
+<li class="kp-item">시공의 터널: 고대에서 미래로 이어지는 불안정한 시공간</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch58">
@@ -1601,11 +1727,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알테나</span>그러니 걱정하지 마. 우린 이제 영원한 친구니까.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 짐단 — 살아 움직이는 짚 인형이라는 독특한 동방 문화 소개</div>
-<div class="kp-item">- 짐돌이 탄생: 전설적 존재로 알도 일행의 동료가 됨</div>
-<div class="kp-item">- 반과의 재회: 연옥계에서 아마기리마루를 사이러스에게 위임</div>
-<div class="kp-item">- 곤쥬로의 거울 폭주: 히미카의 거울이 가진 위험한 힘의 복선</div>
-<div class="kp-item">- 으리으리 님 — 우쿨렐레와 유사한 기묘한 존재로 유머 요소 제공</div>
+<ul class="kp-list">
+<li class="kp-item">짐단 — 살아 움직이는 짚 인형이라는 독특한 동방 문화 소개</li>
+<li class="kp-item">짐돌이 탄생: 전설적 존재로 알도 일행의 동료가 됨</li>
+<li class="kp-item">반과의 재회: 연옥계에서 아마기리마루를 사이러스에게 위임</li>
+<li class="kp-item">곤쥬로의 거울 폭주: 히미카의 거울이 가진 위험한 힘의 복선</li>
+<li class="kp-item">으리으리 님 — 우쿨렐레와 유사한 기묘한 존재로 유머 요소 제공</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch59">
@@ -1622,11 +1750,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">길드너</span>너라면 틀림없이 그렇게 말할 줄 알았어.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 곤쥬로 괴물화: 히미카의 거울이 자아를 삼키는 위험성의 극단적 표현</div>
-<div class="kp-item">- 미래의 오염된 대지 — 프리즈마 오염이 가져올 세계의 종말적 미래상</div>
-<div class="kp-item">- 앙가르 마을: 미래에도 살아남은 마수족의 공동체</div>
-<div class="kp-item">- 키코 등장: 엘리멘탈 감지 능력을 가진 미래의 핵심 인물</div>
-<div class="kp-item">- 알테나의 정령 계승과 정식 파티 합류 — 전력 강화의 전환점</div>
+<ul class="kp-list">
+<li class="kp-item">곤쥬로 괴물화: 히미카의 거울이 자아를 삼키는 위험성의 극단적 표현</li>
+<li class="kp-item">미래의 오염된 대지 — 프리즈마 오염이 가져올 세계의 종말적 미래상</li>
+<li class="kp-item">앙가르 마을: 미래에도 살아남은 마수족의 공동체</li>
+<li class="kp-item">키코 등장: 엘리멘탈 감지 능력을 가진 미래의 핵심 인물</li>
+<li class="kp-item">알테나의 정령 계승과 정식 파티 합류 — 전력 강화의 전환점</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch60">
@@ -1640,10 +1770,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">캄라녜쥬</span>너희도 같이 갈래? 앙가르 외곽에 클랜 십을 준비해 놨어.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 시간의 꿈의 책 — 예언서이자 디바이스로서의 이중적 성격</div>
-<div class="kp-item">- 사귀족: 미래 시대에서 앙가르를 위협하는 적대 세력</div>
-<div class="kp-item">- 크로노 클랜의 ESP가 오염된 대지에서 불안정해지는 설정</div>
-<div class="kp-item">- 알도 일행이 클랜의 거점으로 향하며 공중 성곽 이지아 편으로 연결</div>
+<ul class="kp-list">
+<li class="kp-item">시간의 꿈의 책 — 예언서이자 디바이스로서의 이중적 성격</li>
+<li class="kp-item">사귀족: 미래 시대에서 앙가르를 위협하는 적대 세력</li>
+<li class="kp-item">크로노 클랜의 ESP가 오염된 대지에서 불안정해지는 설정</li>
+<li class="kp-item">알도 일행이 클랜의 거점으로 향하며 공중 성곽 이지아 편으로 연결</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch61">
@@ -1656,10 +1788,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">피네</span>이런 훌륭한 교회가 거점이라니…… 크로노 클랜은 굉장하구나.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 공중 성곽 이지아 — 제노 프리즈마 기술로 건설된 천공의 거점</div>
-<div class="kp-item">- 크로노 클랜의 거점이 시간의 여신의 신교회임이 밝혀짐</div>
-<div class="kp-item">- KMS사의 자동 방어 레이저 — 이후 침입 작전의 장애물로 등장</div>
-<div class="kp-item">- 알도가 클랜 가입을 거절하면서도 협력 관계는 유지</div>
+<ul class="kp-list">
+<li class="kp-item">공중 성곽 이지아 — 제노 프리즈마 기술로 건설된 천공의 거점</li>
+<li class="kp-item">크로노 클랜의 거점이 시간의 여신의 신교회임이 밝혀짐</li>
+<li class="kp-item">KMS사의 자동 방어 레이저 — 이후 침입 작전의 장애물로 등장</li>
+<li class="kp-item">알도가 클랜 가입을 거절하면서도 협력 관계는 유지</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch62">
@@ -1675,10 +1809,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">린도</span>딸을…… 키코를 건드리면 가만두지 않겠다. 무슨 일이 있더라도 말이지……!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 키코의 아버지 린도 = 오백 광년의 귀신 — 충격적 정체 공개</div>
-<div class="kp-item">- 린도의 특수 능력: 뿔이 만드는 전자기장으로 합성인간을 무력화</div>
-<div class="kp-item">- 데라메어와 린도의 거래: 키코를 지키기 위한 아버지의 자발적 투옥</div>
-<div class="kp-item">- 크로노스 박사 부부와 린도의 과거 인연이 암시됨</div>
+<ul class="kp-list">
+<li class="kp-item">키코의 아버지 린도 = 오백 광년의 귀신 — 충격적 정체 공개</li>
+<li class="kp-item">린도의 특수 능력: 뿔이 만드는 전자기장으로 합성인간을 무력화</li>
+<li class="kp-item">데라메어와 린도의 거래: 키코를 지키기 위한 아버지의 자발적 투옥</li>
+<li class="kp-item">크로노스 박사 부부와 린도의 과거 인연이 암시됨</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch63">
@@ -1690,10 +1826,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">길드너</span>쳇…… KMS사의 합성닌자로군. 우리를 미행한 건가?</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 시간의 꿈의 책 = 디바이스(단말 기기)라는 핵심 정보 해독</div>
-<div class="kp-item">- 세 개의 이름, 누이의 희망 — 알도를 가리키는 예언적 문구</div>
-<div class="kp-item">- KMS사의 합성닌자가 책을 탈취: KMS사가 본격적 적대 세력으로 부상</div>
-<div class="kp-item">- 크로노스 박사와 린도의 과거 관계가 구체화</div>
+<ul class="kp-list">
+<li class="kp-item">시간의 꿈의 책 = 디바이스(단말 기기)라는 핵심 정보 해독</li>
+<li class="kp-item">세 개의 이름, 누이의 희망 — 알도를 가리키는 예언적 문구</li>
+<li class="kp-item">KMS사의 합성닌자가 책을 탈취: KMS사가 본격적 적대 세력으로 부상</li>
+<li class="kp-item">크로노스 박사와 린도의 과거 관계가 구체화</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch64">
@@ -1706,10 +1844,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>에이미 목소리잖아……? 이게 대체 무슨 짓이야……</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 리 아 발크가 일시적 협력자로 합류 — 복잡한 이해관계</div>
-<div class="kp-item">- KMS 동방 지부 이중 침입 작전: 호버 보드와 레이저 회피</div>
-<div class="kp-item">- 에이미 목소리 위장 방송: KMS사의 기묘한 내부 체계</div>
-<div class="kp-item">- 두 팀 분리 후 합류 — 팀워크 중심의 잠입 전개</div>
+<ul class="kp-list">
+<li class="kp-item">리 아 발크가 일시적 협력자로 합류 — 복잡한 이해관계</li>
+<li class="kp-item">KMS 동방 지부 이중 침입 작전: 호버 보드와 레이저 회피</li>
+<li class="kp-item">에이미 목소리 위장 방송: KMS사의 기묘한 내부 체계</li>
+<li class="kp-item">두 팀 분리 후 합류 — 팀워크 중심의 잠입 전개</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch65">
@@ -1721,9 +1861,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">사이러스</span>이 압도적인 내세의 감각…… 넘쳐흐를 듯한 종말의 기운……!!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 데라메어의 요새 = KMS 동방 지부의 최심부</div>
-<div class="kp-item">- 미륵 디저스터: 데라메어가 소환한 동방 극홍의 수호신</div>
-<div class="kp-item">- 키코의 복수심: 린도를 가두었던 데라메어에 대한 분노</div>
+<ul class="kp-list">
+<li class="kp-item">데라메어의 요새 = KMS 동방 지부의 최심부</li>
+<li class="kp-item">미륵 디저스터: 데라메어가 소환한 동방 극홍의 수호신</li>
+<li class="kp-item">키코의 복수심: 린도를 가두었던 데라메어에 대한 분노</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch66">
@@ -1739,10 +1881,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>주목할 만한 다음 움직임이 파악될 때까지 다른 단서를 쫓자.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 어나더 에덴 — 알도가 시간의 꿈의 책을 기동시키는 핵심 키워드</div>
-<div class="kp-item">- 시간의 소녀 = 마도카 박사 = 히미카: 충격적 삼중 정체 공개</div>
-<div class="kp-item">- 시간의 여신의 교회가 잠시 부활했다가 다시 사라지는 불안정한 상태</div>
-<div class="kp-item">- 크로노 클랜, KMS사 등 각 세력이 이 사태에 반응하며 긴장 고조</div>
+<ul class="kp-list">
+<li class="kp-item">어나더 에덴 — 알도가 시간의 꿈의 책을 기동시키는 핵심 키워드</li>
+<li class="kp-item">시간의 소녀 = 마도카 박사 = 히미카: 충격적 삼중 정체 공개</li>
+<li class="kp-item">시간의 여신의 교회가 잠시 부활했다가 다시 사라지는 불안정한 상태</li>
+<li class="kp-item">크로노 클랜, KMS사 등 각 세력이 이 사태에 반응하며 긴장 고조</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch67">
@@ -1758,11 +1902,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">히미카(마도카)</span>마도카의 바람은 잃어버린 에덴을 부활시키고 남겨진 가족들의 품으로 돌아가는 겁니다.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 히미카 = 마도카 = 시간의 소녀: 세 정체가 하나의 인물임을 최종 확인</div>
-<div class="kp-item">- 거대 시공 지진으로 히미카가 시간 속에 떠도는 비극적 경위</div>
-<div class="kp-item">- 원의 보옥: 노포우족이 모은 기록 장치로 에덴 부활의 핵심</div>
-<div class="kp-item">- 마도카/히미카의 궁극적 목표: 잃어버린 에덴 부활과 가족 재회</div>
-<div class="kp-item">- 피네에게 어머니와의 재회라는 개인적 감정선이 깊어짐</div>
+<ul class="kp-list">
+<li class="kp-item">히미카 = 마도카 = 시간의 소녀: 세 정체가 하나의 인물임을 최종 확인</li>
+<li class="kp-item">거대 시공 지진으로 히미카가 시간 속에 떠도는 비극적 경위</li>
+<li class="kp-item">원의 보옥: 노포우족이 모은 기록 장치로 에덴 부활의 핵심</li>
+<li class="kp-item">마도카/히미카의 궁극적 목표: 잃어버린 에덴 부활과 가족 재회</li>
+<li class="kp-item">피네에게 어머니와의 재회라는 개인적 감정선이 깊어짐</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch68">
@@ -1778,11 +1924,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>무슨 일이 있어도 꼭 돌아올게요! 약속해요!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 팬텀 네오: 오우거베인과의 공진 현상으로 신의 능묘가 출현</div>
-<div class="kp-item">- 신의 능묘 — 긴 싸움 끝에 잠든 신들의 무덤이 바다에서 솟아오름</div>
-<div class="kp-item">- 시간의 여신의 교회가 어둠의 차원으로 소멸 — 2부 최대 위기</div>
-<div class="kp-item">- 히미카(마도카)가 교회와 함께 어둠 속으로 사라지며 피네의 슬픔 고조</div>
-<div class="kp-item">- 소케라의 재등장: 요마 세력의 배후 존재</div>
+<ul class="kp-list">
+<li class="kp-item">팬텀 네오: 오우거베인과의 공진 현상으로 신의 능묘가 출현</li>
+<li class="kp-item">신의 능묘 — 긴 싸움 끝에 잠든 신들의 무덤이 바다에서 솟아오름</li>
+<li class="kp-item">시간의 여신의 교회가 어둠의 차원으로 소멸 — 2부 최대 위기</li>
+<li class="kp-item">히미카(마도카)가 교회와 함께 어둠 속으로 사라지며 피네의 슬픔 고조</li>
+<li class="kp-item">소케라의 재등장: 요마 세력의 배후 존재</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch69">
@@ -1796,11 +1944,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">네코마샤</span>축제 준비가 무사히 끝날 수 있도록 당분간 마을 사람들을 도와줄 수 있겠나?</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 이토이스 — 요마들이 숨어 사는 눈 덮인 마을</div>
-<div class="kp-item">- 텀텀: 요마 소년으로 글래스터 연성의 수습 도공</div>
-<div class="kp-item">- 네코마샤: 고양이 도공이자 텀텀의 스승, 새로운 전력 강화 시스템 제공</div>
-<div class="kp-item">- 쇼케라의 본거지 정보 입수 — 요마 삼인방의 과거 거처</div>
-<div class="kp-item">- 성혼제: 요마 마을의 전통 축제로, 다음 장의 감성적 에피소드로 연결</div>
+<ul class="kp-list">
+<li class="kp-item">이토이스 — 요마들이 숨어 사는 눈 덮인 마을</li>
+<li class="kp-item">텀텀: 요마 소년으로 글래스터 연성의 수습 도공</li>
+<li class="kp-item">네코마샤: 고양이 도공이자 텀텀의 스승, 새로운 전력 강화 시스템 제공</li>
+<li class="kp-item">쇼케라의 본거지 정보 입수 — 요마 삼인방의 과거 거처</li>
+<li class="kp-item">성혼제: 요마 마을의 전통 축제로, 다음 장의 감성적 에피소드로 연결</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch70">
@@ -1819,11 +1969,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">츠키하</span>고마워, 스자쿠……</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 지장보살 순례: 선악 판별의 시험이자 알도의 인성을 증명하는 에피소드</div>
-<div class="kp-item">- 눈사람 만들기: 각 캐릭터의 개성이 드러나는 따뜻한 일상 장면</div>
-<div class="kp-item">- 유키노 — 눈사람에서 깨어난 존재로 츠키하와의 인연이 시작</div>
-<div class="kp-item">- 스자쿠의 혼과 츠키하의 재회: 성혼제의 전설이 현실이 되는 감동적 순간</div>
-<div class="kp-item">- 피네의 축제 즐기기: 힘든 여정 속 잠시 쉬어가는 인간적 장면</div>
+<ul class="kp-list">
+<li class="kp-item">지장보살 순례: 선악 판별의 시험이자 알도의 인성을 증명하는 에피소드</li>
+<li class="kp-item">눈사람 만들기: 각 캐릭터의 개성이 드러나는 따뜻한 일상 장면</li>
+<li class="kp-item">유키노 — 눈사람에서 깨어난 존재로 츠키하와의 인연이 시작</li>
+<li class="kp-item">스자쿠의 혼과 츠키하의 재회: 성혼제의 전설이 현실이 되는 감동적 순간</li>
+<li class="kp-item">피네의 축제 즐기기: 힘든 여정 속 잠시 쉬어가는 인간적 장면</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch71">
@@ -1839,10 +1991,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">사이러스</span>에이미의 부친께서 도와주신 덕도 있소.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 무투파 요마의 얼음 결계: 황궁 진입을 가로막는 강력한 방어 장치</div>
-<div class="kp-item">- 파사의 화살: 네코마샤의 도공 기술 + 자올의 대장장이 기술의 합작</div>
-<div class="kp-item">- 유키노의 활 사용: 츠키하 대신 화살을 쏘는 역할 담당</div>
-<div class="kp-item">- 거울을 이용한 공간 전환 퍼즐 — 황궁 내부의 독특한 기믹</div>
+<ul class="kp-list">
+<li class="kp-item">무투파 요마의 얼음 결계: 황궁 진입을 가로막는 강력한 방어 장치</li>
+<li class="kp-item">파사의 화살: 네코마샤의 도공 기술 + 자올의 대장장이 기술의 합작</li>
+<li class="kp-item">유키노의 활 사용: 츠키하 대신 화살을 쏘는 역할 담당</li>
+<li class="kp-item">거울을 이용한 공간 전환 퍼즐 — 황궁 내부의 독특한 기믹</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch72">
@@ -1858,11 +2012,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>말도 안 되는 소리! 그렇게까지 싸우고 싶다면 상대해 주겠어!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 소케라의 심리전: 츠키하 어머니가 조국의 원수라는 폭로</div>
-<div class="kp-item">- 유키노의 선언: 자유의지로 인간 편에 서겠다는 결의</div>
-<div class="kp-item">- 신의 능묘: 신들이 영원한 잠에 빠진 무덤이 복수 존재</div>
-<div class="kp-item">- 겐신과 가넬리의 실종 — 자바르 장군이 알도를 체포하는 클리프행어</div>
-<div class="kp-item">- 2부 마무리: 교회의 소멸, 신의 능묘, 영주 실종이라는 삼중 위기로 3부 연결</div>
+<ul class="kp-list">
+<li class="kp-item">소케라의 심리전: 츠키하 어머니가 조국의 원수라는 폭로</li>
+<li class="kp-item">유키노의 선언: 자유의지로 인간 편에 서겠다는 결의</li>
+<li class="kp-item">신의 능묘: 신들이 영원한 잠에 빠진 무덤이 복수 존재</li>
+<li class="kp-item">겐신과 가넬리의 실종 — 자바르 장군이 알도를 체포하는 클리프행어</li>
+<li class="kp-item">2부 마무리: 교회의 소멸, 신의 능묘, 영주 실종이라는 삼중 위기로 3부 연결</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch73">
@@ -1885,10 +2041,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 꼭두각시 공주가 병사들을 물리치며 자신의 강력한 힘과 충성심을 증명한다</div>
-<div class="kp-item">- 꼭두각시 공주는 자신의 정체성과 존재 이유에 대한 깊은 고뇌를 드러낸다</div>
-<div class="kp-item">- &ldquo;히이나&rdquo;라는 이름이 언급되며 공주의 과거에 대한 단서가 제시된다</div>
-<div class="kp-item">- 합성귀룡 세바스가 KMS의 위협적인 동향을 알려주고, 일행은 미래로 향한다</div>
+<ul class="kp-list">
+<li class="kp-item">꼭두각시 공주가 병사들을 물리치며 자신의 강력한 힘과 충성심을 증명한다</li>
+<li class="kp-item">꼭두각시 공주는 자신의 정체성과 존재 이유에 대한 깊은 고뇌를 드러낸다</li>
+<li class="kp-item">&ldquo;히이나&rdquo;라는 이름이 언급되며 공주의 과거에 대한 단서가 제시된다</li>
+<li class="kp-item">합성귀룡 세바스가 KMS의 위협적인 동향을 알려주고, 일행은 미래로 향한다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch74">
@@ -1905,9 +2063,11 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- KMS가 클랜을 테러리스트로 몰아 새틀라이트 스타디움에서 함정을 구상 중</div>
-<div class="kp-item">- 클러그혼과 밀디가 스타디움에 있으며 위험에 처해 있다</div>
-<div class="kp-item">- 알도 일행이 에어십을 타고 스타디움으로 급행한다</div>
+<ul class="kp-list">
+<li class="kp-item">KMS가 클랜을 테러리스트로 몰아 새틀라이트 스타디움에서 함정을 구상 중</li>
+<li class="kp-item">클러그혼과 밀디가 스타디움에 있으며 위험에 처해 있다</li>
+<li class="kp-item">알도 일행이 에어십을 타고 스타디움으로 급행한다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch75">
@@ -1930,10 +2090,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 데라메어가 스타디움의 중력 제어 시스템을 파괴하여 추락 위기를 일으킨다</div>
-<div class="kp-item">- &lsquo;오너&rsquo;라는 인물이 처음 등장하여 알도를 구한다</div>
-<div class="kp-item">- 캄라녜쥬가 음악의 힘으로 모두의 마음을 하나로 모아 기적을 일으킨다</div>
-<div class="kp-item">- 혼의 나선율이라는 중요한 개념이 언급된다</div>
+<ul class="kp-list">
+<li class="kp-item">데라메어가 스타디움의 중력 제어 시스템을 파괴하여 추락 위기를 일으킨다</li>
+<li class="kp-item">&lsquo;오너&rsquo;라는 인물이 처음 등장하여 알도를 구한다</li>
+<li class="kp-item">캄라녜쥬가 음악의 힘으로 모두의 마음을 하나로 모아 기적을 일으킨다</li>
+<li class="kp-item">혼의 나선율이라는 중요한 개념이 언급된다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch76">
@@ -1953,10 +2115,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 오너와 몽견관의 주인이 각각 미래의 알도(아저씨/할아버지)임이 밝혀진다</div>
-<div class="kp-item">- 애쉬티어가 등장하며, 시공 이동 장치의 개발자로 소개된다</div>
-<div class="kp-item">- 마도카와 에덴의 행방은 여전히 불명이나, 교회와 히미카는 안전한 듯</div>
-<div class="kp-item">- 일행의 다음 목적지가 명협계로 결정된다</div>
+<ul class="kp-list">
+<li class="kp-item">오너와 몽견관의 주인이 각각 미래의 알도(아저씨/할아버지)임이 밝혀진다</li>
+<li class="kp-item">애쉬티어가 등장하며, 시공 이동 장치의 개발자로 소개된다</li>
+<li class="kp-item">마도카와 에덴의 행방은 여전히 불명이나, 교회와 히미카는 안전한 듯</li>
+<li class="kp-item">일행의 다음 목적지가 명협계로 결정된다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch77">
@@ -1983,11 +2147,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 타이탄족의 마을 파도르가 발견되며, 지모신과 명왕신의 태고 전쟁이 배경으로 제시된다</div>
-<div class="kp-item">- 가람배럴은 &ldquo;도깨비의 아이&rdquo;로 타이탄 중 유일하게 인간과 비슷한 체구를 지닌다</div>
-<div class="kp-item">- &ldquo;거울 같은 자&rdquo;의 전설이 알도 일행과 가람의 운명을 암시한다</div>
-<div class="kp-item">- 가람과 젤드바리스의 깊은 우정이 묘사되며, 가람은 자신의 운명을 받아들인다</div>
-<div class="kp-item">- 명협계의 문을 열기 위한 준비가 완료되어 귀화 동굴로 향한다</div>
+<ul class="kp-list">
+<li class="kp-item">타이탄족의 마을 파도르가 발견되며, 지모신과 명왕신의 태고 전쟁이 배경으로 제시된다</li>
+<li class="kp-item">가람배럴은 &ldquo;도깨비의 아이&rdquo;로 타이탄 중 유일하게 인간과 비슷한 체구를 지닌다</li>
+<li class="kp-item">&ldquo;거울 같은 자&rdquo;의 전설이 알도 일행과 가람의 운명을 암시한다</li>
+<li class="kp-item">가람과 젤드바리스의 깊은 우정이 묘사되며, 가람은 자신의 운명을 받아들인다</li>
+<li class="kp-item">명협계의 문을 열기 위한 준비가 완료되어 귀화 동굴로 향한다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch78">
@@ -2007,10 +2173,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 명협계는 신비롭지만 변질된 시간의 여신의 교회가 존재한다</div>
-<div class="kp-item">- 혼돈의 아이라는 존재가 안개를 걷기 위한 물방울 퀘스트를 제시한다</div>
-<div class="kp-item">- 히미카가 진정한 오우거베인을 소유하고 있음이 확인된다</div>
-<div class="kp-item">- 황천의 방주가 발견되었으나 차원 오차로 인해 접근이 어렵다</div>
+<ul class="kp-list">
+<li class="kp-item">명협계는 신비롭지만 변질된 시간의 여신의 교회가 존재한다</li>
+<li class="kp-item">혼돈의 아이라는 존재가 안개를 걷기 위한 물방울 퀘스트를 제시한다</li>
+<li class="kp-item">히미카가 진정한 오우거베인을 소유하고 있음이 확인된다</li>
+<li class="kp-item">황천의 방주가 발견되었으나 차원 오차로 인해 접근이 어렵다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch79">
@@ -2079,12 +2247,14 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 시간의 여신의 교회가 명협계에 떨어져 변질 &mdash; "무언가의 의지"(능묘에 잠든 신?)에 의한 것</div>
-<div class="kp-item">- 히미카의 동기: 차원의 어둠에 삼켜진 육체를 되찾으려 함. 명협계의 혼돈에 침식되어 점차 이성 상실</div>
-<div class="kp-item">- 오우거베인의 분리: 명협계의 힘으로 "사람에게 길든 검"과 "해방된 검"으로 둘로 갈라짐</div>
-<div class="kp-item">- "프로젝트 어나더 에덴" &mdash; 작품 제목과 직결되는 계획명이 히미카의 입에서 등장</div>
-<div class="kp-item">- 황천의 방주: 차원 오차 61%로 접근 불가. 80장에서 이 오차를 줄이는 것이 과제</div>
-<div class="kp-item">- 가람배럴이 타이탄족의 피로 오우거베인을 제지하려 시도 &mdash; 80장 희생의 복선</div>
+<ul class="kp-list">
+<li class="kp-item">시간의 여신의 교회가 명협계에 떨어져 변질 &mdash; "무언가의 의지"(능묘에 잠든 신?)에 의한 것</li>
+<li class="kp-item">히미카의 동기: 차원의 어둠에 삼켜진 육체를 되찾으려 함. 명협계의 혼돈에 침식되어 점차 이성 상실</li>
+<li class="kp-item">오우거베인의 분리: 명협계의 힘으로 "사람에게 길든 검"과 "해방된 검"으로 둘로 갈라짐</li>
+<li class="kp-item">"프로젝트 어나더 에덴" &mdash; 작품 제목과 직결되는 계획명이 히미카의 입에서 등장</li>
+<li class="kp-item">황천의 방주: 차원 오차 61%로 접근 불가. 80장에서 이 오차를 줄이는 것이 과제</li>
+<li class="kp-item">가람배럴이 타이탄족의 피로 오우거베인을 제지하려 시도 &mdash; 80장 희생의 복선</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch80">
@@ -2117,11 +2287,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 가람배럴이 오우거의 저주를 흡수하여 오우거베인을 성검 파르지팔로 변환시킨다</div>
-<div class="kp-item">- 사이러스가 반의 거울을 통해 어둠에 빠진 히미카를 구해낸다</div>
-<div class="kp-item">- 에덴이 잠시 실체화하지만 팬텀에게 다시 빼앗긴다</div>
-<div class="kp-item">- 신의 능묘가 시간의 여신이 아닌 명왕신의 무덤(명왕릉)이었다는 진실이 밝혀진다</div>
-<div class="kp-item">- 피네의 성장이 두드러지며, 에덴 구출을 향한 결의가 강해진다</div>
+<ul class="kp-list">
+<li class="kp-item">가람배럴이 오우거의 저주를 흡수하여 오우거베인을 성검 파르지팔로 변환시킨다</li>
+<li class="kp-item">사이러스가 반의 거울을 통해 어둠에 빠진 히미카를 구해낸다</li>
+<li class="kp-item">에덴이 잠시 실체화하지만 팬텀에게 다시 빼앗긴다</li>
+<li class="kp-item">신의 능묘가 시간의 여신이 아닌 명왕신의 무덤(명왕릉)이었다는 진실이 밝혀진다</li>
+<li class="kp-item">피네의 성장이 두드러지며, 에덴 구출을 향한 결의가 강해진다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch81">
@@ -2143,10 +2315,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 네코코가 일행에 합류하여 박명의 섬으로 가는 안내를 맡는다</div>
-<div class="kp-item">- 낭지로가 능묘의 봉인에 관한 중요 정보를 전달한다</div>
-<div class="kp-item">- 지하수도의 뗏목 여정에서 가람, 사이러스, 길드너의 호전적 유대가 형성된다</div>
-<div class="kp-item">- 낭지로의 배웅 장면에서 네코코에 대한 깊은 애정이 드러난다</div>
+<ul class="kp-list">
+<li class="kp-item">네코코가 일행에 합류하여 박명의 섬으로 가는 안내를 맡는다</li>
+<li class="kp-item">낭지로가 능묘의 봉인에 관한 중요 정보를 전달한다</li>
+<li class="kp-item">지하수도의 뗏목 여정에서 가람, 사이러스, 길드너의 호전적 유대가 형성된다</li>
+<li class="kp-item">낭지로의 배웅 장면에서 네코코에 대한 깊은 애정이 드러난다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch82">
@@ -2169,10 +2343,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 겐신이 명왕릉의 독기에 중독되어 광기를 보이며 제압당한다</div>
-<div class="kp-item">- 네코코가 사람 표식의 관과 짐승 표식의 관을 연달아 봉인한다</div>
-<div class="kp-item">- 가넬리가 알도의 정체성(고양이)을 이용해 유혹하지만 피네 덕에 극복한다</div>
-<div class="kp-item">- 일행 각자의 출신과 정체성이 다양함에도 힘을 합치는 유대가 강조된다</div>
+<ul class="kp-list">
+<li class="kp-item">겐신이 명왕릉의 독기에 중독되어 광기를 보이며 제압당한다</li>
+<li class="kp-item">네코코가 사람 표식의 관과 짐승 표식의 관을 연달아 봉인한다</li>
+<li class="kp-item">가넬리가 알도의 정체성(고양이)을 이용해 유혹하지만 피네 덕에 극복한다</li>
+<li class="kp-item">일행 각자의 출신과 정체성이 다양함에도 힘을 합치는 유대가 강조된다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch83">
@@ -2196,10 +2372,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 알도와 피네가 꿈속에서 에덴과 교감하며, 에덴의 고독과 절망을 직접 느낀다</div>
-<div class="kp-item">- 팬텀 에덴과의 대결 끝에 에덴이 일시적으로 해방된다</div>
-<div class="kp-item">- 관이 처음부터 비어 있었으며, 명왕릉 자체가 신의 관이라는 충격적 진실이 드러난다</div>
-<div class="kp-item">- 어둠의 소용돌이에 삼켜질 위기가 발생하며 절체절명의 상황이 전개된다</div>
+<ul class="kp-list">
+<li class="kp-item">알도와 피네가 꿈속에서 에덴과 교감하며, 에덴의 고독과 절망을 직접 느낀다</li>
+<li class="kp-item">팬텀 에덴과의 대결 끝에 에덴이 일시적으로 해방된다</li>
+<li class="kp-item">관이 처음부터 비어 있었으며, 명왕릉 자체가 신의 관이라는 충격적 진실이 드러난다</li>
+<li class="kp-item">어둠의 소용돌이에 삼켜질 위기가 발생하며 절체절명의 상황이 전개된다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch84">
@@ -2227,11 +2405,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 피네의 공명 능력으로 미글랜스 왕, 우레왕, 파르지팔 왕이 시공을 넘어 소환된다</div>
-<div class="kp-item">- 세 왕의 성검과 네코코의 봉인 기도로 명왕릉이 바다 밑으로 봉인된다</div>
-<div class="kp-item">- 마도카가 시공 사이의 공간에서 자장가와 함께 이별을 고하고, 재회를 약속한다</div>
-<div class="kp-item">- &ldquo;시간의 여신의 귀환&rdquo;이라는 향후 전개를 암시하는 예언이 등장한다</div>
-<div class="kp-item">- 2.5부의 명협계&middot;방주편이 마무리되고, 일행은 새로운 결의를 다진다</div>
+<ul class="kp-list">
+<li class="kp-item">피네의 공명 능력으로 미글랜스 왕, 우레왕, 파르지팔 왕이 시공을 넘어 소환된다</li>
+<li class="kp-item">세 왕의 성검과 네코코의 봉인 기도로 명왕릉이 바다 밑으로 봉인된다</li>
+<li class="kp-item">마도카가 시공 사이의 공간에서 자장가와 함께 이별을 고하고, 재회를 약속한다</li>
+<li class="kp-item">&ldquo;시간의 여신의 귀환&rdquo;이라는 향후 전개를 암시하는 예언이 등장한다</li>
+<li class="kp-item">2.5부의 명협계&middot;방주편이 마무리되고, 일행은 새로운 결의를 다진다</li>
+</ul>
 </div>
 </div>
 
@@ -2267,11 +2447,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 제3부 &ldquo;공허한 시층의 윤회&rdquo;편이 시작되며, 기계 생명체 &lsquo;기인&rsquo;이 사는 세계로 진입한다</div>
-<div class="kp-item">- 기인은 기종(심장)으로 살아가며, 일생이 &lsquo;배치&rsquo;로 태어날 때 정해진다</div>
-<div class="kp-item">- 시간 제국이라는 인간 군사 국가와 심장 도둑이 이 세계의 위협 요소다</div>
-<div class="kp-item">- 이 세계의 시간대가 알도 일행의 세계와 동일하다는 점이 의미심장하다</div>
-<div class="kp-item">- 오메가폴리스와 아이언 하트 방송이 향후 탐색의 단서로 제시된다</div>
+<ul class="kp-list">
+<li class="kp-item">제3부 &ldquo;공허한 시층의 윤회&rdquo;편이 시작되며, 기계 생명체 &lsquo;기인&rsquo;이 사는 세계로 진입한다</li>
+<li class="kp-item">기인은 기종(심장)으로 살아가며, 일생이 &lsquo;배치&rsquo;로 태어날 때 정해진다</li>
+<li class="kp-item">시간 제국이라는 인간 군사 국가와 심장 도둑이 이 세계의 위협 요소다</li>
+<li class="kp-item">이 세계의 시간대가 알도 일행의 세계와 동일하다는 점이 의미심장하다</li>
+<li class="kp-item">오메가폴리스와 아이언 하트 방송이 향후 탐색의 단서로 제시된다</li>
+</ul>
 </div>
 <div class="lore-note">
 <div class="ln-header">세계관 노트 — 3부 공허한 시층</div>
@@ -2303,10 +2485,12 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 심장 도둑에 의한 기종 도난 사건이 발생하고, 알도가 규칙을 넘어 생명을 구한다</div>
-<div class="kp-item">- 시간 제국의 처형관 미나르카가 등장하며 위협적인 존재감을 보인다</div>
-<div class="kp-item">- 기인들의 규칙에 얽매인 삶과 알도 일행의 자유로운 행동이 대비된다</div>
-<div class="kp-item">- 오메가폴리스로 향하는 다음 여정이 결정된다</div>
+<ul class="kp-list">
+<li class="kp-item">심장 도둑에 의한 기종 도난 사건이 발생하고, 알도가 규칙을 넘어 생명을 구한다</li>
+<li class="kp-item">시간 제국의 처형관 미나르카가 등장하며 위협적인 존재감을 보인다</li>
+<li class="kp-item">기인들의 규칙에 얽매인 삶과 알도 일행의 자유로운 행동이 대비된다</li>
+<li class="kp-item">오메가폴리스로 향하는 다음 여정이 결정된다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch87">
@@ -2341,11 +2525,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 오메가폴리스는 계급이 나뉜 도시로, 하층 빈민가와 중층 귀족 구역으로 구성된다</div>
-<div class="kp-item">- 코로볼크의 &ldquo;기체 변경&rdquo; 꿈은 기인 사회의 규칙에 대한 도전을 상징한다</div>
-<div class="kp-item">- 알도 일행이 바운티 헌터 라이선스를 획득하여 행동 범위를 넓힌다</div>
-<div class="kp-item">- 코로볼크가 코로보로 새롭게 태어나며, 기인의 운명을 거스르는 전례가 만들어진다</div>
-<div class="kp-item">- 다리오스가 시간 제국의 음모를 암시하며 래시발이라는 새 목적지를 제시한다</div>
+<ul class="kp-list">
+<li class="kp-item">오메가폴리스는 계급이 나뉜 도시로, 하층 빈민가와 중층 귀족 구역으로 구성된다</li>
+<li class="kp-item">코로볼크의 &ldquo;기체 변경&rdquo; 꿈은 기인 사회의 규칙에 대한 도전을 상징한다</li>
+<li class="kp-item">알도 일행이 바운티 헌터 라이선스를 획득하여 행동 범위를 넓힌다</li>
+<li class="kp-item">코로볼크가 코로보로 새롭게 태어나며, 기인의 운명을 거스르는 전례가 만들어진다</li>
+<li class="kp-item">다리오스가 시간 제국의 음모를 암시하며 래시발이라는 새 목적지를 제시한다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch88">
@@ -2372,11 +2558,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">잠든 진주</span>잠든 진주호…… 그렇게 불렸었죠.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 래시발 도시 도착 — 아카시아 유성단의 본거지이자 제국에 불만을 품은 시민들이 사는 항구 도시</div>
-<div class="kp-item">- 다리오스의 의뢰로 수중 왕국의 보물찾기에 나섬</div>
-<div class="kp-item">- 코로보가 기인용 드릴 암을 장착하여 팀의 핵심 역할 수행</div>
-<div class="kp-item">- 전설의 보물은 거대 진주가 아닌 자아를 가진 배 &#x27;잠든 진주호&#x27;였음</div>
-<div class="kp-item">- 잠든 진주호는 기억을 잃은 상태로 일행과 합류</div>
+<ul class="kp-list">
+<li class="kp-item">래시발 도시 도착 — 아카시아 유성단의 본거지이자 제국에 불만을 품은 시민들이 사는 항구 도시</li>
+<li class="kp-item">다리오스의 의뢰로 수중 왕국의 보물찾기에 나섬</li>
+<li class="kp-item">코로보가 기인용 드릴 암을 장착하여 팀의 핵심 역할 수행</li>
+<li class="kp-item">전설의 보물은 거대 진주가 아닌 자아를 가진 배 &#x27;잠든 진주호&#x27;였음</li>
+<li class="kp-item">잠든 진주호는 기억을 잃은 상태로 일행과 합류</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch89">
@@ -2391,9 +2579,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">애쉬티어</span>이 세계의 배 구조가 어떤 식으로 되어 있는지 궁금하거든.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 잠든 진주호의 외륜 불안정으로 수리가 필요한 상황</div>
-<div class="kp-item">- 데리클 섬의 전설적 장인 푸가토가 수리를 맡게 됨</div>
-<div class="kp-item">- 애쉬티어와 푸가토의 기술자 간 협업이 시작됨</div>
+<ul class="kp-list">
+<li class="kp-item">잠든 진주호의 외륜 불안정으로 수리가 필요한 상황</li>
+<li class="kp-item">데리클 섬의 전설적 장인 푸가토가 수리를 맡게 됨</li>
+<li class="kp-item">애쉬티어와 푸가토의 기술자 간 협업이 시작됨</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch90">
@@ -2415,10 +2605,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">다리오스</span>큭! 으어억?!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 다리오스의 계략: 일행을 래시발로 유인한 뒤 횡단 열차로 오메가폴리스 테러를 시도</div>
-<div class="kp-item">- 잠든 진주호의 부스트 노바 기능이 첫 실전에서 활약</div>
-<div class="kp-item">- 미나르카가 다리오스에게 직접 대립하는 장면이 인상적</div>
-<div class="kp-item">- 다리오스는 기관차 분리와 함께 추락하여 생사불명 상태에 빠짐</div>
+<ul class="kp-list">
+<li class="kp-item">다리오스의 계략: 일행을 래시발로 유인한 뒤 횡단 열차로 오메가폴리스 테러를 시도</li>
+<li class="kp-item">잠든 진주호의 부스트 노바 기능이 첫 실전에서 활약</li>
+<li class="kp-item">미나르카가 다리오스에게 직접 대립하는 장면이 인상적</li>
+<li class="kp-item">다리오스는 기관차 분리와 함께 추락하여 생사불명 상태에 빠짐</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch91">
@@ -2439,11 +2631,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">다리오스</span>유우키는 자주 네 이야기를 했었지……</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 귀부인이 유우키를 제국에 밀고하여 죽음에 이르게 한 진범으로 밝혀짐</div>
-<div class="kp-item">- 심장 도둑 사건은 아카시아 유성단의 소행이 아닌 귀부인의 조작</div>
-<div class="kp-item">- 귀부인은 불사의 능력을 지닌 존재 — &#x27;가진 자&#x27;의 특권</div>
-<div class="kp-item">- 미나르카와 유우키의 관계가 암시됨 (다리오스-유우키-미나르카 삼각관계)</div>
-<div class="kp-item">- 다리오스가 비밀을 밝히려다 의식을 잃음</div>
+<ul class="kp-list">
+<li class="kp-item">귀부인이 유우키를 제국에 밀고하여 죽음에 이르게 한 진범으로 밝혀짐</li>
+<li class="kp-item">심장 도둑 사건은 아카시아 유성단의 소행이 아닌 귀부인의 조작</li>
+<li class="kp-item">귀부인은 불사의 능력을 지닌 존재 — &#x27;가진 자&#x27;의 특권</li>
+<li class="kp-item">미나르카와 유우키의 관계가 암시됨 (다리오스-유우키-미나르카 삼각관계)</li>
+<li class="kp-item">다리오스가 비밀을 밝히려다 의식을 잃음</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch92">
@@ -2469,11 +2663,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">크로노스 황제</span>자, 그럼 지켜보도록 하지…… 시간의 여신이 무엇을 할 수 있을지.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 미나르카와 유우키의 과거 만남이 회상으로 묘사 — 둘 사이의 깊은 유대 확인</div>
-<div class="kp-item">- 공허한 시계: 신들의 시간을 만드는 장치로, 시간이 열리는 나무의 핵심</div>
-<div class="kp-item">- 크로노스 황제 등장 — 알도와 피네의 아버지임이 밝혀지는 충격적 전개</div>
-<div class="kp-item">- 애쉬티어와 크로노스 황제 사이의 과거 인연과 현재의 대립 구도</div>
-<div class="kp-item">- 시간 제국의 차원 섬멸 함대라는 압도적 군사력 공개</div>
+<ul class="kp-list">
+<li class="kp-item">미나르카와 유우키의 과거 만남이 회상으로 묘사 — 둘 사이의 깊은 유대 확인</li>
+<li class="kp-item">공허한 시계: 신들의 시간을 만드는 장치로, 시간이 열리는 나무의 핵심</li>
+<li class="kp-item">크로노스 황제 등장 — 알도와 피네의 아버지임이 밝혀지는 충격적 전개</li>
+<li class="kp-item">애쉬티어와 크로노스 황제 사이의 과거 인연과 현재의 대립 구도</li>
+<li class="kp-item">시간 제국의 차원 섬멸 함대라는 압도적 군사력 공개</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch93">
@@ -2488,9 +2684,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">크로노스 황제</span>훗…… 결정됐군. 그럼 따라와라.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 애쉬티어가 과거의 도피를 인정하고 현재의 전투 의지를 다짐</div>
-<div class="kp-item">- 공허한 시층의 봉인이 풀릴 가능성에 대한 크로노스의 암시</div>
-<div class="kp-item">- 일행이 시간 제국의 영역으로 이동 — 상전이라는 차원 이동 기술 등장</div>
+<ul class="kp-list">
+<li class="kp-item">애쉬티어가 과거의 도피를 인정하고 현재의 전투 의지를 다짐</li>
+<li class="kp-item">공허한 시층의 봉인이 풀릴 가능성에 대한 크로노스의 암시</li>
+<li class="kp-item">일행이 시간 제국의 영역으로 이동 — 상전이라는 차원 이동 기술 등장</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch94">
@@ -2503,9 +2701,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">캄라녜쥬</span>가자, 길바데스. 이 싸움을 끝내는 거야!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 피네의 기도를 통해 일행이 길바데스와 하나가 되는 합체 전투 메커니즘 발동</div>
-<div class="kp-item">- 캄라녜쥬가 길바데스의 진정한 파일럿으로서 결전을 이끔</div>
-<div class="kp-item">- 마음의 연결이 곧 전투력이 되는 3부의 핵심 테마 제시</div>
+<ul class="kp-list">
+<li class="kp-item">피네의 기도를 통해 일행이 길바데스와 하나가 되는 합체 전투 메커니즘 발동</li>
+<li class="kp-item">캄라녜쥬가 길바데스의 진정한 파일럿으로서 결전을 이끔</li>
+<li class="kp-item">마음의 연결이 곧 전투력이 되는 3부의 핵심 테마 제시</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch95">
@@ -2523,10 +2723,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">캄라녜쥬</span>어쨌든…… 앞으로 잘 부탁해, 애들아.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 미지의 세계(BC 2만 년대 묘인 세계로 추정)에 불시착</div>
-<div class="kp-item">- 캄라녜쥬가 제국을 이탈하고 알도 일행의 정식 동료로 합류</div>
-<div class="kp-item">- 애쉬티어가 리이카의 통신을 차단해 제국 추적을 방지</div>
-<div class="kp-item">- 길바데스의 과부하 상태로 수리가 필요한 상황</div>
+<ul class="kp-list">
+<li class="kp-item">미지의 세계(BC 2만 년대 묘인 세계로 추정)에 불시착</li>
+<li class="kp-item">캄라녜쥬가 제국을 이탈하고 알도 일행의 정식 동료로 합류</li>
+<li class="kp-item">애쉬티어가 리이카의 통신을 차단해 제국 추적을 방지</li>
+<li class="kp-item">길바데스의 과부하 상태로 수리가 필요한 상황</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch96">
@@ -2546,10 +2748,12 @@ html{scroll-behavior:smooth}
 <p>묘인 세계의 기술력과 일행의 지식이 합쳐져, 길바데스 복원의 실마리가 보이기 시작한다. 한편 '시간이 열리는 나무'가 이 세계에도 존재한다는 사실이 확인된다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- BC 2만 년 묘인 세계 — 인간이 등장하기 이전의 고양이 문명</div>
-<div class="kp-item">- 길바데스가 원래 이 시대의 유적에서 발굴되었다는 사실 발각</div>
-<div class="kp-item">- 묘인 기술자 할라, 코미아 등 새로운 동료들과의 만남</div>
-<div class="kp-item">- 사코리타스 유적이 수리 부품의 핵심 공급처로 확인됨</div>
+<ul class="kp-list">
+<li class="kp-item">BC 2만 년 묘인 세계 — 인간이 등장하기 이전의 고양이 문명</li>
+<li class="kp-item">길바데스가 원래 이 시대의 유적에서 발굴되었다는 사실 발각</li>
+<li class="kp-item">묘인 기술자 할라, 코미아 등 새로운 동료들과의 만남</li>
+<li class="kp-item">사코리타스 유적이 수리 부품의 핵심 공급처로 확인됨</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch97">
@@ -2568,10 +2772,12 @@ html{scroll-behavior:smooth}
 <p>결국 일행은 필요한 부품을 확보하는 데 성공하고, 동시에 이 유적이 단순한 고대 잔해가 아닌 살아 있는 기술의 보고라는 사실을 깨닫는다. 게마잘레의 경고가 앞으로의 여정에 어떤 영향을 미칠지 아직 알 수 없다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 사코리타스 유적 내부 탐사 — 제국의 이전 발굴 흔적 확인</div>
-<div class="kp-item">- 고대 묘인 문명의 기술 수준이 현대에 필적할 정도로 높았음을 발견</div>
-<div class="kp-item">- 게마잘레(할라의 형)와 조우 — 유적의 수호자이자 부족 지도자</div>
-<div class="kp-item">- 길바데스 수리를 위한 핵심 부품 확보에 성공</div>
+<ul class="kp-list">
+<li class="kp-item">사코리타스 유적 내부 탐사 — 제국의 이전 발굴 흔적 확인</li>
+<li class="kp-item">고대 묘인 문명의 기술 수준이 현대에 필적할 정도로 높았음을 발견</li>
+<li class="kp-item">게마잘레(할라의 형)와 조우 — 유적의 수호자이자 부족 지도자</li>
+<li class="kp-item">길바데스 수리를 위한 핵심 부품 확보에 성공</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch98">
@@ -2587,9 +2793,11 @@ html{scroll-behavior:smooth}
 <p>할라와 코미아에게 감사를 전하며 일행은 바다 건너 야나투를 향해 출발한다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 토르루탄 — 묘인 세계의 교역 거점 도착</div>
-<div class="kp-item">- 야나투로의 이동을 위해 길바데스에 해상 횡단용 부품 장착</div>
-<div class="kp-item">- 할라의 소개로 야나투의 도르조바를 만날 수 있게 됨</div>
+<ul class="kp-list">
+<li class="kp-item">토르루탄 — 묘인 세계의 교역 거점 도착</li>
+<li class="kp-item">야나투로의 이동을 위해 길바데스에 해상 횡단용 부품 장착</li>
+<li class="kp-item">할라의 소개로 야나투의 도르조바를 만날 수 있게 됨</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch99">
@@ -2608,10 +2816,12 @@ html{scroll-behavior:smooth}
 <p>죽음의 미로를 돌파한 일행은 지치면서도 서로를 격려하며 야나투를 향한 마지막 발걸음을 내딛는다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 죽음의 미로 — 시공이 뒤틀린 위험 구역에서의 험난한 탐사</div>
-<div class="kp-item">- 각 캐릭터의 과거와 마주하는 정신적 시련 (미나르카-유우키, 캄라녜쥬-제국)</div>
-<div class="kp-item">- 미로의 수호자를 격파하고 야나투로의 길을 개척</div>
-<div class="kp-item">- 시련을 함께 이겨내며 일행의 유대가 더욱 강화됨</div>
+<ul class="kp-list">
+<li class="kp-item">죽음의 미로 — 시공이 뒤틀린 위험 구역에서의 험난한 탐사</li>
+<li class="kp-item">각 캐릭터의 과거와 마주하는 정신적 시련 (미나르카-유우키, 캄라녜쥬-제국)</li>
+<li class="kp-item">미로의 수호자를 격파하고 야나투로의 길을 개척</li>
+<li class="kp-item">시련을 함께 이겨내며 일행의 유대가 더욱 강화됨</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch100">
@@ -2631,10 +2841,12 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>그래. 이 세계를 구할 열쇠가 될지도 몰라.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 야나투 도착 — 전설에 이끌려 세워진 신비로운 마을</div>
-<div class="kp-item">- 도르조바(게마잘레의 쌍둥이)와의 만남</div>
-<div class="kp-item">- 날개 달린 짐승과 시공을 넘는 고양이의 전설이 핵심 단서로 부상</div>
-<div class="kp-item">- 제국의 위협이 야나투에까지 미치고 있음을 인지</div>
+<ul class="kp-list">
+<li class="kp-item">야나투 도착 — 전설에 이끌려 세워진 신비로운 마을</li>
+<li class="kp-item">도르조바(게마잘레의 쌍둥이)와의 만남</li>
+<li class="kp-item">날개 달린 짐승과 시공을 넘는 고양이의 전설이 핵심 단서로 부상</li>
+<li class="kp-item">제국의 위협이 야나투에까지 미치고 있음을 인지</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch101">
@@ -2651,10 +2863,12 @@ html{scroll-behavior:smooth}
 <p>어둠 속에서도 빛을 잃지 않는 등불처럼, 일행은 희망을 놓지 않고 다음 행선지를 향해 나아간다. 이졸파 &mdash; 세계의 중심이라 불리는 곳으로.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 어둠의 등불 현상 &mdash; 세계의 균형 붕괴 징후, 시공 균열에서 새어 나오는 빛</div>
-<div class="kp-item">- 새벽의 탑 투리알바 (5층) &mdash; 관측 거점으로서의 탐사</div>
-<div class="kp-item">- 시간 제국 특수부대와의 첫 직접 전투</div>
-<div class="kp-item">- 다음 목적지: 이졸파 (세계의 중심) &mdash; 102장으로 연결</div>
+<ul class="kp-list">
+<li class="kp-item">어둠의 등불 현상 &mdash; 세계의 균형 붕괴 징후, 시공 균열에서 새어 나오는 빛</li>
+<li class="kp-item">새벽의 탑 투리알바 (5층) &mdash; 관측 거점으로서의 탐사</li>
+<li class="kp-item">시간 제국 특수부대와의 첫 직접 전투</li>
+<li class="kp-item">다음 목적지: 이졸파 (세계의 중심) &mdash; 102장으로 연결</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch102">
@@ -2668,9 +2882,11 @@ html{scroll-behavior:smooth}
 <p>세계의 중심에서 얻은 정보를 바탕으로, 일행은 크로노스 황제의 계획을 저지할 구체적인 방법을 모색하기 시작한다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 세계의 중심 도달 — 시공의 교차점이자 모든 시대를 잇는 핵심 축</div>
-<div class="kp-item">- 크로노스 황제의 진정한 목적: 시간 자체의 재구축 계획</div>
-<div class="kp-item">- 시간이 열리는 나무, 공허한 시계, 길바데스 간의 연결고리 발견</div>
+<ul class="kp-list">
+<li class="kp-item">세계의 중심 도달 — 시공의 교차점이자 모든 시대를 잇는 핵심 축</li>
+<li class="kp-item">크로노스 황제의 진정한 목적: 시간 자체의 재구축 계획</li>
+<li class="kp-item">시간이 열리는 나무, 공허한 시계, 길바데스 간의 연결고리 발견</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch103">
@@ -2684,10 +2900,12 @@ html{scroll-behavior:smooth}
 <p>과거의 목소리들이 현재의 일행에게 경고와 희망을 동시에 전한다. 세계를 지키기 위해서는 시간의 흐름 그 자체를 이해해야 한다는 깨달음을 얻으며, 일행은 다음 목적지를 향해 떠난다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 사념의 단편 — 과거 존재들의 기억이 결정화된 시공의 유산</div>
-<div class="kp-item">- 묘인 문명의 전성기부터 시간 제국의 기원까지 역사적 단서 획득</div>
-<div class="kp-item">- 크로노스의 계획에 대항하기 위한 핵심 정보 수집</div>
-<div class="kp-item">- 시간의 흐름 자체를 이해하는 것이 세계를 구하는 열쇠라는 깨달음</div>
+<ul class="kp-list">
+<li class="kp-item">사념의 단편 — 과거 존재들의 기억이 결정화된 시공의 유산</li>
+<li class="kp-item">묘인 문명의 전성기부터 시간 제국의 기원까지 역사적 단서 획득</li>
+<li class="kp-item">크로노스의 계획에 대항하기 위한 핵심 정보 수집</li>
+<li class="kp-item">시간의 흐름 자체를 이해하는 것이 세계를 구하는 열쇠라는 깨달음</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch104">
@@ -2701,9 +2919,11 @@ html{scroll-behavior:smooth}
 <p>날개 달린 짐승과의 조우를 계기로 일행의 여정은 새로운 국면에 접어든다. 더 넓은 세계, 더 깊은 진실을 향한 모험이 시작되려 하고 있다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 전설의 날개 달린 짐승이 실제로 존재함을 확인</div>
-<div class="kp-item">- 시간이 열리는 나무, 공허한 시계, 길바데스의 삼위일체적 관계 확인</div>
-<div class="kp-item">- 시공을 넘는 여정의 새로운 국면이 열림</div>
+<ul class="kp-list">
+<li class="kp-item">전설의 날개 달린 짐승이 실제로 존재함을 확인</li>
+<li class="kp-item">시간이 열리는 나무, 공허한 시계, 길바데스의 삼위일체적 관계 확인</li>
+<li class="kp-item">시공을 넘는 여정의 새로운 국면이 열림</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch105">
@@ -2720,10 +2940,12 @@ html{scroll-behavior:smooth}
 <p>결정 도시 지스몬데를 향한 여정이 시작되며, 3부의 이야기는 새로운 장을 맞이한다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 시공을 넘는 고양이를 찾기 위한 본격적인 탐색 시작</div>
-<div class="kp-item">- 시공 왜곡 현상의 원인이 공허한 시계와 관련 있음을 파악</div>
-<div class="kp-item">- 결정 도시 지스몬데의 존재를 감지 — 다음 목적지로 설정</div>
-<div class="kp-item">- 고양이까지의 여정이 세계를 구하는 여정과 동일선상에 있음을 자각</div>
+<ul class="kp-list">
+<li class="kp-item">시공을 넘는 고양이를 찾기 위한 본격적인 탐색 시작</li>
+<li class="kp-item">시공 왜곡 현상의 원인이 공허한 시계와 관련 있음을 파악</li>
+<li class="kp-item">결정 도시 지스몬데의 존재를 감지 — 다음 목적지로 설정</li>
+<li class="kp-item">고양이까지의 여정이 세계를 구하는 여정과 동일선상에 있음을 자각</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch106">
@@ -2741,10 +2963,12 @@ html{scroll-behavior:smooth}
 <p>일행은 유리 영묘라 불리는 장소로 향하며, 지스몬데에 숨겨진 어둠과 대면할 준비를 한다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 결정 도시 지스몬데 — 묘인 문명의 학술 중심지였던 고대 도시</div>
-<div class="kp-item">- 시간이 열리는 나무가 고대 묘인이 만든 인공 구조물이라는 충격적 사실</div>
-<div class="kp-item">- 지스몬데의 악마 — 결정 속에 봉인된 존재의 각성 조짐</div>
-<div class="kp-item">- 유리 영묘로의 탐색이 다음 과제로 설정됨</div>
+<ul class="kp-list">
+<li class="kp-item">결정 도시 지스몬데 — 묘인 문명의 학술 중심지였던 고대 도시</li>
+<li class="kp-item">시간이 열리는 나무가 고대 묘인이 만든 인공 구조물이라는 충격적 사실</li>
+<li class="kp-item">지스몬데의 악마 — 결정 속에 봉인된 존재의 각성 조짐</li>
+<li class="kp-item">유리 영묘로의 탐색이 다음 과제로 설정됨</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch107">
@@ -2762,10 +2986,12 @@ html{scroll-behavior:smooth}
 <p>지스몬데의 시련을 극복한 일행은 한층 성장하여 다음 여정을 향해 나아간다. 정령의 숲이라는 새로운 목적지가 그들을 기다리고 있다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 유리 영묘 탐사 — 고대 묘인의 봉인 장치가 있는 핵심 구역</div>
-<div class="kp-item">- 지스몬데의 악마 각성 — 시간 왜곡 능력을 가진 봉인된 존재와의 대결</div>
-<div class="kp-item">- 애쉬티어의 과학과 피네의 기도가 결합한 새로운 봉인 기법</div>
-<div class="kp-item">- 공허한 시계에 대항하기 위한 핵심 지식 획득</div>
+<ul class="kp-list">
+<li class="kp-item">유리 영묘 탐사 — 고대 묘인의 봉인 장치가 있는 핵심 구역</li>
+<li class="kp-item">지스몬데의 악마 각성 — 시간 왜곡 능력을 가진 봉인된 존재와의 대결</li>
+<li class="kp-item">애쉬티어의 과학과 피네의 기도가 결합한 새로운 봉인 기법</li>
+<li class="kp-item">공허한 시계에 대항하기 위한 핵심 지식 획득</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch108">
@@ -2783,10 +3009,12 @@ html{scroll-behavior:smooth}
 <p>비밀의 문 너머로 펼쳐지는 새로운 세계. 정령의 숲을 통과함으로써 일행은 시공을 넘나드는 능력에 한 걸음 더 다가간다. 고대의 지혜와 현재의 용기가 만나는 지점에서 3부의 이야기가 가속된다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 정령의 숲 — 고대 정령들이 살아 숨 쉬는 생명의 미궁</div>
-<div class="kp-item">- 각 캐릭터가 흩어져 독립적인 시련을 겪음</div>
-<div class="kp-item">- 정령이 전한 수수께끼: 나무는 세계의 기억이자 약속</div>
-<div class="kp-item">- 비밀의 문 발견 — 시공을 연결하는 게이트를 통해 새로운 세계로</div>
+<ul class="kp-list">
+<li class="kp-item">정령의 숲 — 고대 정령들이 살아 숨 쉬는 생명의 미궁</li>
+<li class="kp-item">각 캐릭터가 흩어져 독립적인 시련을 겪음</li>
+<li class="kp-item">정령이 전한 수수께끼: 나무는 세계의 기억이자 약속</li>
+<li class="kp-item">비밀의 문 발견 — 시공을 연결하는 게이트를 통해 새로운 세계로</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch109">
@@ -2855,12 +3083,14 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 환상 유원지 &mdash; 마법으로 가동되는 놀이 시설. 매직 라이드 탑승을 위해 4개 어트랙션 스탬프 수집</div>
-<div class="kp-item">- 코먼자크의 반전: 연속 살화귀의 진범은 코먼자크 본인. 질퍼니에게 죄를 덮어씌우고 동결</div>
-<div class="kp-item">- 황금의 검 전승: '만물을 다스리는 검에게 무수한 꽃의 목숨을 바쳐라' &mdash; 석화인이 아닌 검의 일족의 피가 조건</div>
-<div class="kp-item">- 코먼자크의 진짜 목적: 알도 일행을 질퍼니 살해의 희생양으로 이용하려 했음</div>
-<div class="kp-item">- 질퍼니의 반신: 동결 직전 무의식적으로 분리된 또 다른 자신. 기억은 없지만 코먼자크를 향한 애정만 남아 있었음</div>
-<div class="kp-item">- 질퍼니 합류 &mdash; 검의 일족의 책무를 이어받아 황금의 검 탐색에 동참</div>
+<ul class="kp-list">
+<li class="kp-item">환상 유원지 &mdash; 마법으로 가동되는 놀이 시설. 매직 라이드 탑승을 위해 4개 어트랙션 스탬프 수집</li>
+<li class="kp-item">코먼자크의 반전: 연속 살화귀의 진범은 코먼자크 본인. 질퍼니에게 죄를 덮어씌우고 동결</li>
+<li class="kp-item">황금의 검 전승: '만물을 다스리는 검에게 무수한 꽃의 목숨을 바쳐라' &mdash; 석화인이 아닌 검의 일족의 피가 조건</li>
+<li class="kp-item">코먼자크의 진짜 목적: 알도 일행을 질퍼니 살해의 희생양으로 이용하려 했음</li>
+<li class="kp-item">질퍼니의 반신: 동결 직전 무의식적으로 분리된 또 다른 자신. 기억은 없지만 코먼자크를 향한 애정만 남아 있었음</li>
+<li class="kp-item">질퍼니 합류 &mdash; 검의 일족의 책무를 이어받아 황금의 검 탐색에 동참</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch110">
@@ -2901,11 +3131,13 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 아멜리의 속박 마법 &mdash; 질퍼니가 잠든 사이 필사적으로 습득한 중력 저주</div>
-<div class="kp-item">- 길바데스 해저 추락 &mdash; 아멜리의 공격으로 기동 정지</div>
-<div class="kp-item">- 잠든 진주 재회 &mdash; 800년 만에 일행을 찾아낸 옛 동료. 석화인 학자가 해저 운항용으로 개조</div>
-<div class="kp-item">- 중력 마법 해석을 위해 석화인 학자의 수기 확인 필요</div>
-<div class="kp-item">- 구 오메가폴리스 해저 도시가 다음 목적지 &mdash; 해류 돌파가 과제</div>
+<ul class="kp-list">
+<li class="kp-item">아멜리의 속박 마법 &mdash; 질퍼니가 잠든 사이 필사적으로 습득한 중력 저주</li>
+<li class="kp-item">길바데스 해저 추락 &mdash; 아멜리의 공격으로 기동 정지</li>
+<li class="kp-item">잠든 진주 재회 &mdash; 800년 만에 일행을 찾아낸 옛 동료. 석화인 학자가 해저 운항용으로 개조</li>
+<li class="kp-item">중력 마법 해석을 위해 석화인 학자의 수기 확인 필요</li>
+<li class="kp-item">구 오메가폴리스 해저 도시가 다음 목적지 &mdash; 해류 돌파가 과제</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch111">
@@ -2924,10 +3156,12 @@ html{scroll-behavior:smooth}
 <p>튜시아를 새 동료로 맞이하고, 검의 일족의 비밀에 한 걸음 더 다가서며 3부의 후반부가 본격적으로 전개된다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 예지의 탑 — 강자들이 실력을 겨루는 경기장</div>
-<div class="kp-item">- 튜시아 합류 — 자신감 부족하지만 잠재력 있는 묘인 소녀</div>
-<div class="kp-item">- 구 래시발 해저 횡단 열차 — 검의 저택으로 가는 핵심 교통수단</div>
-<div class="kp-item">- 래시발 횡단 열차 사건의 에코로서 해저 횡단이라는 새로운 모험 전개</div>
+<ul class="kp-list">
+<li class="kp-item">예지의 탑 — 강자들이 실력을 겨루는 경기장</li>
+<li class="kp-item">튜시아 합류 — 자신감 부족하지만 잠재력 있는 묘인 소녀</li>
+<li class="kp-item">구 래시발 해저 횡단 열차 — 검의 저택으로 가는 핵심 교통수단</li>
+<li class="kp-item">래시발 횡단 열차 사건의 에코로서 해저 횡단이라는 새로운 모험 전개</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch112">
@@ -2941,9 +3175,11 @@ html{scroll-behavior:smooth}
 <p>검의 일족이 시간이 열리는 나무를 지키는 수호자 역할을 해왔다는 사실이 밝혀진다. 그리고 황금의 검이라 불리는 신비로운 무기가 그 사명의 핵심임을 알게 된다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 예지의 탑 상층부 돌파 — 구름 위의 영역 도달</div>
-<div class="kp-item">- 길바데스의 비행 능력을 활용한 전투와 탐색</div>
-<div class="kp-item">- 검의 일족은 시간이 열리는 나무의 수호자 — 황금의 검이 핵심</div>
+<ul class="kp-list">
+<li class="kp-item">예지의 탑 상층부 돌파 — 구름 위의 영역 도달</li>
+<li class="kp-item">길바데스의 비행 능력을 활용한 전투와 탐색</li>
+<li class="kp-item">검의 일족은 시간이 열리는 나무의 수호자 — 황금의 검이 핵심</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch113">
@@ -2970,11 +3206,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>크로노스 황제!!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 질퍼니의 할멈과의 재회 — 코먼자크의 죽음에 대한 감정적 장면</div>
-<div class="kp-item">- 검재 갈도매기스와의 대면 — 일족의 사명 vs 개인의 자유라는 갈등</div>
-<div class="kp-item">- 황금의 검은 시간이 열리는 나무의 핵심 봉인이자 세계 균형의 열쇠</div>
-<div class="kp-item">- 오우거베인의 폭주로 길바데스가 변이, 공허한 시층의 봉인이 풀리기 시작</div>
-<div class="kp-item">- 크로노스 황제의 재등장 — 3부 최대의 위기가 시작됨</div>
+<ul class="kp-list">
+<li class="kp-item">질퍼니의 할멈과의 재회 — 코먼자크의 죽음에 대한 감정적 장면</li>
+<li class="kp-item">검재 갈도매기스와의 대면 — 일족의 사명 vs 개인의 자유라는 갈등</li>
+<li class="kp-item">황금의 검은 시간이 열리는 나무의 핵심 봉인이자 세계 균형의 열쇠</li>
+<li class="kp-item">오우거베인의 폭주로 길바데스가 변이, 공허한 시층의 봉인이 풀리기 시작</li>
+<li class="kp-item">크로노스 황제의 재등장 — 3부 최대의 위기가 시작됨</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch114">
@@ -3025,12 +3263,14 @@ html{scroll-behavior:smooth}
 
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 공허한 시간의 호수에서 허무(공허의 신) 격퇴</div>
-<div class="kp-item">- 길바데스(허신기) 기능 정지 &mdash; 공허의 신의 유물이라 허무와 적대를 거부</div>
-<div class="kp-item">- 오우거베인의 반전: 허무 방관 + 상자의 봉인 해제 → "세계 종말의 단서"</div>
-<div class="kp-item">- 오우거베인이 허무의 힘(공허한 시자 에너지)을 흡수, 길바데스와 합체 → 날개 달린 짐승이 황금의 검을 획득</div>
-<div class="kp-item">- 시층 통합: 공허한 시층과 현시층의 경계 소멸, 두 세계가 하나로</div>
-<div class="kp-item">- 시간 제국 함대 출현, 크로노스 황제 "시간 전쟁에 종지부를 찍어 주마!"</div>
+<ul class="kp-list">
+<li class="kp-item">공허한 시간의 호수에서 허무(공허의 신) 격퇴</li>
+<li class="kp-item">길바데스(허신기) 기능 정지 &mdash; 공허의 신의 유물이라 허무와 적대를 거부</li>
+<li class="kp-item">오우거베인의 반전: 허무 방관 + 상자의 봉인 해제 → "세계 종말의 단서"</li>
+<li class="kp-item">오우거베인이 허무의 힘(공허한 시자 에너지)을 흡수, 길바데스와 합체 → 날개 달린 짐승이 황금의 검을 획득</li>
+<li class="kp-item">시층 통합: 공허한 시층과 현시층의 경계 소멸, 두 세계가 하나로</li>
+<li class="kp-item">시간 제국 함대 출현, 크로노스 황제 "시간 전쟁에 종지부를 찍어 주마!"</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch115">
@@ -3056,11 +3296,13 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">애쉬티어</span>이 천재 애쉬티어 님한테 맡겨 둬!</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 오우거베인의 폭주 + 시공 소용돌이로 일행이 뿔뿔이 흩어짐</div>
-<div class="kp-item">- 알도가 홀로 변이된 달그림자 숲/유니건에 도착 — 세계가 변질된 상태</div>
-<div class="kp-item">- 미글랜스 왕, 아나벨, 디아드라와의 재회</div>
-<div class="kp-item">- 피네와 애쉬티어 합류 — 피네의 무모한 행동에 대한 알도의 다짐</div>
-<div class="kp-item">- 식시 영역이라는 새로운 시공 현상의 등장</div>
+<ul class="kp-list">
+<li class="kp-item">오우거베인의 폭주 + 시공 소용돌이로 일행이 뿔뿔이 흩어짐</li>
+<li class="kp-item">알도가 홀로 변이된 달그림자 숲/유니건에 도착 — 세계가 변질된 상태</li>
+<li class="kp-item">미글랜스 왕, 아나벨, 디아드라와의 재회</li>
+<li class="kp-item">피네와 애쉬티어 합류 — 피네의 무모한 행동에 대한 알도의 다짐</li>
+<li class="kp-item">식시 영역이라는 새로운 시공 현상의 등장</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch116">
@@ -3081,11 +3323,13 @@ html{scroll-behavior:smooth}
 <p>합성귀룡을 타고 식시 영역 곳곳에 흩어진 동료들을 수색하며, 영역 붕괴를 막기 위한 대탐색이 시작된다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 애쉬티어의 &#x27;살살 이론&#x27; — 시류 입자 활성화 기법(유머와 과학의 절묘한 조화)</div>
-<div class="kp-item">- 세바스 박사 구출 — 제국의 과학자가 일행 측에 합류</div>
-<div class="kp-item">- 합성귀룡의 귀환과 함체 내 탐색 거점 마련</div>
-<div class="kp-item">- 식시 영역: 공허한 시자에 의한 현시층 시공 침식 현상</div>
-<div class="kp-item">- 니르야 합류 — 식시 영역의 붕괴를 막기 위한 동료 수색 시작</div>
+<ul class="kp-list">
+<li class="kp-item">애쉬티어의 &#x27;살살 이론&#x27; — 시류 입자 활성화 기법(유머와 과학의 절묘한 조화)</li>
+<li class="kp-item">세바스 박사 구출 — 제국의 과학자가 일행 측에 합류</li>
+<li class="kp-item">합성귀룡의 귀환과 함체 내 탐색 거점 마련</li>
+<li class="kp-item">식시 영역: 공허한 시자에 의한 현시층 시공 침식 현상</li>
+<li class="kp-item">니르야 합류 — 식시 영역의 붕괴를 막기 위한 동료 수색 시작</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch117">
@@ -3115,12 +3359,14 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">알도</span>그럼 엘지온으로 가 보는 게 좋겠다. 아무튼 할 수 있는 일을 해야지.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 제국 함대 잔존 병력과의 조우 — 크로노스 황제가 엘지온에 있다는 정보 획득</div>
-<div class="kp-item">- 리이카의 &#x27;원 로터스 엔트러스트 라이프&#x27; 선언 — 무기한 서포트 맹세</div>
-<div class="kp-item">- 식시 영역에서 각 동료가 인연 있는 장소로 불려감 — 개별 시련 극복</div>
-<div class="kp-item">- 전원 합류 후 가족 같은 유대 확인 — 니르야도 정식 일원</div>
-<div class="kp-item">- 공허한 시계를 처리하기 위해 엘지온으로 향하기로 결정</div>
-<div class="kp-item">- 세바스 박사조차 방법을 모르는 상황에서 크로노스 황제와의 대면이 불가피</div>
+<ul class="kp-list">
+<li class="kp-item">제국 함대 잔존 병력과의 조우 — 크로노스 황제가 엘지온에 있다는 정보 획득</li>
+<li class="kp-item">리이카의 &#x27;원 로터스 엔트러스트 라이프&#x27; 선언 — 무기한 서포트 맹세</li>
+<li class="kp-item">식시 영역에서 각 동료가 인연 있는 장소로 불려감 — 개별 시련 극복</li>
+<li class="kp-item">전원 합류 후 가족 같은 유대 확인 — 니르야도 정식 일원</li>
+<li class="kp-item">공허한 시계를 처리하기 위해 엘지온으로 향하기로 결정</li>
+<li class="kp-item">세바스 박사조차 방법을 모르는 상황에서 크로노스 황제와의 대면이 불가피</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch118">
@@ -3133,9 +3379,11 @@ html{scroll-behavior:smooth}
 <blockquote class="dialogue"><span class="speaker">애쉬티어</span>이 의식의 원리를 응용하면…… 공허한 시계에 대항할 수 있을지도 몰라.</blockquote>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 시시의 나무 — 오렐듀주의 갤럴론 의식이 행해졌던 고대의 장소</div>
-<div class="kp-item">- 시공 균형 유지를 위한 의식의 원리 파악</div>
-<div class="kp-item">- 엘지온 돌입을 앞둔 최종 준비 단계</div>
+<ul class="kp-list">
+<li class="kp-item">시시의 나무 — 오렐듀주의 갤럴론 의식이 행해졌던 고대의 장소</li>
+<li class="kp-item">시공 균형 유지를 위한 의식의 원리 파악</li>
+<li class="kp-item">엘지온 돌입을 앞둔 최종 준비 단계</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch119">
@@ -3149,9 +3397,11 @@ html{scroll-behavior:smooth}
 <p>3부의 클라이맥스를 향한 카운트다운이 시작된다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 엘지온 돌입 직전의 마지막 휴식과 결의의 시간</div>
-<div class="kp-item">- 알도의 결심 — 아버지 크로노스와 적으로서 맞서겠다는 각오</div>
-<div class="kp-item">- 길바데스와 합성귀룡을 동원한 총력전 태세</div>
+<ul class="kp-list">
+<li class="kp-item">엘지온 돌입 직전의 마지막 휴식과 결의의 시간</li>
+<li class="kp-item">알도의 결심 — 아버지 크로노스와 적으로서 맞서겠다는 각오</li>
+<li class="kp-item">길바데스와 합성귀룡을 동원한 총력전 태세</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch120">
@@ -3177,11 +3427,13 @@ html{scroll-behavior:smooth}
 <p>다원 우주의 합성귀룡들을 이끌고 최대 속력으로 시간의 바다를 향해 돌진한다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 식시 영역 최하층으로의 추락과 탈출 모색</div>
-<div class="kp-item">- 제노바데스 — 식시 에너지를 흡수한 거대 적과의 전략적 전투</div>
-<div class="kp-item">- 길바데스 강화를 위한 식시 결정 수집 시스템</div>
-<div class="kp-item">- 크로노스 황제의 &#x27;우리&#x27;라는 의미심장한 발언 — 시간의 바다로 향함</div>
-<div class="kp-item">- 피네+캄라녜쥬의 공명으로 다원 우주의 합성귀룡 소환이라는 기적 발동</div>
+<ul class="kp-list">
+<li class="kp-item">식시 영역 최하층으로의 추락과 탈출 모색</li>
+<li class="kp-item">제노바데스 — 식시 에너지를 흡수한 거대 적과의 전략적 전투</li>
+<li class="kp-item">길바데스 강화를 위한 식시 결정 수집 시스템</li>
+<li class="kp-item">크로노스 황제의 &#x27;우리&#x27;라는 의미심장한 발언 — 시간의 바다로 향함</li>
+<li class="kp-item">피네+캄라녜쥬의 공명으로 다원 우주의 합성귀룡 소환이라는 기적 발동</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch121">
@@ -3212,11 +3464,13 @@ html{scroll-behavior:smooth}
 <p>니르야까지 평화로운 일상으로 돌아와 인법 드래곤 수플렉스를 시전하려는 모습이 유머러스하게 그려지며, 3부 '빛과 그림자의 끝에'가 막을 내린다. 여정은 아직 끝나지 않았다.</p>
 <div class="keypoints">
 <div class="kp-header">※ 이 장의 핵심 포인트:</div>
-<div class="kp-item">- 시간의 바다 &#x27;주르반&#x27; 도달 — 시간의 여신, 크로노스 황제와의 최종 대면</div>
-<div class="kp-item">- 마도카와 에덴과의 감동적인 재회</div>
-<div class="kp-item">- 니르야와 오우거베인의 합체 — 신의 힘 발현이라는 충격적 반전</div>
-<div class="kp-item">- 마도카의 이별 — 크로노스 일족의 회중시계를 물려주며 &#x27;사랑해&#x27;라는 마지막 인사</div>
-<div class="kp-item">- 3부의 에필로그 — 일상으로의 복귀, 여정은 계속된다</div>
+<ul class="kp-list">
+<li class="kp-item">시간의 바다 &#x27;주르반&#x27; 도달 — 시간의 여신, 크로노스 황제와의 최종 대면</li>
+<li class="kp-item">마도카와 에덴과의 감동적인 재회</li>
+<li class="kp-item">니르야와 오우거베인의 합체 — 신의 힘 발현이라는 충격적 반전</li>
+<li class="kp-item">마도카의 이별 — 크로노스 일족의 회중시계를 물려주며 &#x27;사랑해&#x27;라는 마지막 인사</li>
+<li class="kp-item">3부의 에필로그 — 일상으로의 복귀, 여정은 계속된다</li>
+</ul>
 </div>
 </div>
 <div class="chapter" id="ch122">
@@ -3227,7 +3481,9 @@ html{scroll-behavior:smooth}
 <h2><span class="ch-num">123장</span>(데이터 준비 중)</h2>
 <p><em>이 장의 대사 데이터는 추후 업데이트 예정입니다.</em></p>
 </div>
-</div>
+</main>
+
+<button id="btt" class="btt" aria-label="페이지 상단으로">&#9650;</button>
 
 <script>
 // === 1. Move prologues into first chapter of each part & make visible ===
@@ -3347,13 +3603,27 @@ navItems.forEach(function(a){
       if('#'+chapters[i].id===href){showChapter(i);break}
     }
     document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('sidebar-overlay').style.display='none';
   });
 });
 
 // Menu toggle (mobile)
 document.getElementById('menu-toggle').addEventListener('click',function(){
-  document.getElementById('sidebar').classList.toggle('open');
+  var sb=document.getElementById('sidebar');
+  sb.classList.toggle('open');
+  document.getElementById('sidebar-overlay').style.display=sb.classList.contains('open')?'block':'none';
 });
+
+// Sidebar overlay (mobile)
+document.getElementById('sidebar-overlay').addEventListener('click',function(){
+  document.getElementById('sidebar').classList.remove('open');
+  this.style.display='none';
+});
+
+// Back to top
+var bttBtn=document.getElementById('btt');
+window.addEventListener('scroll',function(){bttBtn.classList.toggle('show',window.scrollY>400)});
+bttBtn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
 
 // Init from hash or first chapter
 var startIdx=0;

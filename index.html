@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0b0d1a;--bg2:#111428;--bg3:#1a1d35;--text:#e8e0d0;--text2:#9a9080;--gold:#c9a44c;--gold2:#b8963e;--gold-dim:#6b5a2a;--gold-bright:#e8cc6e;--card-bg:rgba(22,25,48,.85);--border:#2a2d45}
+:root{--bg:#0b0d1a;--bg2:#111428;--bg3:#1a1d35;--text:#e8e0d0;--text2:#b0a590;--gold:#c9a44c;--gold2:#b8963e;--gold-dim:#6b5a2a;--gold-bright:#e8cc6e;--card-bg:rgba(22,25,48,.85);--border:#2a2d45}
 body{background:var(--bg);color:var(--text);font-family:'Noto Serif KR','Malgun Gothic',serif;line-height:1.8;
   background-image:radial-gradient(ellipse 800px 600px at 50% 0%, rgba(30,40,80,.5) 0%, transparent 70%);
 }
@@ -29,9 +29,27 @@ body::before{
 a{color:var(--gold);text-decoration:none}
 a:hover{color:var(--gold-bright)}
 
+/* Top nav */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:linear-gradient(180deg, #181b30 0%, #111428 100%);
+  border-bottom:1px solid var(--gold-dim);
+  display:flex;align-items:center;padding:0 20px;height:48px;gap:8px;
+  box-shadow:0 2px 12px rgba(0,0,0,.5);
+}
+.topnav::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent 0%, var(--gold-dim) 20%, var(--gold) 50%, var(--gold-dim) 80%, transparent 100%);
+}
+.topnav a{color:var(--text2);font-size:13px;padding:6px 14px;text-decoration:none;transition:all .3s;letter-spacing:.5px;border:1px solid transparent}
+.topnav a:hover{color:var(--gold-bright);border-color:var(--gold-dim)}
+.topnav a[aria-current]{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
+.topnav .spacer{flex:1}
+.topnav .title-mark{font-size:11px;color:var(--gold-dim);letter-spacing:2px;text-transform:uppercase}
+
 /* Hero */
 .hero{
-  text-align:center;padding:80px 20px 50px;position:relative;
+  text-align:center;padding:120px 20px 50px;position:relative;
   background:linear-gradient(180deg, rgba(17,20,40,.9) 0%, var(--bg) 100%);
   border-bottom:1px solid var(--gold-dim);
 }
@@ -132,35 +150,49 @@ footer{
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:3px}
 
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
 @media(max-width:600px){
   .hero h1{font-size:1.5em}
   .nav-cards{flex-direction:column}
   .chapter-block{padding:12px 14px}
+  .topnav .title-mark{display:none}
 }
 </style>
 </head>
 <body>
 
-<div class="hero">
+<nav class="topnav" aria-label="메인 네비게이션">
+  <a aria-current="page">인덱스</a>
+  <a href="summary.html">요약본</a>
+  <a href="detail.html">상세본</a>
+  <a href="dialogue.html">대사집</a>
+  <a href="full.html">전문</a>
+  <span class="spacer"></span>
+  <span class="title-mark">Story Chronicle</span>
+</nav>
+
+<header class="hero">
   <h1>어나더에덴 메인스토리</h1>
   <p class="subtitle">제1부 ~ 제3부 전 123장 완전판</p>
   <span class="badge">Another Eden Main Story Archive</span>
-</div>
+</header>
 
-<div class="nav-cards">
+<nav class="nav-cards" aria-label="가이드 메뉴">
   <a href="summary.html" class="nav-card">
-    <span class="icon">&#128209;</span>
+    <span class="icon" aria-hidden="true">&#128209;</span>
     <h3>요약본</h3>
     <p>각 장의 핵심 줄거리를 한눈에. 스포일러 최소화.</p>
     <span class="arrow">요약본 보기 &rarr;</span>
   </a>
   <a href="detail.html" class="nav-card">
-    <span class="icon">&#128214;</span>
+    <span class="icon" aria-hidden="true">&#128214;</span>
     <h3>상세본</h3>
     <p>장면별 상세 서술 + 주요 대사 인용 + 핵심 포인트 분석.</p>
     <span class="arrow">상세본 보기 &rarr;</span>
   </a>
-</div>
+</nav>
 
 
 

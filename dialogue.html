@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>어나더에덴 메인스토리 대사집</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+<meta name="description" content="어나더에덴 메인스토리 전 123장 대사집. 캐릭터별 대사와 나레이션.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -12,7 +14,7 @@
   --bg:#0b0d1a;--bg2:#111428;--bg3:#1a1d35;
   --panel:#161930;--panel2:#1e2140;
   --gold:#c9a44c;--gold2:#b8963e;--gold-dim:#6b5a2a;--gold-bright:#e8cc6e;
-  --text:#e8e0d0;--text2:#9a9080;--text-dim:#685e4e;
+  --text:#e8e0d0;--text2:#b0a590;--text-dim:#685e4e;
   --border:#2a2d45;--sidebar-w:220px;
 }
 html{scroll-behavior:smooth}
@@ -52,7 +54,7 @@ a:hover{color:var(--gold-bright)}
   border:1px solid transparent;border-radius:2px;
 }
 .topnav a:hover{color:var(--gold-bright);border-color:var(--gold-dim)}
-.topnav a.active{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
+.topnav a[aria-current]{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
 .topnav .spacer{flex:1}
 .topnav .title-mark{font-size:11px;color:var(--gold-dim);letter-spacing:2px;text-transform:uppercase;margin-left:auto}
 
@@ -134,7 +136,7 @@ a:hover{color:var(--gold-bright)}
   border-radius:4px;transition:all .2s;
 }
 .ch-nav:hover{color:var(--gold);border-color:var(--gold-dim);background:var(--panel2)}
-.ch-nav.disabled{pointer-events:none;opacity:0}
+.ch-nav.disabled{pointer-events:none;opacity:.15}
 #ch-prev{left:6px}
 #ch-next{right:6px}
 
@@ -160,10 +162,15 @@ a:hover{color:var(--gold-bright)}
   border:1px solid var(--gold-dim);padding:6px 10px;cursor:pointer;font-size:16px;
 }
 #loading-msg{text-align:center;padding:60px;color:var(--text2);font-size:14px;letter-spacing:1px}
+.sidebar-overlay{display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.5)}
 
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:3px}
+
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button.ch-nav{background:none;border:none;font:inherit}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
 @media(max-width:768px){
   #sidebar{transform:translateX(-100%)}
@@ -180,19 +187,22 @@ a:hover{color:var(--gold-bright)}
 </head>
 <body>
 
-<div class="topnav">
+<nav class="topnav" aria-label="메인 네비게이션">
   <a href="index.html">&larr; 인덱스</a>
   <a href="summary.html">요약본</a>
   <a href="detail.html">상세본</a>
+  <a aria-current="page">대사집</a>
+  <a href="full.html">전문</a>
   <span class="spacer"></span>
   <span class="title-mark">Another Eden &mdash; Dialogue</span>
-</div>
+</nav>
 
 <button id="menu-toggle">&#9776;</button>
-<nav id="sidebar"><h2>&#9670; &nbsp;목 차&nbsp; &#9670;</h2><div id="sidebar-nav"></div></nav>
-<div id="ch-prev" class="ch-nav disabled">&#10094;</div>
-<div id="ch-next" class="ch-nav disabled">&#10095;</div>
-<div id="main"><div id="loading-msg">&#9670; 대사를 불러오는 중... &#9670;</div></div>
+<nav id="sidebar" aria-label="장 목록"><h2>&#9670; &nbsp;목 차&nbsp; &#9670;</h2><div id="sidebar-nav"></div></nav>
+<div id="sidebar-overlay" class="sidebar-overlay"></div>
+<button id="ch-prev" class="ch-nav disabled" aria-label="이전 장">&#10094;</button>
+<button id="ch-next" class="ch-nav disabled" aria-label="다음 장">&#10095;</button>
+<main id="main"><div id="loading-msg">&#9670; 대사를 불러오는 중... &#9670;</div></main>
 
 <script>
 var mainEl=document.getElementById('main');
@@ -294,7 +304,7 @@ function buildSidebar(){
     a.addEventListener('click',function(e){
       e.preventDefault();
       goCh(parseInt(this.dataset.idx));
-      document.getElementById('sidebar').classList.remove('open');
+      closeSidebar();
     });
   });
 }
@@ -315,12 +325,15 @@ fetch('data/story_all.json').then(function(r){return r.json()}).then(function(da
   curIdx=startCh;
   showCurrentChapter();
 }).catch(function(e){
-  mainEl.innerHTML='<div id="loading-msg" style="color:var(--gold)">'+e.message+'</div>';
+  var errDiv=document.createElement('div');errDiv.id='loading-msg';errDiv.style.cssText='text-align:center;padding:60px;color:var(--gold);font-size:14px';errDiv.textContent=e.message;mainEl.innerHTML='';mainEl.appendChild(errDiv);
 });
 
-document.getElementById('menu-toggle').addEventListener('click',function(){
-  document.getElementById('sidebar').classList.toggle('open');
-});
+var sidebarEl=document.getElementById('sidebar');
+var overlayEl=document.getElementById('sidebar-overlay');
+function closeSidebar(){sidebarEl.classList.remove('open');overlayEl.style.display='none'}
+function toggleSidebar(){var open=sidebarEl.classList.toggle('open');overlayEl.style.display=open?'block':'none'}
+document.getElementById('menu-toggle').addEventListener('click',toggleSidebar);
+overlayEl.addEventListener('click',closeSidebar);
 </script>
 </body>
 </html>

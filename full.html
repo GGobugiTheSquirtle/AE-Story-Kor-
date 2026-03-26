@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>어나더에덴 메인스토리 풀버전</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+<meta name="description" content="어나더에덴 메인스토리 전문 뷰어. 게임 스크린샷 갤러리 포함.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -12,7 +14,7 @@
   --bg:#0b0d1a;--bg2:#111428;--bg3:#1a1d35;
   --panel:#161930;--panel2:#1e2140;
   --gold:#c9a44c;--gold2:#b8963e;--gold-dim:#6b5a2a;--gold-bright:#e8cc6e;
-  --text:#e8e0d0;--text2:#9a9080;--text-dim:#685e4e;
+  --text:#e8e0d0;--text2:#b0a590;--text-dim:#685e4e;
   --border:#2a2d45;--border-gold:rgba(201,164,76,.25);
   --sidebar-w:240px;
   --narr-color:#8a7a60;
@@ -58,7 +60,7 @@ body::before{
   border:1px solid transparent;border-radius:2px;
 }
 .topnav a:hover{color:var(--gold-bright);border-color:var(--gold-dim)}
-.topnav a.active{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
+.topnav a[aria-current]{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
 .topnav .spacer{flex:1}
 .topnav .title-mark{
   font-size:11px;color:var(--gold-dim);letter-spacing:2px;
@@ -131,7 +133,7 @@ body::before{
   border-radius:4px;transition:all .2s;
 }
 .ch-nav:hover{color:var(--gold);border-color:var(--gold-dim);background:var(--panel2)}
-.ch-nav.disabled{pointer-events:none;opacity:0}
+.ch-nav.disabled{pointer-events:none;opacity:.15}
 #ch-prev{left:6px}
 #ch-next{right:6px}
 #main{margin-left:var(--sidebar-w);padding:64px 24px 100px;max-width:860px;margin-right:auto}
@@ -219,6 +221,12 @@ body::before{
   color:var(--text2);font-size:11px;letter-spacing:1px;
 }
 
+#sidebar-overlay{display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.55)}
+#sidebar-overlay.show{display:block}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button.ch-nav{background:none;border:none;font:inherit}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
 /* Responsive */
 @media(max-width:768px){
   #sidebar{transform:translateX(-100%)}
@@ -235,16 +243,19 @@ body::before{
 </head>
 <body>
 
-<div class="topnav">
+<nav class="topnav" aria-label="메인 네비게이션">
   <a href="index.html">&larr; 인덱스</a>
   <a href="summary.html">요약본</a>
   <a href="detail.html">상세본</a>
+  <a href="dialogue.html">대사집</a>
+  <a aria-current="page">전문</a>
   <span class="spacer"></span>
   <span class="title-mark">Another Eden &mdash; Chronicle</span>
-</div>
+</nav>
 
+<div id="sidebar-overlay"></div>
 <button id="menu-toggle">&#9776;</button>
-<nav id="sidebar">
+<nav id="sidebar" aria-label="장 목록">
   <h2>&#9670; &nbsp;목 차&nbsp; &#9670;</h2>
   <div class="nav-part">&#9670; 제1부 &mdash; 시공을 넘는 고양이</div>
   <a href="#ch-1" class="nav-item" data-ch="1" title="과거의 기억">1장 &middot; 시간의 미아</a>
@@ -321,12 +332,14 @@ body::before{
 <a href="#ch-70" class="nav-item" data-ch="70">70장 &middot; 지장보살 순례</a>
 <a href="#ch-71" class="nav-item" data-ch="71">71장 &middot; 요마 황궁의 결계</a>
 <a href="#ch-72" class="nav-item" data-ch="72">72장 &middot; 소케라와의 대결</a>
+  <div class="nav-part">&#9670; 제2.5부 &mdash; 명협계&middot;방주편</div>
 <a href="#ch-73" class="nav-item" data-ch="73">73장 &middot; 꼭두각시 공주</a>
 <a href="#ch-74" class="nav-item" data-ch="74">74장 &middot; 새틀라이트 스타디움</a>
 <a href="#ch-75" class="nav-item" data-ch="75">75장 &middot; 스타디움 전투</a>
 <a href="#ch-76" class="nav-item" data-ch="76">76장 &middot; 오너와 몽견관의 주인</a>
 <a href="#ch-77" class="nav-item" data-ch="77">77장 &middot; 잊힌 땅</a>
 <a href="#ch-78" class="nav-item" data-ch="78">78장 &middot; 명협계</a>
+<a href="#ch-79" class="nav-item" data-ch="79">79장</a>
 <a href="#ch-80" class="nav-item" data-ch="80">80장 &middot; 황천의 방주 진입</a>
 <a href="#ch-81" class="nav-item" data-ch="81">81장 &middot; 박명의 섬으로</a>
 <a href="#ch-82" class="nav-item" data-ch="82">82장 &middot; 사람 표식의 관</a>
@@ -369,14 +382,14 @@ body::before{
 <a href="#ch-120" class="nav-item" data-ch="120">120장</a>
 <a href="#ch-121" class="nav-item" data-ch="121">121-123장</a>
 </nav>
-<div id="ch-prev" class="ch-nav disabled">&#10094;</div>
-<div id="ch-next" class="ch-nav disabled">&#10095;</div>
-<div id="main"><div id="loading-msg">&#9670; 시공의 문을 여는 중... &#9670;</div></div>
-<div id="lightbox">
-  <span class="lb-close">&times;</span>
-  <span class="lb-nav lb-prev">&#10094;</span>
+<button id="ch-prev" class="ch-nav disabled" aria-label="이전 장">&#10094;</button>
+<button id="ch-next" class="ch-nav disabled" aria-label="다음 장">&#10095;</button>
+<main id="main"><div id="loading-msg">&#9670; 시공의 문을 여는 중... &#9670;</div></main>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="이미지 뷰어">
+  <span class="lb-close" role="button" aria-label="닫기">&times;</span>
+  <span class="lb-nav lb-prev" role="button" aria-label="이전 이미지">&#10094;</span>
   <img src="" alt="">
-  <span class="lb-nav lb-next">&#10095;</span>
+  <span class="lb-nav lb-next" role="button" aria-label="다음 이미지">&#10095;</span>
   <div class="lb-info"></div>
 </div>
 
@@ -511,7 +524,7 @@ document.querySelectorAll('.nav-item').forEach(function(a){
       if(DATA[i].chapter===chNum){goCh(i);break}
     }
     // Close mobile sidebar
-    document.getElementById('sidebar').classList.remove('open');
+    closeSidebar();
   });
 });
 
@@ -544,10 +557,19 @@ Promise.all([
   mainEl.innerHTML='<div id="loading-msg" style="color:var(--gold)">데이터 로딩 실패: '+e.message+'</div>';
 });
 
-// Mobile menu toggle
-document.getElementById('menu-toggle').addEventListener('click',function(){
-  document.getElementById('sidebar').classList.toggle('open');
-});
+// Mobile menu toggle + overlay
+var sidebarEl=document.getElementById('sidebar');
+var overlayEl=document.getElementById('sidebar-overlay');
+function toggleSidebar(){
+  var open=sidebarEl.classList.toggle('open');
+  overlayEl.classList.toggle('show',open);
+}
+function closeSidebar(){
+  sidebarEl.classList.remove('open');
+  overlayEl.classList.remove('show');
+}
+document.getElementById('menu-toggle').addEventListener('click',toggleSidebar);
+overlayEl.addEventListener('click',closeSidebar);
 </script>
 </body>
 </html>
