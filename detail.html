@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0b0d1a;--bg2:#111428;--bg3:#1a1d35;--text:#e8e0d0;--text2:#b0a590;--gold:#c9a44c;--gold2:#b8963e;--gold-dim:#6b5a2a;--gold-bright:#e8cc6e;--card-bg:rgba(22,25,48,.85);--border:#2a2d45;--sidebar-w:200px}
+:root{--bg:#0b0d1a;--bg2:#111428;--bg3:#1a1d35;--text:#e8e0d0;--text2:#b0a590;--text-dim:#685e4e;--gold:#c9a44c;--gold2:#b8963e;--gold-dim:#6b5a2a;--gold-bright:#e8cc6e;--card-bg:rgba(22,25,48,.82);--border:rgba(201,164,76,.08);--ease:cubic-bezier(0.16,1,0.3,1);--sidebar-w:200px}
 body{background:var(--bg);color:var(--text);font-family:'Noto Serif KR','Malgun Gothic',serif;line-height:1.8;
   background-image:radial-gradient(ellipse 600px 600px at 20% 10%, rgba(30,40,80,.4) 0%, transparent 70%);
 }
@@ -27,13 +27,14 @@ a:hover{color:var(--gold-bright)}
 /* Top nav */
 .topnav{position:fixed;top:0;left:0;right:0;z-index:200;
   background:linear-gradient(180deg, #181b30 0%, #111428 100%);
-  border-bottom:1px solid var(--gold-dim);display:flex;align-items:center;padding:0 20px;height:48px;gap:8px;
-  box-shadow:0 2px 12px rgba(0,0,0,.5);
+  border-bottom:1px solid var(--gold-dim);display:flex;align-items:center;padding:0 20px;height:48px;gap:4px;
+  box-shadow:0 2px 16px rgba(6,8,20,.6);
 }
 .topnav::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg, transparent 0%, var(--gold-dim) 20%, var(--gold) 50%, var(--gold-dim) 80%, transparent 100%)}
-.topnav a{color:var(--text2);font-size:13px;padding:6px 14px;text-decoration:none;transition:all .3s;letter-spacing:.5px;border:1px solid transparent}
-.topnav a:hover{color:var(--gold-bright);border-color:var(--gold-dim)}
-.topnav a[aria-current]{color:var(--gold);border-color:var(--gold-dim);background:rgba(201,164,76,.08)}
+.topnav a{color:var(--text2);font-size:13px;padding:8px 14px;min-height:36px;display:inline-flex;align-items:center;text-decoration:none;transition:color .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);letter-spacing:.5px;border:1px solid transparent;border-radius:3px}
+.topnav a:hover{color:var(--gold-bright);border-color:rgba(201,164,76,.15);background:rgba(201,164,76,.04)}
+.topnav a:active{transform:scale(0.96)}
+.topnav a[aria-current]{color:var(--gold);border-color:rgba(201,164,76,.2);background:rgba(201,164,76,.1);box-shadow:inset 0 -2px 0 var(--gold)}
 .topnav .spacer{flex:1}
 .topnav .title-mark{font-size:11px;color:var(--gold-dim);letter-spacing:2px;text-transform:uppercase;margin-left:auto}
 
@@ -42,9 +43,10 @@ a:hover{color:var(--gold-bright)}
   background:linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
   overflow-y:auto;z-index:100;border-right:1px solid var(--border);padding:0;transition:transform .3s}
 #sidebar h2{color:var(--gold);font-size:11px;padding:14px 16px 8px;letter-spacing:3px;font-weight:400;border-bottom:1px solid var(--border);text-align:center}
-.nav-item{display:block;padding:4px 14px;color:var(--text2);text-decoration:none;font-size:11px;border-left:2px solid transparent;transition:all .2s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.2px}
-.nav-item:hover{color:var(--gold-bright);background:rgba(201,164,76,.04);border-left-color:var(--gold-dim)}
-.nav-item.active{color:var(--gold);background:rgba(201,164,76,.06);border-left-color:var(--gold)}
+.nav-item{display:block;padding:5px 14px;color:var(--text2);text-decoration:none;font-size:12px;border-left:2px solid transparent;transition:all .25s var(--ease);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.2px}
+.nav-item:hover{color:var(--gold-bright);background:rgba(201,164,76,.05);border-left-color:var(--gold-dim)}
+.nav-item:active{background:rgba(201,164,76,.1)}
+.nav-item.active{color:var(--gold);background:rgba(201,164,76,.08);border-left-color:var(--gold)}
 .nav-part{color:var(--gold-dim);font-size:10px;padding:12px 16px 4px;letter-spacing:2px;border-top:1px solid var(--border);margin-top:4px}
 
 /* Chapter nav arrows (compact buttons) */
@@ -57,7 +59,8 @@ a:hover{color:var(--gold-bright)}
   background:var(--bg3);border:1px solid var(--border);
   border-radius:4px;transition:all .2s;
 }
-.ch-nav:hover{color:var(--gold);border-color:var(--gold-dim);background:var(--bg2)}
+.ch-nav:hover{color:var(--gold);border-color:var(--gold-dim);background:var(--bg2);box-shadow:0 2px 8px rgba(201,164,76,.1)}
+.ch-nav:active{transform:translateY(-50%) scale(0.94)}
 .ch-nav.disabled{pointer-events:none;opacity:.15}
 #ch-prev{left:6px}
 #ch-next{right:6px}
@@ -70,10 +73,11 @@ a:hover{color:var(--gold-bright)}
 .ch-bottom-nav button{
   background:var(--bg3);color:var(--text2);border:1px solid var(--border);
   padding:10px 24px;cursor:pointer;font-size:13px;
-  font-family:inherit;letter-spacing:.5px;transition:all .2s;max-width:45%;
+  font-family:inherit;letter-spacing:.5px;transition:all .3s var(--ease);max-width:45%;
   text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
-.ch-bottom-nav button:hover{color:var(--gold);border-color:var(--gold-dim)}
+.ch-bottom-nav button:hover{color:var(--gold);border-color:var(--gold-dim);box-shadow:0 2px 12px rgba(201,164,76,.08)}
+.ch-bottom-nav button:active{transform:scale(0.97)}
 .ch-bottom-nav button:disabled{opacity:.3;pointer-events:none}
 .ch-bottom-nav .ch-indicator{color:var(--text-dim,#685e4e);font-size:11px;letter-spacing:1px;flex-shrink:0}
 
@@ -81,8 +85,9 @@ a:hover{color:var(--gold-bright)}
 #main{margin-left:var(--sidebar-w);padding:64px 24px 80px;max-width:900px}
 
 /* Chapter — single-chapter mode */
-.chapter{display:none;padding:28px;background:var(--card-bg);border:1px solid var(--border);border-top:2px solid var(--gold-dim)}
-.chapter.active{display:block}
+.chapter{display:none;padding:28px;background:var(--card-bg);border:1px solid var(--border);border-top:2px solid var(--gold-dim);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 16px rgba(6,8,20,.3)}
+.chapter.active{display:block;animation:fadeIn .4s var(--ease)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .chapter h2{color:var(--text);font-size:1.2em;padding-bottom:12px;margin-bottom:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-weight:400;letter-spacing:.5px;position:relative;border:none}
 .chapter h2::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg, var(--gold-dim), transparent 80%)}
 .ch-num{font-size:0.65em;color:var(--gold);padding:3px 12px;border:1px solid var(--gold-dim);letter-spacing:2px;white-space:nowrap;background:rgba(201,164,76,.05)}
@@ -151,9 +156,14 @@ html{scroll-behavior:smooth}
 :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 button.ch-nav{background:none;border:none;font:inherit}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-.btt{position:fixed;bottom:24px;right:24px;z-index:100;width:44px;height:44px;background:var(--gold-dim);color:var(--text);border:none;border-radius:50%;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s;font-size:1em}
+/* Reading progress bar */
+.progress-bar{position:fixed;top:48px;left:0;right:0;height:2px;z-index:199;background:transparent}
+.progress-bar .fill{height:100%;width:0%;background:linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-bright));transition:width .1s linear;box-shadow:0 0 8px rgba(201,164,76,.4)}
+
+.btt{position:fixed;bottom:24px;right:24px;z-index:100;width:44px;height:44px;background:var(--gold-dim);color:var(--text);border:none;border-radius:50%;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s var(--ease);font-size:1em}
 .btt.show{opacity:.8;pointer-events:auto}
-.btt:hover{opacity:1;background:var(--gold)}
+.btt:hover{opacity:1;background:var(--gold);transform:scale(1.05)}
+.btt:active{transform:scale(0.95)}
 .sidebar-overlay{display:none;position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.5)}
 
 @media(max-width:768px){
@@ -183,6 +193,7 @@ button.ch-nav{background:none;border:none;font:inherit}
   <span class="title-mark">Another Eden &mdash; Chronicle</span>
 </nav>
 
+<div class="progress-bar"><div class="fill" id="progressFill"></div></div>
 <button id="menu-toggle">&#9776;</button>
 <button id="sidebar-toggle" title="사이드바 접기/펼치기">&#9664;</button>
 <button id="ch-prev" class="ch-nav disabled" aria-label="이전 장">&#10094;</button>
@@ -3633,6 +3644,16 @@ if(window.location.hash){
   }
 }
 showChapter(startIdx);
+
+// Reading progress bar
+var progressFill=document.getElementById('progressFill');
+if(progressFill){
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+    progressFill.style.width=Math.min(pct,100)+'%';
+  },{passive:true});
+}
 </script>
 </body>
 </html>
