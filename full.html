@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>어나더에덴 메인스토리 풀버전</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
-<meta name="description" content="어나더에덴 메인스토리 전문 뷰어. 게임 스크린샷 갤러리 포함.">
+<meta name="description" content="어나더에덴 메인스토리 전문 뷰어 — 전 챕터 본문·대사 (스크린샷 갤러리는 로컬 전용).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -400,7 +400,7 @@ var mainEl=document.getElementById('main');
 var prevBtn=document.getElementById('ch-prev');
 var nextBtn=document.getElementById('ch-next');
 var DATA=[];
-var FMAP={};
+var FMAP={};var GALLERY_OK=false;
 var FRAME_BASE='fullscreen/';
 var curIdx=0;
 
@@ -437,6 +437,8 @@ function renderCh(ch){
       else if(frames[i].fname.indexOf('_NARRATION_')>-1) cls=' fs-narration';
       h+='<div class="inline-frame"><img loading="lazy" src="'+src+'" class="fs-thumb'+cls+'" data-ch="'+ch.chapter+'" onclick="openLB(this)"></div>';
     }
+  } else if(!GALLERY_OK){
+    h+='<div class="fs-unavailable" style="margin:20px 0;padding:14px 18px;border:1px dashed var(--line,#3a3644);border-radius:10px;color:var(--muted,#9a94a6);font-size:13px;line-height:1.7;text-align:center">&#128247; 스크린샷 갤러리는 용량(약 885MB&middot;2만 장) 때문에 온라인에는 미배포입니다 &mdash; 본문&middot;대사는 그대로 제공됩니다.<br>(로컬 실행 시 전체 갤러리가 표시됩니다)</div>';
   }
   // Bottom nav
   var prevLabel=curIdx>0?(DATA[curIdx-1].chapter+'장 '+escH(DATA[curIdx-1].title||'')):'';
@@ -542,6 +544,7 @@ Promise.all([
     if(!FMAP[m.chapter]) FMAP[m.chapter]=[];
     FMAP[m.chapter].push({vid:m.vid, frames:m.frames});
   }
+  GALLERY_OK=Object.keys(FMAP).length>0;
   // Determine starting chapter from hash
   var startCh=0;
   if(window.location.hash){
